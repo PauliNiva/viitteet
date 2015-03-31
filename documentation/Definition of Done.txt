@@ -1,0 +1,6 @@
+- Yksikkötestit (Junit)
+- Hyväksyntätestattu (easyB)
+- Jatkuva Integraatio (jenkins)
+- Rivikattavuus: riittävä
+- Dokumentoitu (JavaDoc)
+- Viety tuotantoon
