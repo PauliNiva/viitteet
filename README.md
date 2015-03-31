@@ -1,0 +1,2 @@
+# viitteet
+Ohjelmistotuotantokurssin miniprojektin repositorio
