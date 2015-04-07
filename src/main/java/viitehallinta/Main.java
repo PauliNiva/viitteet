@@ -1,4 +1,4 @@
-package main;
+package viitehallinta;
 
 public class Main {
 }
