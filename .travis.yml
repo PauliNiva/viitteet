@@ -1,0 +1,13 @@
+language: java
+notifications:
+  email: false
+  irc:
+    channels:
+    - ircnet.eversible.com#esat
+    on_success: change
+    use_notice: true
+    skip_join: true
+    template:
+    - '#%{build_number} %{message} (%{branch} : %{author}): %{commit_message}'
+after_success:
+  - mvn clean cobertura:cobertura coveralls:report
