@@ -5,7 +5,7 @@ notifications:
   email: false
   irc:
     channels:
-    - ircnet.eversible.com#esat
+    - "irc.stealth.net#esat"
     on_success: always
     on_failure: always
     use_notice: false
