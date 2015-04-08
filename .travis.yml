@@ -1,14 +1,11 @@
 language: java
 jdk:
   - oraclejdk8
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
 notifications:
   email: false
   irc:
     channels:
-    - "ircnet.eversible.com#esat"
+    - ircnet.eversible.com#esat
     on_success: always
     on_failure: always
     use_notice: false
