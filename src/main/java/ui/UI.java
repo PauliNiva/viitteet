@@ -1,13 +1,21 @@
 package ui;
 
-import java.util.List;
-import viitehallinta.Artikkeli;
-import viitehallinta.Viite;
-
 public interface UI {
-    String naytaValikkoJaPyydaValinta();
-    Artikkeli lisaaArtikkeli();
-    void listaaViitteet(List <Viite> viitteet);
+
+    /**
+     * Käynnistää UI:n ja pitää ohjelman käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
+     */
+    void kaynnista();
+
+    /**
+     * Näyttää valikon konsolissa.
+     */
+    void naytaValikkoJaPyydaValinta();
+
+    /**
+     * //TODO!!
+     * todennäköiseti poistaa viitteen viitearkiston metodia apuna käyttäen.
+     * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
+     */
     int poistaViite();
-    void naytaViesti(String viesti);
 }
