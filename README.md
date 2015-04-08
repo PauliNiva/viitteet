@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/esat-miniprojekti/viitteet.svg)](https://travis-ci.org/esat-miniprojekti/viitteet)
+
 # viitteet
 Ohjelmistotuotantokurssin miniprojektin repositorio
 
