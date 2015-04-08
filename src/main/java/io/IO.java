@@ -1,5 +1,7 @@
 package io;
 
+import java.util.List;
+
 /**
  * Rajapinta käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
  * näyttämiseen.
