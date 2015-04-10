@@ -2,14 +2,14 @@ package viitehallinta;
 
 /**
  * Luokka artikkeliviite-olioille, jonka konstruktori on kuormitettu.
+ * Perii Viite-luokan.
  */
-public class Artikkeli {
+public class Artikkeli extends Viite {
 
-    private String title;
-    private String author;
     private String journal;
-    private int year;
     private int volume;
+    private int number;
+    private String address;
 
     /**
      * Konstruktori ilman kenttiä.
@@ -18,59 +18,62 @@ public class Artikkeli {
     }
 
     /**
-     * Konstruktori kentillä-
-     * @param title String julkaisun otsikko.
-     * @param author String julkaisun kirjoittaja.
-     * @param journal String lehti jossa julkaisu on ilmestynyt.
-     * @param year int Vuosi jolloin lehti, jossa julkaisu on, ilmestyi.
-     * @param volume int lehden, jossa julkaisu ilmestyi, numero.
+     * Konstruktori kentillä.
+     * @param ID String joka toimii yksillöllisenä (uniikkina)tunnisteena;
+     * @param author String artikkelin kirjoittaja.
+     * @param title String artikkelin otsikko.
+     * @param journal String julkaisun nimi, jossa artikkeli on ilmestynyt.
+     * @param volume int julkaisun osa, jossa artikkeli on ilmestynyt.
+     * @param number int julkaisun numeri, jossa artikkeli on ilmestynyt.
+     * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
+     * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
+     *               erotetaan toisistaan kahdella viivalla.
+     * @param publisher String julkaisijan nimi;
+     * @param address String julkaisijan osoite;
      */
-    public Artikkeli(String title, String author, String journal, int year, int volume) {
-        this.title = title;
-        this.author = author;
-        this.journal = journal;
-        this.year = year;
-        this.volume = volume;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public void setJournal(String journal) {
-        this.journal = journal;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
+    public Artikkeli(String ID, String author, String title, String journal, int volume, int number,  int year,
+                     String pages, String publisher, String address) {
+        this.setID(ID);
+        this.setAuthor(author);
+        this.setTitle(title);
+        this.setJournal(journal);
+        this.setVolume(volume);
+        this.setNumber(number);
+        this.setYear(year);
+        this.setPages(pages);
+        this.setPublisher(publisher);
+        this.setAddress(address);
     }
 
     public String getJournal() {
         return journal;
     }
 
-    public int getYear() {
-        return year;
+    public void setJournal(String journal) {
+        this.journal = journal;
     }
 
     public int getVolume() {
         return volume;
     }
 
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
