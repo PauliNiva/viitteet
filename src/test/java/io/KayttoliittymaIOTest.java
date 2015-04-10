@@ -19,4 +19,10 @@ public class KayttoliittymaIOTest {
         io.tulostaRivi("foo");
         assertNotNull(io);
     }
+
+    @Test
+    public void tulostaIlmanRivinvaihtoaTest() {
+        io.tulostaIlmanRivinvaihtoa("bar");
+        assertNotNull(io);
+    }
 }
