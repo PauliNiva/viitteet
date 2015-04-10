@@ -12,21 +12,31 @@ public class Viitearkisto {
 
     /**
      * Lisää uuden artikkelin järjestelmään.
-     * @param title String julkaisun otsikko.
-     * @param author String julkaisun kirjoittaja.
-     * @param journal String lehti jossa julkaisu on ilmestynyt.
-     * @param year int Vuosi jolloin lehti, jossa julkaisu on, ilmestyi.
-     * @param volume int lehden, jossa julkaisu ilmestyi, numero.
+     * @param ID String joka toimii yksillöllisenä (uniikkina)tunnisteena;
+     * @param author String artikkelin kirjoittaja.
+     * @param title String artikkelin otsikko.
+     * @param journal String julkaisun nimi, jossa artikkeli on ilmestynyt.
+     * @param volume int julkaisun osa, jossa artikkeli on ilmestynyt.
+     * @param number int julkaisun numeri, jossa artikkeli on ilmestynyt.
+     * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
+     * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
+     *               erotetaan toisistaan kahdella viivalla.
+     * @param publisher String julkaisijan nimi;
+     * @param address String julkaisijan osoite;
      */
-    public void lisaaArtikkeli(String title, String author, String journal, int year, int volume) {
+    public void lisaaArtikkeli(String ID, String author, String title, String journal, int volume,
+                               int number, int year, String pages, String publisher, String address) {
         Artikkeli artikkeli = new Artikkeli();
-        artikkeli.setTitle(title);
+        artikkeli.setID(ID);
         artikkeli.setAuthor(author);
+        artikkeli.setTitle(title);
         artikkeli.setJournal(journal);
-        artikkeli.setYear(year);
         artikkeli.setVolume(volume);
+        artikkeli.setNumber(number);
+        artikkeli.setYear(year);
+        artikkeli.setPages(pages);
+        artikkeli.setPublisher(publisher);
+        artikkeli.setAddress(address);
         // Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
     }
-
-
 }

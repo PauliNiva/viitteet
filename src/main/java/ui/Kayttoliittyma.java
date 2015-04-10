@@ -91,7 +91,8 @@ public class Kayttoliittyma implements UI {
      * @param artikkeli Artikkeli-olio joka on tyhjä.
      */
     private void luoArtikkeli(Artikkeli artikkeli) {
-        String[] kentat = new String[] {"Title", "Author", "Journal", "Year", "Volume"};
+        String[] kentat = new String[] {"ID", "Author", "Title", "Journal", "Volume", "Number", "Year",
+                "Pages", "Publisher", "Address"};
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
     }
 
@@ -101,12 +102,15 @@ public class Kayttoliittyma implements UI {
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät kentät.
      */
     private void lisaaArtikkeli(Artikkeli artikkeli, String[] taytetytKentat) {
-        viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], StringLuvuksi(taytetytKentat[3]), StringLuvuksi(taytetytKentat[4]));
+        viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
+                StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), StringLuvuksi(taytetytKentat[6]),
+                taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
     }
 
     /**
      * Antaa kentät käyttäjän täytettäviksi riveittäin kenttä kerrallaan.
-     * @param kentat String-taulukko, jossa on kenttien nimet, jotka kenttä kerrallaan annetaan käyttäjän täytettäväksi.
+     * @param kentat String-taulukko, jossa on kenttien nimet, jotka kenttä kerrallaan annetaan
+     *               käyttäjän täytettäväksi.
      * @return String-taulukko, jossa on kentät täytettynä.
      */
     private String[] taytaKentat(String[] kentat) {
