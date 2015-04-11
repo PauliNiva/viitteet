@@ -34,7 +34,8 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
-        do {
+        lueTiedosto();
+        do {            
             naytaValikkoJaPyydaValinta();
         } while (toteutaValikonValinta(getKayttajanValinta()));
     }
@@ -148,6 +149,10 @@ public class Kayttoliittyma implements UI {
      */
     private int StringLuvuksi(String numeraali) {
         return Integer.parseInt(numeraali);
+    }
+    
+    private void lueTiedosto() {
+        viitearkisto.lueTiedosto();
     }
     
     private void tallennaTiedostoon() {

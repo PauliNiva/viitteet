@@ -17,8 +17,7 @@ public class Viitearkisto {
      * Luodaan viite-lista. 
      * @param fileDao 
      */
-    public Viitearkisto(dao fileDao) {
-        this.artikkelit = new ArrayList();
+    public Viitearkisto(dao fileDao) {        
         this.fileDao = fileDao;
     }
 
@@ -59,8 +58,7 @@ public class Viitearkisto {
         this.fileDao.kirjoitaArtikkelit(artikkelit);
     }
     
-    // tätä ei ainakaan vielä tarvitsekaan
-    public List<Artikkeli> listaaArtikkelit() {
-        return this.artikkelit;
+    public void lueTiedosto() {
+        this.artikkelit = this.fileDao.lueArtikkelit();
     }
 }

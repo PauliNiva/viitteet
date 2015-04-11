@@ -46,8 +46,8 @@ public class Artikkeli extends Viite {
     }
     
     public String getTiedostoMuoto() {
-        return this.getID()+"|"+this.getAuthor()+"|"+this.getTitle()+"|"+this.getJournal()+"|"+this.getVolume()+
-                "|"+this.getNumber()+"|"+this.getYear()+"|"+this.getPages()+"|"+this.getPublisher()+"|"+this.getAddress();
+        return this.getID()+":"+this.getAuthor()+":"+this.getTitle()+":"+this.getJournal()+":"+this.getVolume()+
+                ":"+this.getNumber()+":"+this.getYear()+":"+this.getPages()+":"+this.getPublisher()+":"+this.getAddress()+"\n";
     }
 
     public String getJournal() {

@@ -16,5 +16,5 @@ public interface dao {
      */
     public void kirjoitaArtikkelit(List<Artikkeli> artikkelit);
     
-    public List<Artikkeli> lueArtikelit();
+    public List<Artikkeli> lueArtikkelit();
 }
