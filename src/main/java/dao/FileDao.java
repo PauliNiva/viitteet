@@ -18,21 +18,24 @@ import viitehallinta.Artikkeli;
 import viitehallinta.Viite;
 
 /**
- *
- * @author Sonja
+ * Tiedostoon tallettava DAO, joka toteuttaa rajapinnan dao
  */
 public class FileDao implements dao {
 
     private File tiedosto;
+    private List<Artikkeli> artikkelit;
 
+    /**
+     * Konstruktorissa otetaan käyttöön tiedosto, johon viitteet tallennetaan
+     */
     public FileDao() {
         this.tiedosto = new File("viitteet.txt");
     }
 
     /**
-     * Kirjoittaa listassa olevat artikkelit tiedostoon
+     * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon
      *
-     * @param artikkelit lista tallennettavia artikkeleita
+     * @param artikkelit tiedostoon tallennettavat artikkelit
      */
     @Override
     public void kirjoitaArtikkelit(List<Artikkeli> artikkelit) {
@@ -49,9 +52,14 @@ public class FileDao implements dao {
 
     }
 
+    /**
+     * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää 
+     * ne listalle, jota viitearkisto käyttää.
+     * @return lista Artikkeli-olioita
+     */
     @Override
     public List<Artikkeli> lueArtikkelit() {
-        List<Artikkeli> artikkelit = new ArrayList();
+        artikkelit = new ArrayList();
         try {
             Scanner lukija = new Scanner(tiedosto);
             while (lukija.hasNextLine()) {
@@ -76,9 +84,6 @@ public class FileDao implements dao {
         } catch (FileNotFoundException ex) {
             System.out.println("Tiedostoa ei löytynyt!");
         }
-
-        //String ID, String author, String title, String journal, int volume, int number,  int year,
-        // String pages, String publisher, String address
         return artikkelit;
     }
 
