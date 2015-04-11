@@ -44,6 +44,11 @@ public class Artikkeli extends Viite {
         this.setPublisher(publisher);
         this.setAddress(address);
     }
+    
+    public String getTiedostoMuoto() {
+        return this.getID()+"|"+this.getAuthor()+"|"+this.getTitle()+"|"+this.getJournal()+"|"+this.getVolume()+
+                "|"+this.getNumber()+"|"+this.getYear()+"|"+this.getPages()+"|"+this.getPublisher()+"|"+this.getAddress();
+    }
 
     public String getJournal() {
         return journal;

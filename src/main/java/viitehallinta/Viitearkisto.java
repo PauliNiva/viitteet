@@ -1,14 +1,22 @@
 package viitehallinta;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Luokka viitteiden lisäämiseen ja poistamiseen järjestelmästä.
  */
 public class Viitearkisto {
+    
+    private List<Artikkeli> artikkelit;
 
     /**
      * Konstruktori ilman parametreja.
+     * Luodaan viite-lista.
      */
-    public Viitearkisto() {}
+    public Viitearkisto() {
+        this.artikkelit = new ArrayList();
+    }
 
     /**
      * Lisää uuden artikkelin järjestelmään.
@@ -37,6 +45,13 @@ public class Viitearkisto {
         artikkeli.setPages(pages);
         artikkeli.setPublisher(publisher);
         artikkeli.setAddress(address);
-        // Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
+        
+        //täytyy vielä tehdä tarkistus onko viite jo olemassa!
+        this.artikkelit.add(artikkeli);
+// Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
+    }
+    
+    public List<Artikkeli> listaaArtikkelit() {
+        return this.artikkelit;
     }
 }
