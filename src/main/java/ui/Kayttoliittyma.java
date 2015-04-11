@@ -80,6 +80,7 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 4: {
+                tallennaTiedostoon();
                 return false;
             }
         }
@@ -147,6 +148,10 @@ public class Kayttoliittyma implements UI {
      */
     private int StringLuvuksi(String numeraali) {
         return Integer.parseInt(numeraali);
+    }
+    
+    private void tallennaTiedostoon() {
+        viitearkisto.tallenna();
     }
 
 }

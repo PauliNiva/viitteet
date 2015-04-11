@@ -1,5 +1,6 @@
 package viitehallinta;
 
+import dao.dao;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,13 +10,16 @@ import java.util.List;
 public class Viitearkisto {
     
     private List<Artikkeli> artikkelit;
+    private dao fileDao;
 
     /**
      * Konstruktori ilman parametreja.
-     * Luodaan viite-lista.
+     * Luodaan viite-lista. 
+     * @param fileDao 
      */
-    public Viitearkisto() {
+    public Viitearkisto(dao fileDao) {
         this.artikkelit = new ArrayList();
+        this.fileDao = fileDao;
     }
 
     /**
@@ -51,6 +55,11 @@ public class Viitearkisto {
 // Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
     }
     
+    public void tallenna() {
+        this.fileDao.kirjoitaArtikkelit(artikkelit);
+    }
+    
+    // tätä ei ainakaan vielä tarvitsekaan
     public List<Artikkeli> listaaArtikkelit() {
         return this.artikkelit;
     }

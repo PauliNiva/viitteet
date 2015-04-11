@@ -1,5 +1,6 @@
 package viitehallinta;
 
+import dao.FileDao;
 import io.KayttoliittymaIO;
 import ui.Kayttoliittyma;
 
@@ -18,7 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         KayttoliittymaIO kayttoliittymaIO = new KayttoliittymaIO();
-        Viitearkisto viitearkisto = new Viitearkisto();
+        FileDao dao = new FileDao();
+        Viitearkisto viitearkisto = new Viitearkisto(dao);
         Kayttoliittyma kayttoliittyma = new Kayttoliittyma(kayttoliittymaIO, viitearkisto);
         kayttoliittyma.kaynnista();
     }
