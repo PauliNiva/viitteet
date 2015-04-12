@@ -26,10 +26,10 @@ public class FileDao implements dao {
     private List<Artikkeli> artikkelit;
 
     /**
-     * Konstruktorissa otetaan käyttöön tiedosto, johon viitteet tallennetaan
+     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
      */
-    public FileDao() {
-        this.tiedosto = new File("viitteet.txt");
+    public FileDao(String tiedosto) {
+        this.tiedosto = new File(tiedosto);
     }
 
     /**
