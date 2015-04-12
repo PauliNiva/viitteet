@@ -26,6 +26,13 @@ public class KayttoliittymaTest {
         kayttoliittyma = new Kayttoliittyma(mockIo, mockViitearkisto);
         viitearkisto = new Viitearkisto(testiDao);
     }
+    
+    @Test
+    public void naytaValikkoJaPyydaValintaTest(){
+        kayttoliittyma.naytaValikkoJaPyydaValinta();
+        verify(mockIo, times(5)).tulostaRivi(anyString());
+    }
+    
 
     @Test
     public void kaynnistaTest() {
@@ -38,7 +45,7 @@ public class KayttoliittymaTest {
 
     @Test
     public void toteutaValikonValintaTest() {
-
+        
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
         assertEquals(false, kayttoliittyma.toteutaValikonValinta(4));
@@ -59,5 +66,7 @@ public class KayttoliittymaTest {
         kayttoliittyma.luoArtikkeli(new Artikkeli());
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString() , anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyString(), anyString());
     }
+    
+    
 
 }
