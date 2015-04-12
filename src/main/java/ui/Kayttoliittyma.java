@@ -93,7 +93,7 @@ public class Kayttoliittyma implements UI {
      * Luo artikkelin kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja taytaKentat.
      * @param artikkeli Artikkeli-olio joka on tyhjä.
      */
-    private void luoArtikkeli(Artikkeli artikkeli) {
+    public void luoArtikkeli(Artikkeli artikkeli) {
         String[] kentat = new String[] {"ID", "Author", "Title", "Journal", "Volume", "Number", "Year",
                 "Pages", "Publisher", "Address"};
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
@@ -104,7 +104,7 @@ public class Kayttoliittyma implements UI {
      * @param artikkeli
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät kentät.
      */
-    private void lisaaArtikkeli(Artikkeli artikkeli, String[] taytetytKentat) {
+    public void lisaaArtikkeli(Artikkeli artikkeli, String[] taytetytKentat) {
         viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
                 StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), StringLuvuksi(taytetytKentat[6]),
                 taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
@@ -116,7 +116,7 @@ public class Kayttoliittyma implements UI {
      *               käyttäjän täytettäväksi.
      * @return String-taulukko, jossa on kentät täytettynä.
      */
-    private String[] taytaKentat(String[] kentat) {
+    public String[] taytaKentat(String[] kentat) {
         String[] taytettavatKentat = new String[kentat.length];
         for (int i = 0; i < kentat.length; i++) {
             io.tulostaIlmanRivinvaihtoa(kentat[i] + ": ");
