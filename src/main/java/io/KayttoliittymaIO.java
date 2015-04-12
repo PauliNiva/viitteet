@@ -48,4 +48,8 @@ public class KayttoliittymaIO implements IO{
     public void tulostaIlmanRivinvaihtoa(String rivi) {
         System.out.print(rivi);
     }
+
+    public void asetaLuettavaRivi(String luettavaRivi) {
+        lukija = new Scanner(luettavaRivi);
+    }
 }
