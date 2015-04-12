@@ -34,4 +34,17 @@ public class KayttoliittymaTest {
        
     }
     
+    @Test
+    public void toteutaValikonValintaTest(){
+       
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
+        
+    }
+    
+    @Test
+    public void listaaViitteetTest(){
+        kayttoliittyma.listaaViitteet();
+    }
+    
 }

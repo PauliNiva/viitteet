@@ -67,7 +67,7 @@ public class Kayttoliittyma implements UI {
      * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta valitseman toiminnon.
      * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen, tällöin palautetaan false.
      */
-    private boolean toteutaValikonValinta(int kayttajanValinta) {
+    public boolean toteutaValikonValinta(int kayttajanValinta) {
         switch (kayttajanValinta) {
             case 1: {
                 luoArtikkeli(new Artikkeli());
