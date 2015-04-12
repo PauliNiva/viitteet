@@ -51,6 +51,7 @@ public class Viitearkisto {
         
         //täytyy vielä tehdä tarkistus onko viite jo olemassa!
         this.artikkelit.add(artikkeli);
+        tallenna();
 // Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
     }
     
