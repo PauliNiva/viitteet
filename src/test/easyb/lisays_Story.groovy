@@ -7,16 +7,17 @@ description 'Käyttäjä voi lisätä artikkeliviitteen'
 
 scenario 'käyttäjä voi lisätä viitteen', {
     given 'lisäämis-toiminto on valittu', {
-//        dao = new FileDao();        //groovy antaa nää tällein, ei oo virhe
-//        io = new KayttoliittymaIO();
-//        viitearkisto = new Viitearkisto(dao);
-//        kl = new Kayttoliittyma(io, viitearkisto);
+        testiDao = new FileDao("tyhjatestiviite.txt");
+        io = new StubIO("1", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4");
+        viitearkisto = new Viitearkisto(testiDao);
+        kayttoliittyma = new Kayttoliittyma(io, viitearkisto);
+        
     }
     when 'pakolliset kentät on täytetty', {
-//        kl.kaynnista();
+                kl.kaynnista();
     }
     then 'artikkeliviite on tallennettu' , {
-        
+        io.getPrints.shouldHave("Artikkeli lisätty onnistuneesti")
     }
 }
 //

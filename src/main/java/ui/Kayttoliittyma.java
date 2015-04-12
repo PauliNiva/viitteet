@@ -108,6 +108,9 @@ public class Kayttoliittyma implements UI {
         viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
                 StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), StringLuvuksi(taytetytKentat[6]),
                 taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
+        System.out.println("");
+        System.out.println("Artikkeli lisätty onnistuneesti");
+        System.out.println("");
     }
 
     /**
