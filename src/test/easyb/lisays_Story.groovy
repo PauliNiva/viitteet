@@ -1,4 +1,4 @@
-import viitehallinta.*;
+import io.*;
 import dao.*;
 import ui.*;
 import viitehallinta.*;
@@ -7,17 +7,18 @@ description 'Käyttäjä voi lisätä artikkeliviitteen'
 
 scenario 'käyttäjä voi lisätä viitteen', {
     given 'lisäämis-toiminto on valittu', {
-        testiDao = new FileDao("tyhjatestiviite.txt");
-        io = new StubIO("1", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4", "4");
+        testiDao = new FileDao("tyhjätestiviite.txt");
+        io = new StubIO("1", "9", "lokki", "lintu", "9", "9", "9", "2015", "9", "9", "katu", "4");
         viitearkisto = new Viitearkisto(testiDao);
-        kayttoliittyma = new Kayttoliittyma(io, viitearkisto);
+        kl = new Kayttoliittyma(io, viitearkisto);
         
     }
     when 'pakolliset kentät on täytetty', {
-                kl.kaynnista();
+        kl.kaynnista();
     }
     then 'artikkeliviite on tallennettu' , {
-        io.getPrints.shouldHave("Artikkeli lisätty onnistuneesti")
+        
+        viitearkisto.getArtikkelit().size().shouldNotBe 0;
     }
 }
 //
