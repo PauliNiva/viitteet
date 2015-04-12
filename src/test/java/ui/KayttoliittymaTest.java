@@ -45,7 +45,8 @@ public class KayttoliittymaTest {
 
     @Test
     public void toteutaValikonValintaTest() {
-        
+        when(mockIo.lueRivi()).thenReturn("4");
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
         assertEquals(false, kayttoliittyma.toteutaValikonValinta(4));
