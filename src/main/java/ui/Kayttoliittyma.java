@@ -1,6 +1,7 @@
 package ui;
 
 import io.IO;
+import java.util.List;
 import viitehallinta.Artikkeli;
 import viitehallinta.Viitearkisto;
 
@@ -139,7 +140,27 @@ public class Kayttoliittyma implements UI {
      * Listaa järjestelmässä olevat kaikki viitteet riveittäin.
      */
     public void listaaViitteet() {
-
+        List<Artikkeli> artikkelit = viitearkisto.getArtikkelit();
+        for (int i = 0; i < artikkelit.size(); i++) {
+            Artikkeli artikkeli = artikkelit.get(i);
+            System.out.println("ID: " + artikkeli.getID());
+            System.out.println("Author: " + artikkeli.getAuthor());
+            System.out.println("Title: " + artikkeli.getTitle());
+            System.out.println("Journal: " + artikkeli.getJournal());
+            System.out.println("Volume: " + artikkeli.getVolume());
+            System.out.println("Number: " + artikkeli.getNumber());
+            System.out.println("Year: " + artikkeli.getYear());
+            System.out.println("Pages: " + artikkeli.getPages());
+            System.out.println("Publisher: " + artikkeli.getPublisher());
+            System.out.println("Address: " + artikkeli.getAddress());
+            System.out.println("");
+            System.out.println("====================================");
+            System.out.println("");
+        }
+        
+        System.out.println("Viitteitä yhteensä: " + artikkelit.size());
+        System.out.println("");
+        
     }
 
     /**

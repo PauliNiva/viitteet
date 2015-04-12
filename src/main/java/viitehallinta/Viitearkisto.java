@@ -62,4 +62,8 @@ public class Viitearkisto {
     public void lueTiedosto() {
         this.artikkelit = this.fileDao.lueArtikkelit();
     }
+    
+    public List<Artikkeli> getArtikkelit(){
+        return artikkelit;
+    }
 }
