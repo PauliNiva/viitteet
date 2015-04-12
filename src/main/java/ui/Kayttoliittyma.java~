@@ -136,8 +136,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * 
-     * Listaa järjestelmässä olevat artikkeli-viitteet.
+     * //TODO!!
+     * Listaa järjestelmässä olevat kaikki viitteet riveittäin.
      */
     public void listaaViitteet() {
         List<Artikkeli> artikkelit = viitearkisto.getArtikkelit();
