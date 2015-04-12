@@ -15,6 +15,7 @@ public class KayttoliittymaTest {
     FileDao testiDao;
     Viitearkisto mockViitearkisto;
     Kayttoliittyma kayttoliittyma;
+    Viitearkisto viitearkisto;
     
     @Before
     public void setUp(){
@@ -22,7 +23,7 @@ public class KayttoliittymaTest {
         testiDao = new FileDao("testiviite.txt");
         mockViitearkisto = mock(Viitearkisto.class);
         kayttoliittyma = new Kayttoliittyma(mockIo, mockViitearkisto);
-        
+        viitearkisto = new Viitearkisto(testiDao);
     }
     
     @Test
@@ -39,12 +40,17 @@ public class KayttoliittymaTest {
        
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
-        
+        assertEquals(false, kayttoliittyma.toteutaValikonValinta(4));
     }
     
     @Test
     public void listaaViitteetTest(){
-        kayttoliittyma.listaaViitteet();
+        Kayttoliittyma kali = new Kayttoliittyma(mockIo, viitearkisto);
+        viitearkisto.lueTiedosto();
+        
+        kali.listaaViitteet();
+                
+        
     }
     
 }
