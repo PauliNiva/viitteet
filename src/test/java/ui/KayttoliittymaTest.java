@@ -21,7 +21,7 @@ public class KayttoliittymaTest {
     @Before
     public void setUp() {
         mockIo = mock(KayttoliittymaIO.class);
-        testiDao = new FileDao("testiviite.txt");
+        testiDao = new FileDao("testiviite.txt", mockIo);
         mockViitearkisto = mock(Viitearkisto.class);
         kayttoliittyma = new Kayttoliittyma(mockIo, mockViitearkisto);
         viitearkisto = new Viitearkisto(testiDao);
