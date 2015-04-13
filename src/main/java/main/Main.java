@@ -1,13 +1,11 @@
-package viitehallinta;
-
-import dao.FileDao;
-import io.KayttoliittymaIO;
-import ui.Kayttoliittyma;
+package main;
 
 /**
  * Luokka ohjelman käynnistämiseen.
  */
 public class Main {
+
+    private static Kaynnistaja kaynnistaja = new Kaynnistaja();
 
     /**
      * Luo tekstipohjaisen käyttöliittymän, jota kautta ohjelmaa käytetään,
@@ -18,10 +16,10 @@ public class Main {
      * @param args komentoriviargumentit String-taulukon objekteina.
      */
     public static void main(String[] args) {
-        KayttoliittymaIO kayttoliittymaIO = new KayttoliittymaIO();
-        FileDao dao = new FileDao("viitteet.txt", kayttoliittymaIO);
-        Viitearkisto viitearkisto = new Viitearkisto(dao);
-        Kayttoliittyma kayttoliittyma = new Kayttoliittyma(kayttoliittymaIO, viitearkisto);
-        kayttoliittyma.kaynnista();
+        kaynnistaja.kaynnista(args);
+    }
+
+    static void setKaynnistaja(Kaynnistaja kaynnistaja) {
+        Main.kaynnistaja = kaynnistaja;
     }
 }
