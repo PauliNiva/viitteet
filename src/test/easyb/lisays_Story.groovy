@@ -7,8 +7,9 @@ description 'Käyttäjä voi lisätä artikkeliviitteen'
 
 scenario 'käyttäjä voi lisätä viitteen', {
     given 'lisäämis-toiminto on valittu', {
-        testiDao = new FileDao("tyhjatestiviite.txt");
+        
         io = new StubIO("1", "9", "lokki", "lintu", "9", "9", "9", "2015", "9", "9", "katu", "4");
+        testiDao = new FileDao("tyhjatestiviite.txt", io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
         
