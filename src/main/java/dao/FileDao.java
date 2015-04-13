@@ -29,6 +29,12 @@ public class FileDao implements dao {
     private File tiedosto;
     private List<Artikkeli> artikkelit;
     private IO io;
+
+    /**
+     * Konstruktori ilman parametreja.
+     */
+    FileDao() {}
+
     /**
      * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
      * @param tiedosto
