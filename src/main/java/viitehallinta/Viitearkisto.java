@@ -19,6 +19,7 @@ public class Viitearkisto {
      */
     public Viitearkisto(dao fileDao) {        
         this.fileDao = fileDao;
+        this.artikkelit = new ArrayList<Artikkeli>();
     }
 
     /**
