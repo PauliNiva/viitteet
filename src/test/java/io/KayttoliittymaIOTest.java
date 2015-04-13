@@ -1,7 +1,9 @@
 package io;
 
+import java.util.Scanner;
 import org.junit.*;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 /**
  * JUnit-Testit KayttoliittymaIO-luokalle.
@@ -12,6 +14,7 @@ public class KayttoliittymaIOTest {
 
     public KayttoliittymaIOTest() {
         this.io = new KayttoliittymaIO();
+        
     }
 
     @Test
@@ -25,4 +28,12 @@ public class KayttoliittymaIOTest {
         io.tulostaIlmanRivinvaihtoa("bar");
         assertNotNull(io);
     }
+
+    @Test
+    public void lueRiviTest() {        
+        
+    }
+    
+   
 }
+

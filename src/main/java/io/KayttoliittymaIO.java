@@ -49,7 +49,13 @@ public class KayttoliittymaIO implements IO{
         System.out.print(rivi);
     }
 
+    /**
+     *
+     * @param luettavaRivi
+     */
     public void asetaLuettavaRivi(String luettavaRivi) {
         lukija = new Scanner(luettavaRivi);
     }
+    
+   
 }
