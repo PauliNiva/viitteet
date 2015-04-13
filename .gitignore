@@ -30,3 +30,8 @@ dist/
 nbdist/
 nb-configuration.xml
 .nb-gradle/
+
+# Test files
+testiviite.txt
+tyhjatestiviite.txt
+listaustestiviite.txt
