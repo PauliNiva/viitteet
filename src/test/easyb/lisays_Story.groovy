@@ -17,10 +17,14 @@ scenario 'käyttäjä voi lisätä viitteen', {
         kl.kaynnista();
     }
     then 'artikkeliviite on tallennettu' , {
-        
         viitearkisto.getArtikkelit().size().shouldNotBe 0;
+        testiDao.tyhjennaTiedosto();
+        
     }
+    testiDao.tyhjennaTiedosto();
+    
 }
+
 //
 //scenario 'käyttäjä ei voi lisätä viitettä jos jokin kenttä on tyhjä' {
 //    given 'lisäämis-toiminto on valittu'

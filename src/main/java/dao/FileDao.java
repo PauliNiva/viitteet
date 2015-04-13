@@ -7,8 +7,10 @@ package dao;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,6 +29,7 @@ public class FileDao implements dao {
 
     /**
      * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
+     * @param tiedosto
      */
     public FileDao(String tiedosto) {
         this.tiedosto = new File(tiedosto);
@@ -42,7 +45,7 @@ public class FileDao implements dao {
         try {
             FileWriter kirjoittaja = new FileWriter(tiedosto);
             for (Artikkeli artikkeli : artikkelit) {
-                kirjoittaja.write(artikkeli.getTiedostoMuoto());                
+                kirjoittaja.write(artikkeli.getTiedostoMuoto());
             }
             kirjoittaja.close();
 
@@ -53,8 +56,9 @@ public class FileDao implements dao {
     }
 
     /**
-     * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää 
+     * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
      * ne listalle, jota viitearkisto käyttää.
+     *
      * @return lista Artikkeli-olioita
      */
     @Override
@@ -85,6 +89,15 @@ public class FileDao implements dao {
             System.out.println("Tiedostoa ei löytynyt!");
         }
         return artikkelit;
+    }
+
+    /**
+     * poistaa tekstitiedoston sisällön
+     * @throws FileNotFoundException
+     */
+    public void tyhjennaTiedosto() throws FileNotFoundException, IOException   {
+        FileOutputStream writer = new FileOutputStream(tiedosto);
+        writer.close();
     }
 
 }

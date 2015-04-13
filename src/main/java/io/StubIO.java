@@ -1,6 +1,7 @@
 package io;
 
 import io.IO;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class StubIO implements IO {
@@ -14,25 +15,8 @@ public class StubIO implements IO {
         prints = new ArrayList<String>();
     }
 
-    public void print(String toPrint) {
-        prints.add(toPrint);
-    }
-
-    public int readInt(String prompt) {
-        print(prompt);
-        return Integer.parseInt(lines[i++]);
-    }
-
     public ArrayList<String> getPrints() {
         return prints;
-    }
-
-    public String readLine(String prompt) {
-        print(prompt);
-        if (i < lines.length) {
-            return lines[i++];
-        }
-        return "";
     }
 
     @Override
@@ -54,4 +38,6 @@ public class StubIO implements IO {
         System.out.println(rivi);
         prints.add(rivi);
     }
+
+    
 }
