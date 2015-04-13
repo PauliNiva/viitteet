@@ -1,5 +1,1 @@
-123:123:123:123:123:123:123:123:123:123
-123:123:123:123:123:345:345:453::45
-1:jaakko:jaakon er�retket:jaakko times:6:6:1999:21-22:jaakko:jaakontie 4
-9:lokki:lintu:9:9:9:2015:9:9:katu
-9:lokki:lintu:9:9:9:2015:9:9:katu
+1:author:title:journal:1:2:1999:pages:publisher:address
