@@ -36,4 +36,12 @@ public class FileDaoTest {
         fileDao.kirjoitaArtikkelit(artikkelit);
         assertEquals(artikkelit.size(), fileDao.lueArtikkelit().size());
     }
+    
+    @Test
+    public void tyhjennaTiedostoTest() throws IOException {
+        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        artikkelit.add(artikkeli);
+        fileDao.tyhjennaTiedosto();
+        assertEquals(fileDao.lueArtikkelit().size(), 0);
+    }
 }
