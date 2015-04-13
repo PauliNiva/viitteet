@@ -7,8 +7,9 @@ description 'Käyttäjä voi listata artikkelit'
 
 scenario 'käyttäjä voi listata artikkelit', {
     given 'lisäämis-toiminto on valittu', {
-        testiDao = new FileDao("tyhjatestiviite.txt");
+        
         io = new StubIO("2", "4");
+        testiDao = new FileDao("tyhjatestiviite.txt", io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
         
