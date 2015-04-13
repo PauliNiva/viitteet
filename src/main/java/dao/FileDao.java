@@ -5,6 +5,8 @@
  */
 package dao;
 
+import io.IO;
+import io.KayttoliittymaIO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -26,13 +28,14 @@ public class FileDao implements dao {
 
     private File tiedosto;
     private List<Artikkeli> artikkelit;
-
+    private KayttoliittymaIO io;
     /**
      * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
      * @param tiedosto
      */
-    public FileDao(String tiedosto) {
+    public FileDao(String tiedosto, IO io) {
         this.tiedosto = new File(tiedosto);
+        this.io = new KayttoliittymaIO();
     }
 
     /**
@@ -50,7 +53,7 @@ public class FileDao implements dao {
             kirjoittaja.close();
 
         } catch (IOException ex) {
-            System.out.println("Tiedostoa ei löytynyt!");
+            io.tulostaRivi("Tiedostoa ei löytynyt!");
         }
 
     }
@@ -86,7 +89,7 @@ public class FileDao implements dao {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("Tiedostoa ei löytynyt!");
+            io.tulostaRivi("Tiedostoa ei löytynyt!");
         }
         return artikkelit;
     }
@@ -99,5 +102,6 @@ public class FileDao implements dao {
         FileOutputStream writer = new FileOutputStream(tiedosto);
         writer.close();
     }
+   
 
 }
