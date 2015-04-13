@@ -38,9 +38,36 @@ public class FileDaoTest {
     }
     
     @Test
+    public void lueArtikkelitTest() {
+        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        Artikkeli artikkeli2 = new Artikkeli("2", "author2", "title2", "journal2", 2, 2, 2999, "pages2", "publisher2", "address2");
+        artikkelit.add(artikkeli);
+        artikkelit.add(artikkeli2);
+        fileDao.kirjoitaArtikkelit(artikkelit);
+        List<Artikkeli> luetutArtikkelit = fileDao.lueArtikkelit();
+        
+        assertEquals(luetutArtikkelit.get(1).getAuthor(), "author2");
+    }
+    
+    
+//    TODO -- tää ei toimi
+//    @Test(expected = IOException.class)
+//    public void kirjoitaArtikkelitTestaaPoikkeus() {
+//        File testiTiedosto = new File("testiviite.txt");
+//        testiTiedosto.renameTo(new File("virheellinen.txt"));
+//        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+//        artikkelit.add(artikkeli);
+//        fileDao.kirjoitaArtikkelit(artikkelit);
+//        
+//        
+//    }
+    
+    @Test
     public void tyhjennaTiedostoTest() throws IOException {
         Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        Artikkeli artikkeli2 = new Artikkeli("2", "author2", "title2", "journal2", 2, 2, 2999, "pages2", "publisher2", "address2");
         artikkelit.add(artikkeli);
+        artikkelit.add(artikkeli2);
         fileDao.tyhjennaTiedosto();
         assertEquals(fileDao.lueArtikkelit().size(), 0);
     }
