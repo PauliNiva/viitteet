@@ -12,9 +12,9 @@ public class KayttoliittymaIOTest {
 
     private KayttoliittymaIO io;
 
-    public KayttoliittymaIOTest() {
+    @Before
+    public void setUp() {
         this.io = new KayttoliittymaIO();
-        
     }
 
     @Test
@@ -31,7 +31,8 @@ public class KayttoliittymaIOTest {
 
     @Test
     public void lueRiviTest() {        
-        
+        io.asetaLuettavaRivi("illuminati");
+        assertEquals("illuminati", io.lueRivi());
     }
     
    

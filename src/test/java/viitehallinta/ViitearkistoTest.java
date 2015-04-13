@@ -14,7 +14,8 @@ public class ViitearkistoTest {
     Viitearkisto viitearkisto;
     FileDao mockDao;
 
-    public ViitearkistoTest() {
+    @Before
+    public void setUp() {
         mockDao = mock(FileDao.class);
         viitearkisto = new Viitearkisto(mockDao);
     }
