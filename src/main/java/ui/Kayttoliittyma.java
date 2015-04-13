@@ -146,24 +146,24 @@ public class Kayttoliittyma implements UI {
         List<Artikkeli> artikkelit = viitearkisto.getArtikkelit();
         for (int i = 0; i < artikkelit.size(); i++) {
             Artikkeli artikkeli = artikkelit.get(i);
-            System.out.println("ID: " + artikkeli.getID());
-            System.out.println("Author: " + artikkeli.getAuthor());
-            System.out.println("Title: " + artikkeli.getTitle());
-            System.out.println("Journal: " + artikkeli.getJournal());
-            System.out.println("Volume: " + artikkeli.getVolume());
-            System.out.println("Number: " + artikkeli.getNumber());
-            System.out.println("Year: " + artikkeli.getYear());
-            System.out.println("Pages: " + artikkeli.getPages());
-            System.out.println("Publisher: " + artikkeli.getPublisher());
-            System.out.println("Address: " + artikkeli.getAddress());
-            System.out.println("");
-            System.out.println("====================================");
-            System.out.println("");
+            io.tulostaRivi("ID: " + artikkeli.getID());
+            io.tulostaRivi("Author: " + artikkeli.getAuthor());
+            io.tulostaRivi("Title: " + artikkeli.getTitle());
+            io.tulostaRivi("Journal: " + artikkeli.getJournal());
+            io.tulostaRivi("Volume: " + artikkeli.getVolume());
+            io.tulostaRivi("Number: " + artikkeli.getNumber());
+            io.tulostaRivi("Year: " + artikkeli.getYear());
+            io.tulostaRivi("Pages: " + artikkeli.getPages());
+            io.tulostaRivi("Publisher: " + artikkeli.getPublisher());
+            io.tulostaRivi("Address: " + artikkeli.getAddress());
+            io.tulostaRivi("");
+            io.tulostaRivi("====================================");
+            io.tulostaRivi("");
         }
-        
-        System.out.println("Viitteitä yhteensä: " + artikkelit.size());
-        System.out.println("");
-        
+
+        io.tulostaRivi("Viitteitä yhteensä: " + artikkelit.size());
+        io.tulostaRivi("");
+
     }
 
     /**
