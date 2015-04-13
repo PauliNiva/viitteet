@@ -26,17 +26,18 @@ public class StubIOTest {
     
     @Test
     public void getPrintsTest(){
-        assertEquals(0, stubi.getPrints().size());
+        ArrayList<String> tulosteet = stubi.getPrints();
+        assertEquals(0, tulosteet.size());
         stubi.tulostaRivi("testisyöte");
-        assertEquals(true, stubi.getPrints().contains("testisyöte"));
+        tulosteet = stubi.getPrints();
+        assertEquals(true, tulosteet.contains("testisyöte"));
     }
     
    @Test
    public void lueRiviTest(){
        String syote = stubi.lueRivi();
        assertEquals("1", syote);
-       syote = stubi.lueRivi();
-       assertEquals("", syote);
+       assertEquals("", stubi.lueRivi());
    }
    
    @Test
