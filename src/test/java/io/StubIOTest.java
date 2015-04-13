@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package io;
 
 import java.util.ArrayList;
@@ -13,10 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author tijas
- */
+
 public class StubIOTest {
     StubIO stubi;
     
@@ -37,19 +30,22 @@ public class StubIOTest {
    public void lueRiviTest(){
        String syote = stubi.lueRivi();
        assertEquals("1", syote);
-       assertEquals("", stubi.lueRivi());
+       syote = stubi.lueRivi();
+       assertEquals("", syote);
    }
    
    @Test
    public void tulostaIlmanRivinVaihtoaTest(){
+       assertEquals(0, stubi.getPrints().size());
        stubi.tulostaIlmanRivinvaihtoa("testisyöte");
        assertEquals(1, stubi.getPrints().size());
    }
    
    @Test
    public void tulostaRiviTest(){
+       assertEquals(false, stubi.getPrints().contains("testisyöte"));
        stubi.tulostaRivi("testisyöte");
-       assertEquals(1, stubi.getPrints().size());
+       assertEquals(true, stubi.getPrints().contains("testisyöte"));
    }
 
     
