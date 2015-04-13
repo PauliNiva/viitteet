@@ -3,6 +3,7 @@ package ui;
 import dao.FileDao;
 import io.IO;
 import io.KayttoliittymaIO;
+import java.io.IOException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -53,12 +54,17 @@ public class KayttoliittymaTest {
     }
 
     @Test
-    public void listaaViitteetTest() {
+    public void listaaViitteetTest() throws IOException {
+        testiDao = new FileDao("tyhjatestiviite.txt", mockIo);
+        viitearkisto = new Viitearkisto(testiDao);
         Kayttoliittyma kali = new Kayttoliittyma(mockIo, viitearkisto);
         viitearkisto.lueTiedosto();
+        viitearkisto.lisaaArtikkeli("1", "Lokki", "lintu", "1", 1, 2, 2015, "1", "1", "katu");
 
         kali.listaaViitteet();
-
+        
+        verify(mockIo, times(15)).tulostaRivi(anyString());
+        testiDao.tyhjennaTiedosto();
     }
 
     @Test
