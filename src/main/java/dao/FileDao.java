@@ -28,14 +28,14 @@ public class FileDao implements dao {
 
     private File tiedosto;
     private List<Artikkeli> artikkelit;
-    private KayttoliittymaIO io;
+    private IO io;
     /**
      * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
      * @param tiedosto
      */
     public FileDao(String tiedosto, IO io) {
         this.tiedosto = new File(tiedosto);
-        this.io = new KayttoliittymaIO();
+        this.io = io;
     }
 
     /**
