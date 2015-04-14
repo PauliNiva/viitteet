@@ -1,11 +1,13 @@
 package viitehallinta;
 
+import java.io.Serializable;
+
 /**
  * Yleisluokka viitteille, jolla on attribuuttina kaikille
  * viitteille yhteiset attribuutit. Spesifit viiteluokat perivät
  * tämän yläluokan.
  */
-public class Viite {
+public class Viite implements Serializable {
 
     private String ID;
     private String author;
