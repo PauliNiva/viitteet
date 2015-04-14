@@ -1,21 +1,17 @@
-
 package dao;
 
 import io.KayttoliittymaIO;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.junit.*;
-
 import static org.junit.Assert.*;
 
-import org.junit.rules.ExpectedException;
 import viitehallinta.Artikkeli;
 
-
+/**
+ * JUnit-testit Daon testaamiseen.
+ */
 public class FileDaoTest {
 
     FileDao fileDao;

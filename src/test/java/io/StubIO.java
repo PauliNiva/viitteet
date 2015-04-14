@@ -1,9 +1,10 @@
 package io;
 
-import io.IO;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
+/**
+ * Stub joka toteuttaa IO-rajapinnan. Testaamiseen.
+ */
 public class StubIO implements IO {
 
     private String[] lines;

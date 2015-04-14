@@ -31,7 +31,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Käynnistää UI:n ja pitää ohjelman käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
+     * Lukee tiedostosta viitteet ohjelman muistiin ja käynnistää UI:n, sekä pitää ohjelman
+     * käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
      */
     @Override
     public void kaynnista() {
@@ -65,7 +66,8 @@ public class Kayttoliittyma implements UI {
     /**
      * Toteuttaa käyttäjän valikkovalinnan.
      * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta valitseman toiminnon.
-     * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen, tällöin palautetaan false.
+     * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen, tällöin viitteet
+     * tallennetaan tiedostoon ja palautetaan false.
      */
     public boolean toteutaValikonValinta(int kayttajanValinta) {
         switch (kayttajanValinta) {
@@ -101,6 +103,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Lisää artikkelin järjestelmään viitearkisto-luokan lisaaArtikkeli metodilla.
+     * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
      * @param artikkeli
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät kentät.
      */
@@ -139,8 +142,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * 
-     * Listaa järjestelmässä olevat artikkeli-viitteet.
+     * Listaa järjestelmässä olevat artikkeli-viitteet ihmiselle luettavassa
+     * muodossa.
      */
     public void listaaViitteet() {
         List<Artikkeli> artikkelit = viitearkisto.getArtikkelit();
@@ -174,11 +177,17 @@ public class Kayttoliittyma implements UI {
     private int StringLuvuksi(String numeraali) {
         return Integer.parseInt(numeraali);
     }
-    
+
+    /**
+     * Lukee tiedoston ohjelman muistiin, eli ohjelman käyttämään listaam.
+     */
     private void lueTiedosto() {
         viitearkisto.lueTiedosto();
     }
-    
+
+    /**
+     * Tallentaa ohjelman listassa olevat viitteet tiedostoon.
+     */
     private void tallennaTiedostoon() {
         viitearkisto.tallenna();
     }

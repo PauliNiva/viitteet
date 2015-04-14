@@ -1,9 +1,7 @@
 package io;
 
-import java.util.Scanner;
 import org.junit.*;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 /**
  * JUnit-Testit KayttoliittymaIO-luokalle.

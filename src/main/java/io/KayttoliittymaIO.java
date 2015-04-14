@@ -1,7 +1,5 @@
 package io;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -16,7 +14,7 @@ public class KayttoliittymaIO implements IO{
     private Scanner lukija;
 
     /**
-     * Konstruktori.
+     * Konstruktori luo uuden lukija-olion.
      */
     public KayttoliittymaIO() {
         this.lukija = new Scanner(System.in);
@@ -50,7 +48,7 @@ public class KayttoliittymaIO implements IO{
     }
 
     /**
-     *
+     * Asettaa luettavan rivin lukijalle.
      * @param luettavaRivi
      */
     public void asetaLuettavaRivi(String luettavaRivi) {

@@ -6,33 +6,43 @@
 package dao;
 
 import io.IO;
-import io.KayttoliittymaIO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import viitehallinta.Artikkeli;
-import viitehallinta.Viite;
 
 /**
  * Tiedostoon tallettava DAO, joka toteuttaa rajapinnan dao
  */
 public class FileDao implements dao {
 
+    /**
+     * Tiedosto jota ohjelma käyttää tietojen tallentamiseen ja
+     * säilyttämiseen.
+     */
     private File tiedosto;
+
+    /**
+     * Lista, jossa Artikkelit säilytetään kun ohjelma on käynnissä.
+     */
     private List<Artikkeli> artikkelit;
+
+    /**
+     * IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
+     * näyttämiseen.
+     */
     private IO io;
 
     /**
-     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan
+     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan,
+     * sekä IO-olio
      * @param tiedosto
+     * @param io
      */
     public FileDao(String tiedosto, IO io) {
         this.tiedosto = new File(tiedosto);
@@ -41,7 +51,7 @@ public class FileDao implements dao {
 
     /**
      * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon
-     *
+     * Heittää poikkeuksen jos tieodostoa ei löydy.
      * @param artikkelit tiedostoon tallennettavat artikkelit
      */
     @Override
@@ -62,7 +72,7 @@ public class FileDao implements dao {
     /**
      * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
      * ne listalle, jota viitearkisto käyttää.
-     *
+     * Heittää poikkeuksen jos tiedostoa ei löydy.
      * @return lista Artikkeli-olioita
      */
     @Override
@@ -96,10 +106,10 @@ public class FileDao implements dao {
     }
 
     /**
-     * poistaa tekstitiedoston sisällön
-     * @throws FileNotFoundException
+     * Poistaa tekstitiedoston sisällön.
+     * @throws IOException
      */
-    public void tyhjennaTiedosto() throws FileNotFoundException, IOException   {
+    public void tyhjennaTiedosto() throws IOException   {
         FileOutputStream writer = new FileOutputStream(tiedosto);
         writer.close();
     }

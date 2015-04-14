@@ -11,6 +11,9 @@ import viitehallinta.Viitearkisto;
 import static org.mockito.Mockito.*;
 import viitehallinta.Artikkeli;
 
+/**
+ * Luokka käyttöliittymän testaamiseen.
+ */
 public class KayttoliittymaTest {
 
     IO mockIo;

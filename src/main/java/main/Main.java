@@ -1,24 +1,28 @@
 package main;
 
 /**
- * Luokka ohjelman käynnistämiseen.
+ * Luokka jossa main sijaitsee.
  */
 public class Main {
 
+    /**
+     * KAynnistäjä ohjelman käynnistämiseen.
+     */
     private static Kaynnistaja kaynnistaja = new Kaynnistaja();
 
     /**
-     * Luo tekstipohjaisen käyttöliittymän, jota kautta ohjelmaa käytetään,
-     * lisäksi luo viitearkiston joka hoitaa viitteiden lisäämisen ja tallentamisen
-     * järjestelmään, sekä olion käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
-     * näyttämiseen. Lopuksi käynnistää käyttöliittymän, joka toimii niin kauan kunnes
-     * käyttäjä valitsee ohjelmasta poistumisen.
+     * Main käynnistää ohjelman toiminnan kutsumalla Kaynnistaja-olion
+     * käynnistä-metodia.
      * @param args komentoriviargumentit String-taulukon objekteina.
      */
     public static void main(String[] args) {
         kaynnistaja.kaynnista(args);
     }
 
+    /**
+     * Asettaa käynnistäjän.
+     * @param kaynnistaja
+     */
     static void setKaynnistaja(Kaynnistaja kaynnistaja) {
         Main.kaynnistaja = kaynnistaja;
     }

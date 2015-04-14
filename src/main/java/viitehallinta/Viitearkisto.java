@@ -8,8 +8,15 @@ import java.util.List;
  * Luokka viitteiden lisäämiseen ja poistamiseen järjestelmästä.
  */
 public class Viitearkisto {
-    
+
+    /**
+     * Lista, jossa Artikkelit säilytetään kun ohjelma on käynnissä.
+     */
     private List<Artikkeli> artikkelit;
+
+    /**
+     * Dao tietojen tiedostoon tallentamiseen ja sieltä lukemiseen.
+     */
     private dao fileDao;
 
     /**
@@ -23,7 +30,9 @@ public class Viitearkisto {
     }
 
     /**
-     * Lisää uuden artikkelin järjestelmään.
+     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla
+     * metodin saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
+     * järjestelmään.
      * @param ID String joka toimii yksillöllisenä (uniikkina)tunnisteena;
      * @param author String artikkelin kirjoittaja.
      * @param title String artikkelin otsikko.
@@ -49,21 +58,28 @@ public class Viitearkisto {
         artikkeli.setPages(pages);
         artikkeli.setPublisher(publisher);
         artikkeli.setAddress(address);
-        
-        //täytyy vielä tehdä tarkistus onko viite jo olemassa!
         this.artikkelit.add(artikkeli);
         tallenna();
-// Tähän pitää lisätä daon toiminnallisuutta jolla artikkeli lisätään ja tallennetaan toedostoon.
     }
-    
+
+    /**
+     * Tallentaa artikkelit tiedostoon.
+     */
     public void tallenna() {
         this.fileDao.kirjoitaArtikkelit(artikkelit);
     }
-    
+
+    /**
+     * Hakee artikkelit tiedostosta listaan.
+     */
     public void lueTiedosto() {
         this.artikkelit = this.fileDao.lueArtikkelit();
     }
-    
+
+    /**
+     * Hakee artikkeli listan.
+     * @return Artikkeli-olio listan
+     */
     public List<Artikkeli> getArtikkelit(){
         return artikkelit;
     }

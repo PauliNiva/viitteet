@@ -3,6 +3,9 @@ package main;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+/**
+ * Luokka mainin testaamiseen.
+ */
 public class MainTest {
 
     @Test
