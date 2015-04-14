@@ -1,11 +1,14 @@
 package viitehallinta;
 
+import java.io.Serializable;
+
 /**
  * Luokka artikkeliviite-olioille, jonka konstruktori on kuormitettu.
  * Perii Viite-luokan.
  */
-public class Artikkeli extends Viite {
+public class Artikkeli extends Viite implements Serializable {
 
+    static final long serialVersionUID = 1L;
     private String journal;
     private int volume;
     private int number;
