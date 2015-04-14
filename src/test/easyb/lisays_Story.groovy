@@ -18,6 +18,7 @@ scenario 'käyttäjä voi lisätä viitteen', {
     }
     then 'artikkeliviite on tallennettu' , {
         viitearkisto.getArtikkelit().size().shouldNotBe 0;
+        testiDao.tyhjennaTiedosto();
     }
 
 }
