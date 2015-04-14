@@ -83,4 +83,18 @@ public class Viitearkisto {
     public List<Artikkeli> getArtikkelit(){
         return artikkelit;
     }
+
+    public void lisaaKirja(String ID,String author, String title, int year, String publisher, String address) {
+        Kirja kirja = new Kirja();
+        kirja.setID(ID);
+        kirja.setAuthor(author);
+        kirja.setTitle(title);
+        kirja.setYear(year);
+        kirja.setPublisher(publisher);
+        kirja.setAddress(address);
+        // Tähän viitteen lisäys viitelistaam.
+        // muutettava Artikkelilista viitelistaksi.
+        // Lisäksi tähän viitelistan tallentaminen serializablea
+        // hyväkskäyttäen.
+    }
 }
