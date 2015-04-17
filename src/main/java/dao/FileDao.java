@@ -6,6 +6,7 @@
 package dao;
 
 import io.IO;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -112,6 +113,18 @@ public class FileDao implements dao {
     public void tyhjennaTiedosto() throws IOException   {
         FileOutputStream writer = new FileOutputStream(tiedosto);
         writer.close();
+    }
+    
+    /**
+     * kirjoittaa tiedoston loppuun uuden rivin
+     * 
+     * @param rivi kirjoitettava teksti
+     */
+    public void lisaaRiviTiedostoon(String rivi) throws IOException{
+        FileWriter kirjoittaja = new FileWriter(tiedosto, true);
+        
+        kirjoittaja.append(rivi + "\n");
+        kirjoittaja.close();
     }
    
 

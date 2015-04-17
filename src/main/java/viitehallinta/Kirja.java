@@ -24,6 +24,7 @@ public class Kirja extends Viite implements Serializable {
      * @param year int kiirjan julkaisuvuosi
      * @param publisher String kustanjan nimi
      * @param address String kustantajan osoite.
+     * asettaa viitetyyppiksi kirjan
      */
     public Kirja(String id, String author, String title, int year, String publisher, String address) {
         this.setID(id);
@@ -32,12 +33,21 @@ public class Kirja extends Viite implements Serializable {
         this.setYear(year);
         this.setPublisher(publisher);
         this.address = address;
+        this.setViiteTyyppi("Kirja");
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return this.address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }

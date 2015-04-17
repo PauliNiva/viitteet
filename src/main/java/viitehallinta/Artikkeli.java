@@ -33,6 +33,7 @@ public class Artikkeli extends Viite implements Serializable {
      *               erotetaan toisistaan kahdella viivalla.
      * @param publisher String julkaisijan nimi;
      * @param address String julkaisijan osoite;
+     * asettaa viitetyypiksi artikkelin
      */
     public Artikkeli(String ID, String author, String title, String journal, int volume, int number,  int year,
                      String pages, String publisher, String address) {
@@ -46,42 +47,81 @@ public class Artikkeli extends Viite implements Serializable {
         this.setPages(pages);
         this.setPublisher(publisher);
         this.setAddress(address);
+        this.setViiteTyyppi("Artikkeli");
     }
     
+    /**
+     *
+     * @return
+     */
     public String getTiedostoMuoto() {
         return this.getID()+":"+this.getAuthor()+":"+this.getTitle()+":"+this.getJournal()+":"+this.getVolume()+
                 ":"+this.getNumber()+":"+this.getYear()+":"+this.getPages()+":"+this.getPublisher()+":"+this.getAddress()+"\n";
     }
 
+    /**
+     *
+     * @return
+     */
     public String getJournal() {
         return journal;
     }
 
+    /**
+     *
+     * @param journal
+     */
     public void setJournal(String journal) {
         this.journal = journal;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getVolume() {
         return volume;
     }
 
+    /**
+     *
+     * @param volume
+     */
     public void setVolume(int volume) {
         this.volume = volume;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getNumber() {
         return number;
     }
 
+    /**
+     *
+     * @param number
+     */
     public void setNumber(int number) {
         this.number = number;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     *
+     * @param address
+     */
     public void setAddress(String address) {
         this.address = address;
     }
+    
+    
 }
