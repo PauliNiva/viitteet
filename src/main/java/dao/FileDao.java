@@ -23,6 +23,8 @@ public class FileDao implements dao {
      */
     private String viitetiedosto = "viitetiedosto.tmp";
 
+    private File tiedosto;
+
     /**
      * Lista, jossa Artikkelit säilytetään kun ohjelma on käynnissä.
      */
@@ -41,6 +43,10 @@ public class FileDao implements dao {
      * @param io
      */
     public FileDao(IO io) {
+        this.io = io;
+    }
+
+    public FileDao(String tiedosto, IO io) {
         this.io = io;
     }
 
@@ -77,10 +83,8 @@ public class FileDao implements dao {
             }
             return viitteet;
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
             return viitteet;
         } catch (IOException e) {
-            e.printStackTrace();
             return viitteet;
         }
     }

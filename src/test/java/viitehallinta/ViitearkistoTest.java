@@ -23,20 +23,20 @@ public class ViitearkistoTest {
     @Test
     public void lisaaArtikkeliTest() {
         viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
-        verify(mockDao, times(1)).kirjoitaArtikkelit(anyList());
+        verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getArtikkelit().size());
     }
 
     @Test
     public void tallennaTest() {
         viitearkisto.tallenna();
-        verify(mockDao, times(1)).kirjoitaArtikkelit(anyList());
+        verify(mockDao, times(1)).tallennaViitteet(anyList());
     }
 
     @Test
     public void lueTiedostoTest() {
         viitearkisto.lueTiedosto();
-        verify(mockDao, times(1)).lueArtikkelit();
+        verify(mockDao, times(1)).lueViitteetTiedostosta();
     }
 
     @Test
