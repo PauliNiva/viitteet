@@ -4,6 +4,7 @@ import io.IO;
 import java.util.List;
 import viitehallinta.Artikkeli;
 import viitehallinta.Kirja;
+import viitehallinta.Viite;
 import viitehallinta.Viitearkisto;
 
 /**
@@ -40,7 +41,6 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
-        lueTiedosto();
         do {
             naytaValikkoJaPyydaValinta();
         } while (toteutaValikonValinta(getKayttajanValinta()));
@@ -207,27 +207,28 @@ public class Kayttoliittyma implements UI {
      * muodossa.
      */
     public void listaaViitteet() {
-        List<Artikkeli> artikkelit = viitearkisto.getArtikkelit();
-        for (int i = 0; i < artikkelit.size(); i++) {
-            Artikkeli artikkeli = artikkelit.get(i);
-            io.tulostaRivi("ID: " + artikkeli.getID());
-            io.tulostaRivi("Author: " + artikkeli.getAuthor());
-            io.tulostaRivi("Title: " + artikkeli.getTitle());
-            io.tulostaRivi("Journal: " + artikkeli.getJournal());
-            io.tulostaRivi("Volume: " + artikkeli.getVolume());
-            io.tulostaRivi("Number: " + artikkeli.getNumber());
-            io.tulostaRivi("Year: " + artikkeli.getYear());
-            io.tulostaRivi("Pages: " + artikkeli.getPages());
-            io.tulostaRivi("Publisher: " + artikkeli.getPublisher());
-            io.tulostaRivi("Address: " + artikkeli.getAddress());
-            io.tulostaRivi("");
-            io.tulostaRivi("====================================");
+        System.out.println("Viitteet: \n");
+        List<Viite> viitteet = viitearkisto.getArtikkelit();
+        for (Object viite: viitteet) {
+            if (viite.getClass().equals(new Artikkeli().getClass())) {
+                io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());
+                io.tulostaRivi("Author: " + ((Artikkeli) viite).getAuthor());
+                io.tulostaRivi("Title: " + ((Artikkeli) viite).getTitle());
+                io.tulostaRivi("Journal: " + ((Artikkeli) viite).getJournal());
+                io.tulostaRivi("Volume: " + ((Artikkeli) viite).getVolume());
+                io.tulostaRivi("Number: " + ((Artikkeli) viite).getNumber());
+                io.tulostaRivi("Year: " + ((Artikkeli) viite).getYear());
+                io.tulostaRivi("Pages: " + ((Artikkeli) viite).getPages());
+                io.tulostaRivi("Publisher: " + ((Artikkeli) viite).getPublisher());
+                io.tulostaRivi("Address: " + ((Artikkeli) viite).getAddress());
+                io.tulostaRivi("");
+                io.tulostaRivi("====================================");
+                io.tulostaRivi("");
+            }
+
+            io.tulostaRivi("Viitteitä yhteensä: " + viitteet.size());
             io.tulostaRivi("");
         }
-
-        io.tulostaRivi("Viitteitä yhteensä: " + artikkelit.size());
-        io.tulostaRivi("");
-
     }
 
     /**

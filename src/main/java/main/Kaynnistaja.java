@@ -22,8 +22,7 @@ public class Kaynnistaja {
      */
     public void kaynnista(String[] args) {
         KayttoliittymaIO kayttoliittymaIO = new KayttoliittymaIO();
-        FileDao dao = new FileDao("viitteet.txt", kayttoliittymaIO);
-        Viitearkisto viitearkisto = new Viitearkisto(dao);
+        Viitearkisto viitearkisto = new Viitearkisto();
         Kayttoliittyma kayttoliittyma = new Kayttoliittyma(kayttoliittymaIO, viitearkisto);
         kayttoliittyma.kaynnista();
     }

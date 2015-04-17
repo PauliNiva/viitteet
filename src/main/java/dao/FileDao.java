@@ -6,16 +6,11 @@
 package dao;
 
 import io.IO;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import viitehallinta.Artikkeli;
+import viitehallinta.Viite;
 
 /**
  * Tiedostoon tallettava DAO, joka toteuttaa rajapinnan dao
@@ -26,12 +21,12 @@ public class FileDao implements dao {
      * Tiedosto jota ohjelma käyttää tietojen tallentamiseen ja
      * säilyttämiseen.
      */
-    private File tiedosto;
+    private String viitetiedosto = "viitetiedosto.tmp";
 
     /**
      * Lista, jossa Artikkelit säilytetään kun ohjelma on käynnissä.
      */
-    private List<Artikkeli> artikkelit;
+    private List<Viite> viitteet;
 
     /**
      * IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
@@ -39,35 +34,31 @@ public class FileDao implements dao {
      */
     private IO io;
 
+    public FileDao() {}
     /**
      * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan,
      * sekä IO-olio
-     * @param tiedosto
      * @param io
      */
-    public FileDao(String tiedosto, IO io) {
-        this.tiedosto = new File(tiedosto);
+    public FileDao(IO io) {
         this.io = io;
     }
 
     /**
      * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon
      * Heittää poikkeuksen jos tieodostoa ei löydy.
-     * @param artikkelit tiedostoon tallennettavat artikkelit
+     * @param viitteet tiedostoon tallennettavat artikkelit
      */
     @Override
-    public void kirjoitaArtikkelit(List<Artikkeli> artikkelit) {
+    public void tallennaViitteet(List<Viite> viitteet) {
         try {
-            FileWriter kirjoittaja = new FileWriter(tiedosto);
-            for (Artikkeli artikkeli : artikkelit) {
-                kirjoittaja.write(artikkeli.getTiedostoMuoto());
+            FileOutputStream fileOutputStream = new FileOutputStream(viitetiedosto);
+            try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+                objectOutputStream.writeObject(viitteet);
             }
-            kirjoittaja.close();
-
         } catch (IOException ex) {
             io.tulostaRivi("Tiedostoa ei löytynyt!");
         }
-
     }
 
     /**
@@ -77,33 +68,21 @@ public class FileDao implements dao {
      * @return lista Artikkeli-olioita
      */
     @Override
-    public List<Artikkeli> lueArtikkelit() {
-        artikkelit = new ArrayList();
+    public List<Viite> lueViitteetTiedostosta() {
+        ArrayList<Viite> viitteet = new ArrayList<Viite>();
         try {
-            Scanner lukija = new Scanner(tiedosto);
-            while (lukija.hasNextLine()) {
-                String rivi = lukija.nextLine();
-                String[] osat = rivi.split(":");
-                String id = osat[0];
-                String author = osat[1];
-                String title = osat[2];
-                String journal = osat[3];
-                String volume = osat[4];
-                String number = osat[5];
-                String year = osat[6];
-                String pages = osat[7];
-                String publisher = osat[8];
-                String address = osat[9];
-
-                Artikkeli artikkeli = new Artikkeli(id, author, title, journal, Integer.parseInt(volume),
-                        Integer.parseInt(number), Integer.parseInt(year), pages, publisher, address);
-                artikkelit.add(artikkeli);
+            FileInputStream fileInputStream = new FileInputStream(viitetiedosto);
+            try (ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+                viitteet = (ArrayList<Viite>) objectInputStream.readObject();
             }
-
-        } catch (FileNotFoundException ex) {
-            io.tulostaRivi("Tiedostoa ei löytynyt!");
+            return viitteet;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return viitteet;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return viitteet;
         }
-        return artikkelit;
     }
 
     /**
@@ -111,21 +90,21 @@ public class FileDao implements dao {
      * @throws IOException
      */
     public void tyhjennaTiedosto() throws IOException   {
-        FileOutputStream writer = new FileOutputStream(tiedosto);
+        FileOutputStream writer = new FileOutputStream(viitetiedosto);
         writer.close();
     }
-    
+
     /**
      * kirjoittaa tiedoston loppuun uuden rivin
-     * 
+     *
      * @param rivi kirjoitettava teksti
      */
     public void lisaaRiviTiedostoon(String rivi) throws IOException{
-        FileWriter kirjoittaja = new FileWriter(tiedosto, true);
-        
+        FileWriter kirjoittaja = new FileWriter(viitetiedosto, true);
+
         kirjoittaja.append(rivi + "\n");
         kirjoittaja.close();
     }
-   
+
 
 }

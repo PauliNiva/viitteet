@@ -15,7 +15,6 @@ public class Viite implements Serializable {
     private int year;
     private String pages;
     private String publisher;
-    private String viitetyyppi;
 
     public String getID() {
         return ID;
@@ -63,14 +62,6 @@ public class Viite implements Serializable {
 
     public void setPublisher(String publisher) {
         this.publisher = publisher;
-    }
-    
-    public void setViiteTyyppi(String viitetyyppi){
-        this.viitetyyppi = viitetyyppi;
-    }
-    
-    public String getViiteTyyppi(){
-        return viitetyyppi;
     }
 
 }

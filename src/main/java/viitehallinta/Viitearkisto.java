@@ -1,6 +1,6 @@
 package viitehallinta;
 
-import dao.dao;
+import dao.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,23 +10,28 @@ import java.util.List;
 public class Viitearkisto {
 
     /**
-     * Lista, jossa Artikkelit säilytetään kun ohjelma on käynnissä.
+     * Lista, jossa viitteitä säilytetään kun ohjelma on käynnissä.
      */
-    private List<Artikkeli> artikkelit;
+    private List<Viite> viitteet;
 
     /**
      * Dao tietojen tiedostoon tallentamiseen ja sieltä lukemiseen.
      */
     private dao fileDao;
 
+
+    public Viitearkisto() {
+        this.fileDao = new FileDao();
+        this.viitteet = new ArrayList<Viite>();
+    }
     /**
      * Konstruktori ilman parametreja.
      * Luodaan viite-lista. 
      * @param fileDao 
      */
-    public Viitearkisto(dao fileDao) {        
+    public Viitearkisto(dao fileDao) {
         this.fileDao = fileDao;
-        this.artikkelit = new ArrayList<Artikkeli>();
+        this.viitteet = new ArrayList<Viite>();
     }
 
     /**
@@ -58,30 +63,31 @@ public class Viitearkisto {
         artikkeli.setPages(pages);
         artikkeli.setPublisher(publisher);
         artikkeli.setAddress(address);
-        this.artikkelit.add(artikkeli);
+        this.viitteet.add(artikkeli);
         tallenna();
     }
 
     /**
-     * Tallentaa artikkelit tiedostoon.
+     * Tallentaa viitteet tiedostoon.
      */
     public void tallenna() {
-        this.fileDao.kirjoitaArtikkelit(artikkelit);
+        this.fileDao.tallennaViitteet(viitteet);
     }
 
     /**
-     * Hakee artikkelit tiedostosta listaan.
+     * Hakee viitteet tiedostosta listaan.
      */
     public void lueTiedosto() {
-        this.artikkelit = this.fileDao.lueArtikkelit();
+        this.viitteet = this.fileDao.lueViitteetTiedostosta();
     }
 
     /**
      * Hakee artikkeli listan.
      * @return Artikkeli-olio listan
      */
-    public List<Artikkeli> getArtikkelit(){
-        return artikkelit;
+    public List<Viite> getArtikkelit(){
+        this.viitteet = this.fileDao.lueViitteetTiedostosta();
+        return viitteet;
     }
 
     public void lisaaKirja(String ID,String author, String title, int year, String publisher, String address) {
