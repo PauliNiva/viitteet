@@ -3,6 +3,7 @@ package ui;
 import io.IO;
 import java.util.List;
 import viitehallinta.Artikkeli;
+import viitehallinta.Kirja;
 import viitehallinta.Viitearkisto;
 
 /**
@@ -22,8 +23,11 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Konstruktori.
-     * @param io IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden näyttämiseen.
-     * @param viitearkisto Viitearkisto viitteiden lisäämiseen ja tallentamiseen.
+     *
+     * @param io IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
+     * näyttämiseen.
+     * @param viitearkisto Viitearkisto viitteiden lisäämiseen ja
+     * tallentamiseen.
      */
     public Kayttoliittyma(IO io, Viitearkisto viitearkisto) {
         this.io = io;
@@ -31,13 +35,13 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Lukee tiedostosta viitteet ohjelman muistiin ja käynnistää UI:n, sekä pitää ohjelman
-     * käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
+     * Lukee tiedostosta viitteet ohjelman muistiin ja käynnistää UI:n, sekä
+     * pitää ohjelman käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
      */
     @Override
     public void kaynnista() {
         lueTiedosto();
-        do {            
+        do {
             naytaValikkoJaPyydaValinta();
         } while (toteutaValikonValinta(getKayttajanValinta()));
     }
@@ -48,7 +52,7 @@ public class Kayttoliittyma implements UI {
     @Override
     public void naytaValikkoJaPyydaValinta() {
         io.tulostaRivi("Valitse toiminto: ");
-        io.tulostaRivi("(1) Luo Artikkeli");
+        io.tulostaRivi("(1) Luo viite");
         io.tulostaRivi("(2) Listaa viitteet");
         io.tulostaRivi("(3) Poista Artikkeli");
         io.tulostaRivi("(4) Lopeta");
@@ -56,6 +60,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Hakee käyttäjän valinnan valikosta.
+     *
      * @return käyttäjän valinnan.
      */
     private int getKayttajanValinta() {
@@ -65,14 +70,17 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Toteuttaa käyttäjän valikkovalinnan.
-     * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta valitseman toiminnon.
-     * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen, tällöin viitteet
-     * tallennetaan tiedostoon ja palautetaan false.
+     *
+     * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta
+     * valitseman toiminnon.
+     * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
+     * tällöin viitteet tallennetaan tiedostoon ja palautetaan false.
      */
     public boolean toteutaValikonValinta(int kayttajanValinta) {
         switch (kayttajanValinta) {
             case 1: {
-                luoArtikkeli(new Artikkeli());
+                naytaViiteValikko();
+//                luoArtikkeli(new Artikkeli());
                 break;
             }
             case 2: {
@@ -91,21 +99,56 @@ public class Kayttoliittyma implements UI {
         return true;
     }
 
-    /**
-     * Luo artikkelin kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja taytaKentat.
-     * @param artikkeli Artikkeli-olio joka on tyhjä.
-     */
-    public void luoArtikkeli(Artikkeli artikkeli) {
-        String[] kentat = new String[] {"ID", "Author", "Title", "Journal", "Volume", "Number", "Year",
-                "Pages", "Publisher", "Address"};
-        lisaaArtikkeli(artikkeli, taytaKentat(kentat));
+    private boolean toteutaViitevalikonValinta(int kayttajanValinta) {
+        switch (kayttajanValinta) {
+            case 1: {
+                luoArtikkeli(new Artikkeli());
+                break;
+            }
+            case 2: {
+                luoKirja(new Kirja());
+                break;
+            }
+            case 3: {
+                do {
+                    naytaValikkoJaPyydaValinta();
+                } while (toteutaValikonValinta(getKayttajanValinta()));
+            }
+        }
+        return true;
+    }
+
+    private void naytaViiteValikko() {
+        io.tulostaRivi("Valitse viitetyypi: ");
+        io.tulostaRivi("(1) Luo artikkeli-viite");
+        io.tulostaRivi("(2) Luo kirja-viite");
+        io.tulostaRivi("(3) Palaa päävalikkoon");
+        toteutaViitevalikonValinta(getKayttajanValinta());
     }
 
     /**
-     * Lisää artikkelin järjestelmään viitearkisto-luokan lisaaArtikkeli metodilla.
-     * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     * Luo artikkelin kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja
+     * taytaKentat.
+     *
+     * @param artikkeli Artikkeli-olio joka on tyhjä.
+     */
+    public void luoArtikkeli(Artikkeli artikkeli) {
+        String[] kentat = new String[]{"ID", "Author", "Title", "Journal", "Volume", "Number", "Year",
+            "Pages", "Publisher", "Address"};
+        lisaaArtikkeli(artikkeli, taytaKentat(kentat));
+    }
+
+    private void luoKirja(Kirja kirja) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * Lisää artikkelin järjestelmään viitearkisto-luokan lisaaArtikkeli
+     * metodilla. Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     *
      * @param artikkeli
-     * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät kentät.
+     * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
+     * kentät.
      */
     public void lisaaArtikkeli(Artikkeli artikkeli, String[] taytetytKentat) {
         viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
@@ -118,8 +161,9 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Antaa kentät käyttäjän täytettäviksi riveittäin kenttä kerrallaan.
-     * @param kentat String-taulukko, jossa on kenttien nimet, jotka kenttä kerrallaan annetaan
-     *               käyttäjän täytettäväksi.
+     *
+     * @param kentat String-taulukko, jossa on kenttien nimet, jotka kenttä
+     * kerrallaan annetaan käyttäjän täytettäväksi.
      * @return String-taulukko, jossa on kentät täytettynä.
      */
     public String[] taytaKentat(String[] kentat) {
@@ -132,8 +176,9 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * //TODO!!
-     * todennäköiseti poistaa viitteen viitearkiston metodia apuna käyttäen.
+     * //TODO!! todennäköiseti poistaa viitteen viitearkiston metodia apuna
+     * käyttäen.
+     *
      * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
      */
     @Override
@@ -171,6 +216,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Muuttaa Stringinä olevan numeron kokonaisluvuksi.
+     *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.
      */
