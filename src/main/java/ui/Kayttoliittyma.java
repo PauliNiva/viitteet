@@ -80,7 +80,6 @@ public class Kayttoliittyma implements UI {
         switch (kayttajanValinta) {
             case 1: {
                 naytaViiteValikko();
-//                luoArtikkeli(new Artikkeli());
                 break;
             }
             case 2: {
@@ -98,7 +97,14 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-
+    
+    
+    /**
+     * Toteuttaa käyttäjän valinnan viitteiden lisäys valikossa.
+     * @param kayttajanValinta kokonaisluku, joka ilmaisee käyttäjän valikosta
+     * valitseman toiminnon.
+     * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
+     */
     private boolean toteutaViitevalikonValinta(int kayttajanValinta) {
         switch (kayttajanValinta) {
             case 1: {
@@ -117,7 +123,11 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-
+    
+    /**
+     * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu metodia, 
+     * joka toteuttaa halutun toiminnon.
+     */
     private void naytaViiteValikko() {
         io.tulostaRivi("Valitse viitetyypi: ");
         io.tulostaRivi("(1) Luo artikkeli-viite");
@@ -137,7 +147,13 @@ public class Kayttoliittyma implements UI {
             "Pages", "Publisher", "Address"};
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
     }
-
+    
+    
+    // TODO !!
+    /**
+     * Luo Kirjan
+     * @param kirja 
+     */
     private void luoKirja(Kirja kirja) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
