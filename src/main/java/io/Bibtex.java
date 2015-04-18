@@ -4,6 +4,7 @@ import dao.BibDao;
 import java.io.IOException;
 import java.util.List;
 import viitehallinta.Artikkeli;
+import viitehallinta.Kirja;
 import viitehallinta.Viite;
 import viitehallinta.Viitearkisto;
 
@@ -43,10 +44,10 @@ public class Bibtex {
         dao.tyhjennaTiedosto();
         for (Viite viite : viitteet) {
             if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Artikkeli")) {
-                lisaaArtikkeliTiedostoon(viite);
+                lisaaArtikkeliBibViitteetTiedostoon(viite);
             }
             if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Kirja")) {
-                lisaaKirjaTiedostoon(viite);
+                lisaaKirjaBibViitteetTiedostoon(viite);
             }
         }
 
@@ -64,7 +65,7 @@ public class Bibtex {
      * @param artikkeli
      * @throws IOException
      */
-    public void lisaaArtikkeliTiedostoon(Viite artikkeli) throws IOException {
+    public void lisaaArtikkeliBibViitteetTiedostoon(Viite artikkeli) throws IOException {
         dao.lisaaRiviTiedostoon("@article{" + tarkastaAakkoset(((Artikkeli) artikkeli).getID()) + ",");
         dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Artikkeli) artikkeli).getAuthor()) + "},");
         dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Artikkeli) artikkeli).getTitle()) + "},");
@@ -79,12 +80,19 @@ public class Bibtex {
     }
 
     /**
-     * TODO! samaan tyyliin kuin artikkelin lisäys
+     * Lisää tiedostoon BibTex-muodossa kirjan tiedot
      *
-     * @param kirja
+     * @param kirja Lisättävä kirja-olio
+     * @throws IOException
      */
-    public void lisaaKirjaTiedostoon(Viite kirja) {
-
+    public void lisaaKirjaBibViitteetTiedostoon(Viite kirja) throws IOException {
+        dao.lisaaRiviTiedostoon("@book{" + tarkastaAakkoset(((Kirja) kirja).getID()) + ",");
+        dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Kirja) kirja).getAuthor()) + "},");
+        dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Kirja) kirja).getTitle()) + "},");
+        dao.lisaaRiviTiedostoon("year = {" + ((Kirja) kirja).getYear() + "},");
+        dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(((Kirja) kirja).getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("}");
+        dao.lisaaRiviTiedostoon("");
     }
 
     /**
