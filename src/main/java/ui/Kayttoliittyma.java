@@ -169,7 +169,8 @@ public class Kayttoliittyma implements UI {
      * @param kirja 
      */
     private void luoKirja(Kirja kirja) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String[] kentat = new String[]{"ID", "Author", "Title", "Year", "Publisher", "Address"};
+        lisaaKirja(kirja, taytaKentat(kentat));
     }
 
     /**
@@ -186,6 +187,14 @@ public class Kayttoliittyma implements UI {
                 taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
         io.tulostaRivi("");
         io.tulostaRivi("Artikkeli lisätty onnistuneesti");
+        io.tulostaRivi("");
+    }
+
+    public void lisaaKirja(Kirja kirja, String[] taytetytKentat) {
+        viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
+                StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
+        io.tulostaRivi("");
+        io.tulostaRivi("Kirja lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -238,11 +247,17 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
                 io.tulostaRivi("");
+            } else if (viite.getClass().equals(new Kirja().getClass())) {
+                io.tulostaRivi("ID: " + ((Kirja) viite).getID());
+                io.tulostaRivi("Author: " + ((Kirja) viite).getAuthor());
+                io.tulostaRivi("Title: " + ((Kirja) viite).getTitle());
+                io.tulostaRivi("Year: " + ((Kirja) viite).getYear());
+                io.tulostaRivi("Publisher: " + ((Kirja) viite).getPublisher());
+                io.tulostaRivi("Address: " + ((Kirja) viite).getAddress());
             }
-
-            io.tulostaRivi("Viitteitä yhteensä: " + viitteet.size());
-            io.tulostaRivi("");
         }
+        io.tulostaRivi("Viitteitä yhteensä: " + viitteet.size());
+        io.tulostaRivi("");
     }
 
     /**
