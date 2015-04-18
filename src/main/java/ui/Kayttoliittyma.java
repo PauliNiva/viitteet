@@ -45,6 +45,7 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
+<<<<<<< HEAD
         try {
             do {
                 naytaValikkoJaPyydaValinta();

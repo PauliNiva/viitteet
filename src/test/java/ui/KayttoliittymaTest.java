@@ -58,14 +58,11 @@ public class KayttoliittymaTest {
 
     @Test
     public void listaaViitteetTest() throws IOException {
-        testiDao = new FileDao("tyhjatestiviite.txt", mockIo);
+        testiDao = new FileDao("tyhjatestiviite.tmp", mockIo);
         viitearkisto = new Viitearkisto(testiDao);
         Kayttoliittyma kali = new Kayttoliittyma(mockIo, viitearkisto);
-        viitearkisto.lueTiedosto();
         viitearkisto.lisaaArtikkeli("1", "Lokki", "lintu", "1", 1, 2, 2015, "1", "1", "katu");
-
         kali.listaaViitteet();
-        
         verify(mockIo, times(15)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();
     }
