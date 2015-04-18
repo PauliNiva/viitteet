@@ -45,14 +45,14 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
+<<<<<<< HEAD
         try {
-            lueTiedosto();
             do {
                 naytaValikkoJaPyydaValinta();
             } while (toteutaValikonValinta(getKayttajanValinta()));
         } catch (IOException ex) {
             Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -111,10 +111,10 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-
+    
+    
     /**
      * Toteuttaa käyttäjän valinnan viitteiden lisäys valikossa.
-     *
      * @param kayttajanValinta kokonaisluku, joka ilmaisee käyttäjän valikosta
      * valitseman toiminnon.
      * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
@@ -137,10 +137,10 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-
+    
     /**
-     * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu
-     * metodia, joka toteuttaa halutun toiminnon.
+     * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu metodia, 
+     * joka toteuttaa halutun toiminnon.
      */
     private void naytaViiteValikko() throws IOException {
         io.tulostaRivi("Valitse viitetyypi: ");
@@ -161,16 +161,15 @@ public class Kayttoliittyma implements UI {
             "Pages", "Publisher", "Address"};
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
     }
-
+    
+    
     // TODO !!
     /**
      * Luo Kirjan
-     *
-     * @param kirja
+     * @param kirja 
      */
     private void luoKirja(Kirja kirja) {
-        String[] kentat = new String[]{"ID", "Author", "Title", "Year", "Publisher", "Address"};
-        lisaaKirja(kirja, taytaKentat(kentat));
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -187,14 +186,6 @@ public class Kayttoliittyma implements UI {
                 taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
         io.tulostaRivi("");
         io.tulostaRivi("Artikkeli lisätty onnistuneesti");
-        io.tulostaRivi("");
-    }
-
-    public void lisaaKirja(Kirja kirja, String[] taytetytKentat) {
-        viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
-                StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
-        io.tulostaRivi("");
-        io.tulostaRivi("Kirja lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -232,7 +223,7 @@ public class Kayttoliittyma implements UI {
     public void listaaViitteet() {
         System.out.println("Viitteet: \n");
         List<Viite> viitteet = viitearkisto.getViitteet();
-        for (Object viite : viitteet) {
+        for (Object viite: viitteet) {
             if (viite.getClass().equals(new Artikkeli().getClass())) {
                 io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());
                 io.tulostaRivi("Author: " + ((Artikkeli) viite).getAuthor());
@@ -247,20 +238,11 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
                 io.tulostaRivi("");
-            } else if (viite.getClass().equals(new Kirja().getClass())) {
-                io.tulostaRivi("ID: " + ((Kirja) viite).getID());
-                io.tulostaRivi("Author: " + ((Kirja) viite).getAuthor());
-                io.tulostaRivi("Title: " + ((Kirja) viite).getTitle());
-                io.tulostaRivi("Year: " + ((Kirja) viite).getYear());
-                io.tulostaRivi("Publisher: " + ((Kirja) viite).getPublisher());
-                io.tulostaRivi("Address: " + ((Kirja) viite).getAddress());
-                io.tulostaRivi("");
-                io.tulostaRivi("====================================");
-                io.tulostaRivi("");
             }
+
+            io.tulostaRivi("Viitteitä yhteensä: " + viitteet.size());
+            io.tulostaRivi("");
         }
-        io.tulostaRivi("Viitteitä yhteensä: " + viitteet.size());
-        io.tulostaRivi("");
     }
 
     /**
@@ -291,4 +273,5 @@ public class Kayttoliittyma implements UI {
         Bibtex bibtex = new Bibtex(viitearkisto, io, "bibViitteet.bib");
         bibtex.luoTiedosto();
     }
+
 }
