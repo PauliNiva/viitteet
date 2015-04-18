@@ -53,7 +53,7 @@ public class ArtikkeliTest {
     public void getTiedostoMuotoTest() {
         Artikkeli artikkeli = new Artikkeli("g3", "Arto Vihavainen", "Ratebeer", "Olutsanomat",
                 2, 3, 2013, "69--96", "Oluen ystavat", "Foobarintie 1");
-        assertEquals("g3:Arto Vihavainen:Ratebeer:Olutsanomat:" + 2 + ":" + 3 +":" + 2013 + ":69--96:Oluen ystavat:Foobarintie 1\n",
+        assertEquals("g3:Arto Vihavainen:Ratebeer:Olutsanomat:" + 2 + ":" + 3 + ":" + 2013 + ":69--96:Oluen ystavat:Foobarintie 1\n",
                 artikkeli.getTiedostoMuoto());
 
     }

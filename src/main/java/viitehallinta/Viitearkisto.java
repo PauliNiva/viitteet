@@ -19,15 +19,15 @@ public class Viitearkisto {
      */
     private dao fileDao;
 
-
     public Viitearkisto() {
         this.fileDao = new FileDao();
         this.viitteet = new ArrayList<Viite>();
     }
+
     /**
-     * Konstruktori ilman parametreja.
-     * Luodaan viite-lista. 
-     * @param fileDao 
+     * Konstruktori ilman parametreja. Luodaan viite-lista.
+     *
+     * @param fileDao
      */
     public Viitearkisto(dao fileDao) {
         this.fileDao = fileDao;
@@ -35,9 +35,10 @@ public class Viitearkisto {
     }
 
     /**
-     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla
-     * metodin saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
+     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla metodin
+     * saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
      * järjestelmään.
+     *
      * @param ID String joka toimii yksillöllisenä (uniikkina)tunnisteena;
      * @param author String artikkelin kirjoittaja.
      * @param title String artikkelin otsikko.
@@ -46,12 +47,12 @@ public class Viitearkisto {
      * @param number int julkaisun numeri, jossa artikkeli on ilmestynyt.
      * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
      * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
-     *               erotetaan toisistaan kahdella viivalla.
+     * erotetaan toisistaan kahdella viivalla.
      * @param publisher String julkaisijan nimi;
      * @param address String julkaisijan osoite;
      */
     public void lisaaArtikkeli(String ID, String author, String title, String journal, int volume,
-                               int number, int year, String pages, String publisher, String address) {
+            int number, int year, String pages, String publisher, String address) {
         Artikkeli artikkeli = new Artikkeli();
         artikkeli.setID(ID);
         artikkeli.setAuthor(author);
@@ -83,9 +84,10 @@ public class Viitearkisto {
 
     /**
      * Hakee artikkeli listan.
+     *
      * @return Artikkeli-olio listan
      */
-    public List<Viite> getViitteet(){
+    public List<Viite> getViitteet() {
         return viitteet;
     }
 

@@ -33,7 +33,7 @@ public class FileDaoTest {
         fileDao.tallennaViitteet(viitteet);
         assertEquals(viitteet.size(), fileDao.lueViitteetTiedostosta().size());
     }
-    
+
     @Test
     public void lueArtikkelitTest() {
         Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
@@ -42,11 +42,10 @@ public class FileDaoTest {
         viitteet.add(artikkeli2);
         fileDao.tallennaViitteet(viitteet);
         List<Viite> luetutViitteet = fileDao.lueViitteetTiedostosta();
-        
+
         assertEquals(luetutViitteet.get(1).getAuthor(), "author2");
     }
-    
-    
+
 //    TODO -- tää ei toimi
 //    @Test(expected = IOException.class)
 //    public void kirjoitaArtikkelitTestaaPoikkeus() {
@@ -58,7 +57,6 @@ public class FileDaoTest {
 //        
 //        
 //    }
-    
     @Test
     public void tyhjennaTiedostoTest() throws IOException {
         Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");

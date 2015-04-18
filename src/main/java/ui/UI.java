@@ -3,7 +3,8 @@ package ui;
 public interface UI {
 
     /**
-     * Käynnistää UI:n ja pitää ohjelman käynnissä kunnes käyttäjä valitsee valikosta lopetuksen.
+     * Käynnistää UI:n ja pitää ohjelman käynnissä kunnes käyttäjä valitsee
+     * valikosta lopetuksen.
      */
     void kaynnista();
 
@@ -13,8 +14,9 @@ public interface UI {
     void naytaValikkoJaPyydaValinta();
 
     /**
-     * //TODO!!
-     * todennäköiseti poistaa viitteen viitearkiston metodia apuna käyttäen.
+     * //TODO!! todennäköiseti poistaa viitteen viitearkiston metodia apuna
+     * käyttäen.
+     *
      * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
      */
     int poistaViite();

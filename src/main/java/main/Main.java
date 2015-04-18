@@ -13,6 +13,7 @@ public class Main {
     /**
      * Main käynnistää ohjelman toiminnan kutsumalla Kaynnistaja-olion
      * käynnistä-metodia.
+     *
      * @param args komentoriviargumentit String-taulukon objekteina.
      */
     public static void main(String[] args) {
@@ -21,6 +22,7 @@ public class Main {
 
     /**
      * Asettaa käynnistäjän.
+     *
      * @param kaynnistaja
      */
     static void setKaynnistaja(Kaynnistaja kaynnistaja) {

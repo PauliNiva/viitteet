@@ -13,6 +13,6 @@ public class MainTest {
         Kaynnistaja kaynnistaja = Mockito.mock(Kaynnistaja.class);
         Main.setKaynnistaja(kaynnistaja);
         Main.main(new String[]{"test1", "test2"});
-        Mockito.verify(kaynnistaja).kaynnista(new String[] {"test1", "test2"});
+        Mockito.verify(kaynnistaja).kaynnista(new String[]{"test1", "test2"});
     }
 }
