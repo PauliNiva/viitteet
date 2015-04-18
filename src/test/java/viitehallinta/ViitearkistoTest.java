@@ -24,7 +24,7 @@ public class ViitearkistoTest {
     public void lisaaArtikkeliTest() {
         viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
         verify(mockDao, times(1)).tallennaViitteet(anyList());
-        assertEquals(1, viitearkisto.getArtikkelit().size());
+        assertEquals(1, viitearkisto.getViitteet().size());
     }
 
     @Test
@@ -41,9 +41,9 @@ public class ViitearkistoTest {
 
     @Test
     public void getArtikkelitTest() {
-        assertEquals(0, viitearkisto.getArtikkelit().size());
+        assertEquals(0, viitearkisto.getViitteet().size());
         viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
-        assertEquals(1, viitearkisto.getArtikkelit().size());
+        assertEquals(1, viitearkisto.getViitteet().size());
     }
 
     // TODO add test methods here.

@@ -208,7 +208,7 @@ public class Kayttoliittyma implements UI {
      */
     public void listaaViitteet() {
         System.out.println("Viitteet: \n");
-        List<Viite> viitteet = viitearkisto.getArtikkelit();
+        List<Viite> viitteet = viitearkisto.getViitteet();
         for (Object viite: viitteet) {
             if (viite.getClass().equals(new Artikkeli().getClass())) {
                 io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());

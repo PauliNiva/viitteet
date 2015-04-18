@@ -5,12 +5,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import ui.Kayttoliittyma;
+import viitehallinta.Artikkeli;
 import viitehallinta.Viite;
 import viitehallinta.Viitearkisto;
 
 /**
  *
- * Luokka joka luo viitteistä BibTex-muotoisen tiedoston
+ * Luokka joka luo viitteistä BibTex-muotoisen tiedoston.
  */
 public class Bibtex {
 
@@ -20,9 +21,8 @@ public class Bibtex {
     private String tiedosto;
 
     /**
-     * luonnissa tarvitsemme viitearkiston ja käyttöliittymän sekä tiedoston,
-     * tiedoston nimeä voisi kysyä käyttäjältä tiedoston luonnin valinnan
-     * yhteydessä
+     * luonnissa tarvitsemme viitearkiston ja käyttöliittymän sekä oman
+     * tiedoston. kä
      *
      * @param viitearkisto
      * @param io
@@ -32,7 +32,7 @@ public class Bibtex {
         this.io = io;
         this.dao = new FileDao(tiedosto, io);
         this.tiedosto = tiedosto;
-        // this.viitteet = viitearkisto.getViitteet sitten kun refaktorointi on valmis
+         this.viitteet = viitearkisto.getViitteet();
     }
 
     /**
@@ -56,11 +56,8 @@ public class Bibtex {
     }
 
     /**
-     * lisää tiedostoon BibTex-muodossa artikkelin tiedot, 
-     * TODO!
-     * ensimmäisen
-     * rivin sisältö on hieman mysteeri mutta oletin sen olevan ID 
-     * TODO!!
+     * lisää tiedostoon BibTex-muodossa artikkelin tiedot, TODO! ensimmäisen
+     * rivin sisältö on hieman mysteeri mutta oletin sen olevan ID TODO!!
      * artikkelin ulos ottaminen objectina, getclassilla luokan haku ja objectin
      * castaaminen oikeaksi luokaksi mahdollista!
      *
@@ -68,12 +65,12 @@ public class Bibtex {
      * @throws IOException
      */
     public void lisaaArtikkeliTiedostoon(Viite artikkeli) throws IOException {
-        dao.lisaaRiviTiedostoon("@article{" + tarkastaAakkoset(artikkeli.getID()) + ",");
-        dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(artikkeli.getAuthor()) + "},");
-        dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(artikkeli.getTitle()) + "},");
-        //dao.lisaaRiviTiedostoon("journal = {" + tarkastaAakkoset(artikkeli.getJournal()) + "},");
-        //dao.lisaaRiviTiedostoon("volume = {" + tarkastaAakkoset(artikkeli.getVolume()) + "},");
-        //dao.lisaaRiviTiedostoon("number = {" + tarkastaAakkoset(artikkeli.getNumber()) + "},");
+        dao.lisaaRiviTiedostoon("@article{" + tarkastaAakkoset(((Artikkeli) artikkeli).getID()) + ",");
+        dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Artikkeli) artikkeli).getAuthor()) + "},");
+        dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Artikkeli) artikkeli).getTitle()) + "},");
+        dao.lisaaRiviTiedostoon("journal = {" + tarkastaAakkoset(((Artikkeli) artikkeli).getJournal()) + "},");
+        dao.lisaaRiviTiedostoon("volume = {" + ((Artikkeli) artikkeli).getVolume() + "},");
+        dao.lisaaRiviTiedostoon("number = {" + ((Artikkeli) artikkeli).getNumber() + "},");
         dao.lisaaRiviTiedostoon("year = {" + artikkeli.getYear() + "},");
         dao.lisaaRiviTiedostoon("pages = {" + tarkastaAakkoset(artikkeli.getPages()) + "},");
         dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(artikkeli.getPublisher()) + "},");
