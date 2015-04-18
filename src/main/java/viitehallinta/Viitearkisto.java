@@ -86,7 +86,6 @@ public class Viitearkisto {
      * @return Artikkeli-olio listan
      */
     public List<Viite> getViitteet(){
-        this.viitteet = this.fileDao.lueViitteetTiedostosta();
         return viitteet;
     }
 

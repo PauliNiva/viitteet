@@ -34,7 +34,7 @@ public class KayttoliittymaTest {
     @Test
     public void naytaValikkoJaPyydaValintaTest(){
         kayttoliittyma.naytaValikkoJaPyydaValinta();
-        verify(mockIo, times(5)).tulostaRivi(anyString());
+        verify(mockIo, times(6)).tulostaRivi(anyString());
     }
     
 
@@ -42,7 +42,6 @@ public class KayttoliittymaTest {
     public void kaynnistaTest() {
         when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.kaynnista();
-
         verify(mockViitearkisto, times(1)).lueTiedosto();
 
     }
@@ -53,7 +52,7 @@ public class KayttoliittymaTest {
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
-        assertEquals(false, kayttoliittyma.toteutaValikonValinta(4));
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(4));
     }
 
     @Test
