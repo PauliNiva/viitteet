@@ -23,7 +23,6 @@ public class Bibtex {
     private IO io;
     private String tiedosto;
     private BibDao dao;
-    
 
     /**
      * luonnissa tarvitsemme viitearkiston ja käyttöliittymän sekä oman
@@ -49,10 +48,10 @@ public class Bibtex {
     public void luoTiedosto() throws IOException {
         dao.tyhjennaTiedosto();
         for (Viite viite : viitteet) {
-            if (viite.getClass().getName().equalsIgnoreCase("Article")) {
+            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Artikkeli")) {
                 lisaaArtikkeliTiedostoon(viite);
             }
-            if (viite.getClass().getName().equalsIgnoreCase("Book")) {
+            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Kirja")) {
                 lisaaKirjaTiedostoon(viite);
             }
         }
@@ -106,7 +105,5 @@ public class Bibtex {
 
         return korjattuRivi;
     }
-    
-   
 
 }
