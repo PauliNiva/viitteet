@@ -1,7 +1,11 @@
 package ui;
 
+import io.Bibtex;
 import io.IO;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import viitehallinta.Artikkeli;
 import viitehallinta.Kirja;
 import viitehallinta.Viite;
@@ -41,9 +45,13 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
-        do {
-            naytaValikkoJaPyydaValinta();
-        } while (toteutaValikonValinta(getKayttajanValinta()));
+        try {
+            do {
+                naytaValikkoJaPyydaValinta();
+            } while (toteutaValikonValinta(getKayttajanValinta()));
+        } catch (IOException ex) {
+            Logger.getLogger(Kayttoliittyma.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -55,7 +63,8 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("(1) Luo viite");
         io.tulostaRivi("(2) Listaa viitteet");
         io.tulostaRivi("(3) Poista Artikkeli");
-        io.tulostaRivi("(4) Lopeta");
+        io.tulostaRivi("(4) Luo BibTex-tiedosto");
+        io.tulostaRivi("(5) Lopeta");
     }
 
     /**
@@ -76,7 +85,7 @@ public class Kayttoliittyma implements UI {
      * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
      * tällöin viitteet tallennetaan tiedostoon ja palautetaan false.
      */
-    public boolean toteutaValikonValinta(int kayttajanValinta) {
+    public boolean toteutaValikonValinta(int kayttajanValinta) throws IOException {
         switch (kayttajanValinta) {
             case 1: {
                 naytaViiteValikko();
@@ -91,6 +100,10 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 4: {
+                luoBibtex();
+                break;
+            }
+            case 5: {
                 tallennaTiedostoon();
                 return false;
             }
@@ -105,7 +118,7 @@ public class Kayttoliittyma implements UI {
      * valitseman toiminnon.
      * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
      */
-    private boolean toteutaViitevalikonValinta(int kayttajanValinta) {
+    private boolean toteutaViitevalikonValinta(int kayttajanValinta) throws IOException {
         switch (kayttajanValinta) {
             case 1: {
                 luoArtikkeli(new Artikkeli());
@@ -128,7 +141,7 @@ public class Kayttoliittyma implements UI {
      * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu metodia, 
      * joka toteuttaa halutun toiminnon.
      */
-    private void naytaViiteValikko() {
+    private void naytaViiteValikko() throws IOException {
         io.tulostaRivi("Valitse viitetyypi: ");
         io.tulostaRivi("(1) Luo artikkeli-viite");
         io.tulostaRivi("(2) Luo kirja-viite");
@@ -253,6 +266,11 @@ public class Kayttoliittyma implements UI {
      */
     private void tallennaTiedostoon() {
         viitearkisto.tallenna();
+    }
+
+    private void luoBibtex() throws IOException {
+        Bibtex bibtex = new Bibtex(viitearkisto, io, "bibViitteet.bib");
+        bibtex.luoTiedosto();
     }
 
 }

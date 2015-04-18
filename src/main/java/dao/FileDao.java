@@ -18,8 +18,7 @@ import viitehallinta.Viite;
 public class FileDao implements dao {
 
     /**
-     * Tiedosto jota ohjelma käyttää tietojen tallentamiseen ja
-     * säilyttämiseen.
+     * Tiedosto jota ohjelma käyttää tietojen tallentamiseen ja säilyttämiseen.
      */
     private String viitetiedosto = "viitetiedosto.tmp";
 
@@ -31,15 +30,17 @@ public class FileDao implements dao {
     private List<Viite> viitteet;
 
     /**
-     * IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden
-     * näyttämiseen.
+     * IO käyttäjän syötteiden lukemiseen ja ohjelman tulosteiden näyttämiseen.
      */
     private IO io;
 
-    public FileDao() {}
+    public FileDao() {
+    }
+
     /**
-     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan,
-     * sekä IO-olio
+     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan, sekä
+     * IO-olio
+     *
      * @param io
      */
     public FileDao(IO io) {
@@ -51,8 +52,9 @@ public class FileDao implements dao {
     }
 
     /**
-     * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon
-     * Heittää poikkeuksen jos tieodostoa ei löydy.
+     * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon Heittää
+     * poikkeuksen jos tieodostoa ei löydy.
+     *
      * @param viitteet tiedostoon tallennettavat artikkelit
      */
     @Override
@@ -69,8 +71,9 @@ public class FileDao implements dao {
 
     /**
      * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
-     * ne listalle, jota viitearkisto käyttää.
-     * Heittää poikkeuksen jos tiedostoa ei löydy.
+     * ne listalle, jota viitearkisto käyttää. Heittää poikkeuksen jos tiedostoa
+     * ei löydy.
+     *
      * @return lista Artikkeli-olioita
      */
     @Override
@@ -91,24 +94,12 @@ public class FileDao implements dao {
 
     /**
      * Poistaa tekstitiedoston sisällön.
+     *
      * @throws IOException
      */
-    public void tyhjennaTiedosto() throws IOException   {
+    public void tyhjennaTiedosto() throws IOException {
         FileOutputStream writer = new FileOutputStream(viitetiedosto);
         writer.close();
     }
-
-    /**
-     * kirjoittaa tiedoston loppuun uuden rivin
-     *
-     * @param rivi kirjoitettava teksti
-     */
-    public void lisaaRiviTiedostoon(String rivi) throws IOException{
-        FileWriter kirjoittaja = new FileWriter(viitetiedosto, true);
-
-        kirjoittaja.append(rivi + "\n");
-        kirjoittaja.close();
-    }
-
 
 }

@@ -1,7 +1,11 @@
 package io;
 
+import dao.BibDao;
 import dao.FileDao;
+import dao.dao;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import ui.Kayttoliittyma;
@@ -17,8 +21,9 @@ public class Bibtex {
 
     private List<Viite> viitteet;
     private IO io;
-    private FileDao dao;
     private String tiedosto;
+    private BibDao dao;
+    
 
     /**
      * luonnissa tarvitsemme viitearkiston ja käyttöliittymän sekä oman
@@ -30,9 +35,9 @@ public class Bibtex {
      */
     public Bibtex(Viitearkisto viitearkisto, IO io, String tiedosto) {
         this.io = io;
-        this.dao = new FileDao(tiedosto, io);
         this.tiedosto = tiedosto;
-         this.viitteet = viitearkisto.getViitteet();
+        this.viitteet = viitearkisto.getViitteet();
+        this.dao = new BibDao(tiedosto, io);
     }
 
     /**
@@ -52,7 +57,9 @@ public class Bibtex {
             }
         }
 
+        io.tulostaRivi("");
         io.tulostaRivi("Viitteet lisätty " + tiedosto + " tiedostoon");
+        io.tulostaRivi("");
     }
 
     /**
@@ -99,5 +106,7 @@ public class Bibtex {
 
         return korjattuRivi;
     }
+    
+   
 
 }
