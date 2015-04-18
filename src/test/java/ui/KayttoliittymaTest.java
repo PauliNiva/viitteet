@@ -40,7 +40,7 @@ public class KayttoliittymaTest {
 
     @Test
     public void kaynnistaTest() {
-        when(mockIo.lueRivi()).thenReturn("4");
+        when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.kaynnista();
 
         verify(mockViitearkisto, times(1)).lueTiedosto();
@@ -48,8 +48,8 @@ public class KayttoliittymaTest {
     }
 
     @Test
-    public void toteutaValikonValintaTest() {
-        when(mockIo.lueRivi()).thenReturn("4");
+    public void toteutaValikonValintaTest() throws IOException {
+        when(mockIo.lueRivi()).thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
@@ -69,7 +69,7 @@ public class KayttoliittymaTest {
 
     @Test
     public void luoArtikkeliTest() {
-        when(mockIo.lueRivi()).thenReturn("4");
+        when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.luoArtikkeli(new Artikkeli());
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString() , anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyString(), anyString());
     }
