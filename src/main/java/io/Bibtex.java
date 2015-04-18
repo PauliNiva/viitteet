@@ -94,15 +94,34 @@ public class Bibtex {
     }
 
     /**
-     * TODO!! tarkastaa ja muuttaa parametrina annetun merkkijonon ääkköset
-     * bibitex-muotoon
+     * Käy läpi parametrina annetun merkkijonon ja tarkastaa, sisältääkö
+     * merkkijono ä-, å- tai ö-kirjaimia. Jokainen ä, å ja ö muutetaan BibText
+     * muotoiseksi.
      *
-     * @param rivi
-     * @return
+     * @param rivi Rivi, jonka ä-, å- ja ö-kirjaimet muutetaan BibTex-muotoon
+     * @return BibTex-muotoisen merkkijonon
      */
     public String tarkastaAakkoset(String rivi) {
-        String korjattuRivi = rivi;
+        String korjattuRivi = "";
 
+        for (char kirjain : rivi.toCharArray()) {
+            if (kirjain == 'ä') {
+                korjattuRivi += "/\"{a}";
+            } else if (kirjain == 'ö') {
+                korjattuRivi += "/\"{o}";
+            } else if (kirjain == 'å') {
+                korjattuRivi += "/r{a}";
+            } else if (kirjain == 'Ä') {
+                korjattuRivi += "/\"{A}";
+            } else if (kirjain == 'Ö') {
+                korjattuRivi += "/\"{O}";
+            } else if (kirjain == 'Å') {
+                korjattuRivi += "/r{A}";
+            }
+            else {
+                korjattuRivi += kirjain;
+            }
+        }
         return korjattuRivi;
     }
 
