@@ -89,7 +89,7 @@ public class Viitearkisto {
         return viitteet;
     }
 
-    public void lisaaKirja(String ID, String author, String title, int year, String publisher, String address) {
+    public void lisaaKirja(String ID,String author, String title, int year, String publisher, String address) {
         Kirja kirja = new Kirja();
         kirja.setID(ID);
         kirja.setAuthor(author);
@@ -97,7 +97,9 @@ public class Viitearkisto {
         kirja.setYear(year);
         kirja.setPublisher(publisher);
         kirja.setAddress(address);
-        this.viitteet.add(kirja);
-        tallenna();
+        // Tähän viitteen lisäys viitelistaam.
+        // muutettava Artikkelilista viitelistaksi.
+        // Lisäksi tähän viitelistan tallentaminen serializablea
+        // hyväkskäyttäen.
     }
 }
