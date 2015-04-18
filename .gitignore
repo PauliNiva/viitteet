@@ -33,4 +33,5 @@ nb-configuration.xml
 
 # Test files
 *.txt
+*.tmp
 
