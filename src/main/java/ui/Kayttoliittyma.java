@@ -41,6 +41,7 @@ public class Kayttoliittyma implements UI {
      */
     @Override
     public void kaynnista() {
+        lueTiedosto();
         do {
             naytaValikkoJaPyydaValinta();
         } while (toteutaValikonValinta(getKayttajanValinta()));
