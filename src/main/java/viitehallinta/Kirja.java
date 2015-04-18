@@ -3,8 +3,8 @@ package viitehallinta;
 import java.io.Serializable;
 
 /**
- * Luokka kirjaviitte-oliolle, jonka konstruktori on kuormitettu.
- * Perii viite luokan ja toteuttaa Serializable rajapinnan.
+ * Luokka kirjaviitte-oliolle, jonka konstruktori on kuormitettu. Perii viite
+ * luokan ja toteuttaa Serializable rajapinnan.
  */
 public class Kirja extends Viite implements Serializable {
 
@@ -14,10 +14,12 @@ public class Kirja extends Viite implements Serializable {
     /**
      * Parametritön konstruktori.
      */
-    public Kirja() {}
+    public Kirja() {
+    }
 
     /**
      * Kontruktori parametreilla.
+     *
      * @param id String joka toimii yksillöllisenä (uniikkina)tunnisteena;
      * @param author String kirjan kirjoittaja.
      * @param title String kirjan nimi.
@@ -41,6 +43,4 @@ public class Kirja extends Viite implements Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
-
 }
-

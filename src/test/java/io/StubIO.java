@@ -39,6 +39,4 @@ public class StubIO implements IO {
         System.out.println(rivi);
         prints.add(rivi);
     }
-
-    
 }

@@ -3,8 +3,8 @@ package viitehallinta;
 import java.io.Serializable;
 
 /**
- * Luokka artikkeliviite-olioille, jonka konstruktori on kuormitettu.
- * Perii Viite-luokan.
+ * Luokka artikkeliviite-olioille, jonka konstruktori on kuormitettu. Perii
+ * Viite-luokan.
  */
 public class Artikkeli extends Viite implements Serializable {
 
@@ -22,6 +22,7 @@ public class Artikkeli extends Viite implements Serializable {
 
     /**
      * Konstruktori kentillä.
+     *
      * @param ID String joka toimii yksillöllisenä (uniikkina)tunnisteena;
      * @param author String artikkelin kirjoittaja.
      * @param title String artikkelin otsikko.
@@ -30,12 +31,12 @@ public class Artikkeli extends Viite implements Serializable {
      * @param number int julkaisun numeri, jossa artikkeli on ilmestynyt.
      * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
      * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
-     *               erotetaan toisistaan kahdella viivalla.
+     * erotetaan toisistaan kahdella viivalla.
      * @param publisher String julkaisijan nimi;
      * @param address String julkaisijan osoite;
      */
-    public Artikkeli(String ID, String author, String title, String journal, int volume, int number,  int year,
-                     String pages, String publisher, String address) {
+    public Artikkeli(String ID, String author, String title, String journal, int volume, int number, int year,
+            String pages, String publisher, String address) {
         this.setID(ID);
         this.setAuthor(author);
         this.setTitle(title);
@@ -47,10 +48,10 @@ public class Artikkeli extends Viite implements Serializable {
         this.setPublisher(publisher);
         this.setAddress(address);
     }
-    
+
     public String getTiedostoMuoto() {
-        return this.getID()+":"+this.getAuthor()+":"+this.getTitle()+":"+this.getJournal()+":"+this.getVolume()+
-                ":"+this.getNumber()+":"+this.getYear()+":"+this.getPages()+":"+this.getPublisher()+":"+this.getAddress()+"\n";
+        return this.getID() + ":" + this.getAuthor() + ":" + this.getTitle() + ":" + this.getJournal() + ":" + this.getVolume()
+                + ":" + this.getNumber() + ":" + this.getYear() + ":" + this.getPages() + ":" + this.getPublisher() + ":" + this.getAddress() + "\n";
     }
 
     public String getJournal() {

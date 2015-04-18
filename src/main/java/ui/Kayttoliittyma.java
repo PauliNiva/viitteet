@@ -111,10 +111,10 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-    
-    
+
     /**
      * Toteuttaa käyttäjän valinnan viitteiden lisäys valikossa.
+     *
      * @param kayttajanValinta kokonaisluku, joka ilmaisee käyttäjän valikosta
      * valitseman toiminnon.
      * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
@@ -137,10 +137,10 @@ public class Kayttoliittyma implements UI {
         }
         return true;
     }
-    
+
     /**
-     * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu metodia, 
-     * joka toteuttaa halutun toiminnon.
+     * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu
+     * metodia, joka toteuttaa halutun toiminnon.
      */
     private void naytaViiteValikko() throws IOException {
         io.tulostaRivi("Valitse viitetyypi: ");
@@ -161,12 +161,12 @@ public class Kayttoliittyma implements UI {
             "Pages", "Publisher", "Address"};
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
     }
-    
-    
+
     // TODO !!
     /**
      * Luo Kirjan
-     * @param kirja 
+     *
+     * @param kirja
      */
     private void luoKirja(Kirja kirja) {
         String[] kentat = new String[]{"ID", "Author", "Title", "Year", "Publisher", "Address"};
@@ -232,7 +232,7 @@ public class Kayttoliittyma implements UI {
     public void listaaViitteet() {
         System.out.println("Viitteet: \n");
         List<Viite> viitteet = viitearkisto.getViitteet();
-        for (Object viite: viitteet) {
+        for (Object viite : viitteet) {
             if (viite.getClass().equals(new Artikkeli().getClass())) {
                 io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());
                 io.tulostaRivi("Author: " + ((Artikkeli) viite).getAuthor());
@@ -288,5 +288,4 @@ public class Kayttoliittyma implements UI {
         Bibtex bibtex = new Bibtex(viitearkisto, io, "bibViitteet.bib");
         bibtex.luoTiedosto();
     }
-
 }

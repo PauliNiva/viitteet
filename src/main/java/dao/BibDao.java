@@ -1,4 +1,3 @@
-
 package dao;
 
 import io.IO;
@@ -8,14 +7,11 @@ import java.io.IOException;
 import java.util.List;
 import viitehallinta.Viite;
 
-/**
- *
- * @author tijas
- */
-public class BibDao implements dao{
+public class BibDao implements dao {
+
     private IO io;
     private String tiedosto;
-    
+
     /**
      *
      * @param tiedosto
@@ -35,26 +31,27 @@ public class BibDao implements dao{
     public List<Viite> lueViitteetTiedostosta() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     /**
-     * tyhjentää tiedoston 
+     * tyhjentää tiedoston
+     *
      * @throws IOException
      */
     public void tyhjennaTiedosto() throws IOException {
         FileOutputStream writer = new FileOutputStream(tiedosto);
         writer.close();
     }
-    
+
     /**
      * lisää tiedoston loppuun parametrina annetun merkkijono
+     *
      * @param rivi
      * @throws IOException
      */
-    public void lisaaRiviTiedostoon(String rivi) throws IOException{
+    public void lisaaRiviTiedostoon(String rivi) throws IOException {
         FileWriter kirjoittaja = new FileWriter(tiedosto, true);
 
         kirjoittaja.write(rivi + "\n");
         kirjoittaja.close();
     }
-    
 }

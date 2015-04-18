@@ -28,11 +28,8 @@ public class KayttoliittymaIOTest {
     }
 
     @Test
-    public void lueRiviTest() {        
+    public void lueRiviTest() {
         io.asetaLuettavaRivi("illuminati");
         assertEquals("illuminati", io.lueRivi());
     }
-    
-   
 }
-

@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.List;
-import viitehallinta.Artikkeli;
 import viitehallinta.Viite;
 
 /**
@@ -11,6 +10,7 @@ public interface dao {
 
     /**
      * Tallentaa viitteet tiedostoon
+     *
      * @param viitteet
      */
     public void tallennaViitteet(List<Viite> viitteet);
@@ -18,6 +18,7 @@ public interface dao {
     /**
      * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
      * ne listalle, jota viitearkisto käyttää.
+     *
      * @return lista Artikkeli-olioita.
      */
     public List<Viite> lueViitteetTiedostosta();

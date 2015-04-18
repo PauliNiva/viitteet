@@ -3,9 +3,8 @@ package viitehallinta;
 import java.io.Serializable;
 
 /**
- * Yleisluokka viitteille, jolla on attribuuttina kaikille
- * viitteille yhteiset attribuutit. Spesifit viiteluokat perivät
- * tämän yläluokan.
+ * Yleisluokka viitteille, jolla on attribuuttina kaikille viitteille yhteiset
+ * attribuutit. Spesifit viiteluokat perivät tämän yläluokan.
  */
 public class Viite implements Serializable {
 
@@ -63,5 +62,4 @@ public class Viite implements Serializable {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
 }
