@@ -2,6 +2,7 @@ package viitehallinta;
 
 import dao.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -100,6 +101,16 @@ public class Viitearkisto {
         kirja.setPublisher(publisher);
         kirja.setAddress(address);
         this.viitteet.add(kirja);
+        tallenna();
+    }
+
+    public void poistaViite(String poistettavaViite) {
+        Iterator<Viite> iteraattori = viitteet.iterator();
+        while (iteraattori.hasNext()) {
+            if (iteraattori.next().getID().equals(poistettavaViite)) {
+                iteraattori.remove();
+            }
+        }
         tallenna();
     }
 }

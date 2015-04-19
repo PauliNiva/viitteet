@@ -63,7 +63,7 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("Valitse toiminto: ");
         io.tulostaRivi("(1) Luo viite");
         io.tulostaRivi("(2) Listaa viitteet");
-        io.tulostaRivi("(3) Poista Artikkeli");
+        io.tulostaRivi("(3) Poista Viite");
         io.tulostaRivi("(4) Luo BibTex-tiedosto");
         io.tulostaRivi("(5) Lopeta");
     }
@@ -162,10 +162,8 @@ public class Kayttoliittyma implements UI {
         lisaaArtikkeli(artikkeli, taytaKentat(kentat));
     }
 
-    // TODO !!
     /**
      * Luo Kirjan
-     *
      * @param kirja
      */
     private void luoKirja(Kirja kirja) {
@@ -215,14 +213,14 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * //TODO!! todennäköiseti poistaa viitteen viitearkiston metodia apuna
-     * käyttäen.
      *
      * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
      */
     @Override
-    public int poistaViite() {
-        return 0;
+    public void poistaViite() {
+        System.out.println("Anna poistettavan viitteen ID: ");
+        String poistettavaViite = io.lueRivi();
+        viitearkisto.poistaViite(poistettavaViite);
     }
 
     /**
