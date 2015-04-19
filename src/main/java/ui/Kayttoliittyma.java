@@ -81,9 +81,9 @@ public class Kayttoliittyma implements UI {
     /**
      *
      * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta
-     *                         valitseman toiminnon.
-      * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
-     *          tällöin viitteet tallennetaan tiedostoon ja palautetaan false.
+     * valitseman toiminnon.
+     * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
+     * tällöin viitteet tallennetaan tiedostoon ja palautetaan false.
      * @throws IOException
      */
     public boolean toteutaValikonValinta(int kayttajanValinta) throws IOException {
@@ -114,6 +114,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Toteuttaa käyttäjän valinnan viitteiden lisäys valikossa.
+     *
      * @param kayttajanValinta kokonaisluku, joka ilmaisee käyttäjän valikosta
      * valitseman toiminnon.
      * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
@@ -164,7 +165,7 @@ public class Kayttoliittyma implements UI {
      * Luo kirjan kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja
      * taytaKentat.
      */
-    private void luoKirja() {
+    public void luoKirja() {
         String[] kentat = new String[]{"ID", "Author", "Title", "Year", "Publisher", "Address"};
         lisaaKirja(taytaKentat(kentat));
     }
@@ -172,8 +173,9 @@ public class Kayttoliittyma implements UI {
     /**
      * Lisää artikkelin järjestelmään viitearkisto-luokan lisaaArtikkeli
      * metodilla. Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     *
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
-     *                       kentät.
+     * kentät.
      */
     public void lisaaArtikkeli(String[] taytetytKentat) {
         viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
@@ -187,8 +189,9 @@ public class Kayttoliittyma implements UI {
     /**
      * Lisää kirjan järjestelmään viitearkisto-luokan lisaaKirja metodilla.
      * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     *
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
-     *                       kentät.
+     * kentät.
      */
     public void lisaaKirja(String[] taytetytKentat) {
         viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
@@ -200,6 +203,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Antaa kentät käyttäjän täytettäviksi riveittäin kenttä kerrallaan.
+     *
      * @param kentat String-taulukko, jossa on kenttien nimet, jotka kenttä
      * kerrallaan annetaan käyttäjän täytettäväksi.
      * @return String-taulukko, jossa on kentät täytettynä.
@@ -214,8 +218,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Poístaa viitteen järjestelmästä kysymälle ensin käyttäjältä ID:tä,
-     * jonka avulla poistettava viite tunnistetaan ja lopuksi pyytää
+     * Poístaa viitteen järjestelmästä kysymälle ensin käyttäjältä ID:tä, jonka
+     * avulla poistettava viite tunnistetaan ja lopuksi pyytää
      * viitearkisto-luokan metodia poistaViite poistamaan kyseisen viitteen.
      */
     @Override
@@ -226,14 +230,13 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Listaa järjestelmässä olevat viitteet ihmiselle luettavassa
-     * muodossa.
+     * Listaa järjestelmässä olevat viitteet ihmiselle luettavassa muodossa.
      */
     public void listaaViitteet() {
         System.out.println("Viitteet: \n");
         List<Viite> viitteet = viitearkisto.getViitteet();
         for (Object viite : viitteet) {
-            if (viite.getClass().equals(new Artikkeli().getClass())) {
+            if (viite instanceof Artikkeli) {
                 io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());
                 io.tulostaRivi("Author: " + ((Artikkeli) viite).getAuthor());
                 io.tulostaRivi("Title: " + ((Artikkeli) viite).getTitle());
@@ -247,7 +250,7 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
                 io.tulostaRivi("");
-            } else if (viite.getClass().equals(new Kirja().getClass())) {
+            } else if (viite instanceof Kirja) {
                 io.tulostaRivi("ID: " + ((Kirja) viite).getID());
                 io.tulostaRivi("Author: " + ((Kirja) viite).getAuthor());
                 io.tulostaRivi("Title: " + ((Kirja) viite).getTitle());
@@ -265,6 +268,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Muuttaa Stringinä olevan numeron kokonaisluvuksi.
+     *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.
      */
@@ -288,6 +292,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Luo bibtex-muotoisen tiedoston.
+     *
      * @throws IOException
      */
     private void luoBibtex() throws IOException {

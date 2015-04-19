@@ -47,8 +47,13 @@ public class KayttoliittymaTest {
 
     @Test
     public void toteutaValikonValintaTest() throws IOException {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("1");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
+        when(mockIo.lueRivi()).thenReturn("2");
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
+        when(mockIo.lueRivi()).thenReturn("3").thenReturn("5");
+        assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
+        when(mockIo.lueRivi()).thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(4));
@@ -60,8 +65,10 @@ public class KayttoliittymaTest {
         viitearkisto = new Viitearkisto(testiDao);
         Kayttoliittyma kali = new Kayttoliittyma(mockIo, viitearkisto);
         viitearkisto.lisaaArtikkeli("1", "Lokki", "lintu", "1", 1, 2, 2015, "1", "1", "katu");
+        viitearkisto.lisaaKirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
         kali.listaaViitteet();
-        verify(mockIo, times(15)).tulostaRivi(anyString());
+        assertEquals(2, viitearkisto.getViitteet().size());
+        verify(mockIo, times(24)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();
     }
 
@@ -70,5 +77,12 @@ public class KayttoliittymaTest {
         when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.luoArtikkeli();
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyString(), anyString());
+    }
+
+    @Test
+    public void luoKirjaTest() {
+        when(mockIo.lueRivi()).thenReturn("5");
+        kayttoliittyma.luoKirja();
+        verify(mockViitearkisto, times(1)).lisaaKirja(anyString(), anyString(), anyString(), anyInt(), anyString(), anyString());
     }
 }
