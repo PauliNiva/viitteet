@@ -21,6 +21,6 @@ public class MainTest {
     public void mainTest() throws Exception {
         Main.setKaynnistaja(mockKaynnistaja);
         Main.main(new String[]{"test1", "test2"});
-        Mockito.verify(mockKaynnistaja).kaynnista(new String[]{"test1", "test2"});
+        Mockito.verify(mockKaynnistaja, times(1)).kaynnista(new String[]{"test1", "test2"});
     }
 }
