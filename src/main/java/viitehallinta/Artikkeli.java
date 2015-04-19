@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Luokka artikkeliviite-olioille, jonka konstruktori on kuormitettu. Perii
- * Viite-luokan.
+ * Viite-luokan ja toteuttaa Serializable rajapinnan.
  */
 public class Artikkeli extends Viite implements Serializable {
 

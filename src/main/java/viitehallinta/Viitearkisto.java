@@ -22,17 +22,17 @@ public class Viitearkisto {
 
     public Viitearkisto() {
         this.fileDao = new FileDao();
-        this.viitteet = new ArrayList<Viite>();
+        this.viitteet = new ArrayList<>();
     }
 
     /**
-     * Konstruktori ilman parametreja. Luodaan viite-lista.
+     * Konstruktori. Luodaan viite-lista.
      *
      * @param fileDao
      */
     public Viitearkisto(dao fileDao) {
         this.fileDao = fileDao;
-        this.viitteet = new ArrayList<Viite>();
+        this.viitteet = new ArrayList<>();
     }
 
     /**
@@ -84,14 +84,24 @@ public class Viitearkisto {
     }
 
     /**
-     * Hakee artikkeli listan.
+     * Hakee Viitelistan.
      *
-     * @return Artikkeli-olio listan
+     * @return Listan viite-olioita
      */
     public List<Viite> getViitteet() {
         return viitteet;
     }
 
+    /**
+     * Luo uuden kirja-olion ja lisää sille attribuutit setterien avulla metodin
+     * saamien parametrien mukaan. Lopuksi metodi lisää uuden kirjan järjestelmään.
+     * @param ID String joka toimii yksilöölisenä (uniikkina) tunnisteena.
+     * @param author String kirjan kirjoittajan nimi.
+     * @param title String kirjan nimi.
+     * @param year int kirjan julkaisuvuosi.
+     * @param publisher String kirjan julkaisija.
+     * @param address String kirjan julkaisijan osoite.
+     */
     public void lisaaKirja(String ID, String author, String title, int year, String publisher, String address) {
         Kirja kirja = new Kirja();
         kirja.setID(ID);
@@ -104,6 +114,11 @@ public class Viitearkisto {
         tallenna();
     }
 
+    /**
+     * Poistaa viitteen järjestelmästä parametrinaan saadun yksilöllisen ID:n avulla.
+     * @param poistettavaViite String käyttäjän syöttämä ID, jolla etsitään oikea
+     *                         poistettava viite.
+     */
     public void poistaViite(String poistettavaViite) {
         Iterator<Viite> iteraattori = viitteet.iterator();
         while (iteraattori.hasNext()) {

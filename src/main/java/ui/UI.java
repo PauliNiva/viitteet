@@ -14,10 +14,7 @@ public interface UI {
     void naytaValikkoJaPyydaValinta();
 
     /**
-     * //TODO!! todennäköiseti poistaa viitteen viitearkiston metodia apuna
-     * käyttäen.
-     *
-     * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
+     * Poistaa käyttäjän valitseman ID:n mukaisen viitteen.
      */
     void poistaViite();
 }

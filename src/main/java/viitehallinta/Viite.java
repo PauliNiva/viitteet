@@ -4,7 +4,8 @@ import java.io.Serializable;
 
 /**
  * Yleisluokka viitteille, jolla on attribuuttina kaikille viitteille yhteiset
- * attribuutit. Spesifit viiteluokat perivät tämän yläluokan.
+ * attribuutit. Spesifit viiteluokat perivät tämän yläluokan. Toteuttaa
+ * rajapinnan Serializable
  */
 public class Viite implements Serializable {
 
