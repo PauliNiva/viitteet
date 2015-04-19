@@ -91,4 +91,10 @@ public class ViitearkistoTest {
         viitearkisto.poistaViite("BK02");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
+
+    @Test
+    public void lisaaViiteTestaukseenTest() {
+        viitearkisto.lisaaViiteTestaukseen("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        assertEquals(1, viitearkisto.getViitteet().size());
+    }
 }
