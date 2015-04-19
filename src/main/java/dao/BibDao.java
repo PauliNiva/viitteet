@@ -7,7 +7,11 @@ import java.io.IOException;
 import java.util.List;
 import viitehallinta.Viite;
 
-public class BibDao implements dao {
+/**
+ *
+ * Dao bibtex tiedoston hallintaan
+ */
+public class BibDao  {
 
     private IO io;
     private String tiedosto;
@@ -24,26 +28,8 @@ public class BibDao implements dao {
         this.tiedosto = tiedosto;
     }
 
-    /**
-     * Tallentaa viitteet tiedostoon
-     *
-     * @param viitteet
-     */
-    @Override
-    public void tallennaViitteet(List<Viite> viitteet) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
-    /**
-     * Hakee tiedostosta viitelistan.
-     *
-     * @return lista Viite-olioita.
-     */
-    @Override
-    public List<Viite> lueViitteetTiedostosta() {
-        //tajusin vasta jälkeen päin kun testejä tein, ettei tätä vielä ole tehty
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * tyhjentää tiedoston
@@ -68,7 +54,5 @@ public class BibDao implements dao {
         kirjoittaja.close();
     }
 
-    public List<Viite> getViitteet() {
-        return viitteet;
-    }
+    
 }
