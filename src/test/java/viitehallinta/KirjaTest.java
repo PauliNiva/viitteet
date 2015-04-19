@@ -7,6 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * JUnit-testit Kirja-luokan testaamiseen.
+ */
 public class KirjaTest {
 
     Kirja kirja;

@@ -68,7 +68,7 @@ public class KayttoliittymaTest {
     @Test
     public void luoArtikkeliTest() {
         when(mockIo.lueRivi()).thenReturn("5");
-        kayttoliittyma.luoArtikkeli(new Artikkeli());
+        kayttoliittyma.luoArtikkeli();
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyString(), anyString());
     }
 }
