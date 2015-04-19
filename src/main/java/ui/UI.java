@@ -19,5 +19,5 @@ public interface UI {
      *
      * @return varmaankin poistettavan viitteen jonkinlainen tunniste.
      */
-    int poistaViite();
+    void poistaViite();
 }

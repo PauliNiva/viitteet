@@ -5,8 +5,8 @@ import viitehallinta.*;
 
 description 'Käyttäjä voi lisätä kirjaviitteen'
 
-scenario 'käyttäjä voi lisätä viitteen', {
-    given 'lisäämis-toiminto on valittu', {
+scenario 'käyttäjä voi lisätä kirjaviitteen', {
+    given 'kirjanlisäämis-toiminto on valittu', {
         io = new StubIO("1", "2", "9", "lokki", "lintu", "2015", "9", "katu", "5");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
