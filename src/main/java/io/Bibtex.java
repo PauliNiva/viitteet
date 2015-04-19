@@ -58,9 +58,7 @@ public class Bibtex {
 
     /**
      * lisää tiedostoon BibTex-muodossa artikkelin tiedot, TODO! ensimmäisen
-     * rivin sisältö on hieman mysteeri mutta oletin sen olevan ID TODO!!
-     * artikkelin ulos ottaminen objectina, getclassilla luokan haku ja objectin
-     * castaaminen oikeaksi luokaksi mahdollista!
+     * rivin sisältö on hieman mysteeri mutta oletin sen olevan ID 
      *
      * @param artikkeli
      * @throws IOException
@@ -126,8 +124,6 @@ public class Bibtex {
         }
         return korjattuRivi;
     }
+
     
-    public BibDao getBibDao() {
-        return dao;
-    }
 }

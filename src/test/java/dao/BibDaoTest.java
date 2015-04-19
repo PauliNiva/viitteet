@@ -39,6 +39,7 @@ public class BibDaoTest {
    @Test
    public void lisaaRiviTiedostoonTest() throws IOException {
        bibDao.lisaaRiviTiedostoon("lisättävä rivi");
+       bibDao.tyhjennaTiedosto();
    }
    
 
