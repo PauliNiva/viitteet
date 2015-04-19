@@ -10,7 +10,7 @@ import viitehallinta.Viite;
 /**
  * Tiedostoon tallettava DAO, joka toteuttaa rajapinnan dao
  */
-public class FileDao implements Dao {
+public class FileDao implements dao {
 
     /**
      * Tiedosto jota ohjelma käyttää tietojen tallentamiseen ja säilyttämiseen.
