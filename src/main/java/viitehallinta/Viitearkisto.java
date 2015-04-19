@@ -103,7 +103,6 @@ public class Viitearkisto {
         this.viitteet.add(kirja);
         tallenna();
     }
-<<<<<<< HEAD
     
     /**
      * Bibtex-testaukseen apumetodi.
@@ -124,8 +123,8 @@ public class Viitearkisto {
         kirja.setPublisher(publisher);
         kirja.setAddress(address);
         this.viitteet.add(kirja);
-=======
 
+    }
     public void poistaViite(String poistettavaViite) {
         Iterator<Viite> iteraattori = viitteet.iterator();
         while (iteraattori.hasNext()) {
@@ -134,6 +133,5 @@ public class Viitearkisto {
             }
         }
         tallenna();
->>>>>>> b5dbe2a2b7ada64d7983d7a09c6a94cd078df06d
     }
 }
