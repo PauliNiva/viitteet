@@ -18,7 +18,7 @@ public class Viitearkisto {
     /**
      * Dao tietojen tiedostoon tallentamiseen ja sieltä lukemiseen.
      */
-    private Dao fileDao;
+    private dao fileDao;
 
     public Viitearkisto() {
         this.fileDao = new FileDao();
@@ -30,7 +30,7 @@ public class Viitearkisto {
      *
      * @param fileDao
      */
-    public Viitearkisto(Dao fileDao) {
+    public Viitearkisto(dao fileDao) {
         this.fileDao = fileDao;
         this.viitteet = new ArrayList<>();
     }

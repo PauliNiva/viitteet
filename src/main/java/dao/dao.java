@@ -6,7 +6,7 @@ import viitehallinta.Viite;
 /**
  * Rajapinta tallentamaan viitteet tiedostoon.
  */
-public interface Dao {
+public interface dao {
 
     /**
      * Tallentaa viitteet tiedostoon
