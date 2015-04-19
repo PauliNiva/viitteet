@@ -1,6 +1,8 @@
 package viitehallinta;
 
+import java.lang.reflect.*;
 import dao.FileDao;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -46,9 +48,47 @@ public class ViitearkistoTest {
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void luoOletusViitearkistoOlioTest() {
+        viitearkisto = new Viitearkisto();
+        
+        // Luokan luonti luo ja sijoittaa arvon kahteen private muuttujaan
+        // joten tämän testi tarkistaa reflection:n avulla että k.o. muuttujat
+        // todella saavat jotkin arvot
+        Class viiterarkistoLuokka = Viitearkisto.class;
+        
+        // getDeclaredField voit heittää poikkeuksen jos k.o. kenttää ei ole olemassa
+        try {
+            // Hae viite private kenttään ja tarkista että luodussa oliossa sen arvo
+            // ei ole null
+            Field fileDaoKentta = viiterarkistoLuokka.getDeclaredField("fileDao");
+            // Kenttään ei voi tehdä toimintoja ennen kuin sen on merkitty 'käytettäväksi'
+            // sillä muuten tulee IllegalAccessException
+            fileDaoKentta.setAccessible(true);
+            assertNotNull(fileDaoKentta.get(viitearkisto));
+            
+            Field viitteetKentta = viiterarkistoLuokka.getDeclaredField("viitteet");
+            viitteetKentta.setAccessible(true);
+            assertNotNull(viitteetKentta.get(viitearkisto));
+        }catch(Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+    
+    @Test
+    public void lisaaKirjaTest() {
+        viitearkisto.lisaaKirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        verify(mockDao, times(1)).tallennaViitteet(anyList());
+        assertEquals(1, viitearkisto.getViitteet().size());
+    }
+
+    @Test
+    public void poistaViiteTest() {
+        viitearkisto.lisaaKirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("BK02", "Charles M. Schulz", "Charlie Brown strikes back", 1951, "Simon & Schuster", "S street 1");
+        assertEquals(2, viitearkisto.getViitteet().size());
+        
+        viitearkisto.poistaViite("BK02");
+        assertEquals(1, viitearkisto.getViitteet().size());
+    }
 }
