@@ -16,10 +16,9 @@ public interface dao {
     public void tallennaViitteet(List<Viite> viitteet);
 
     /**
-     * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
-     * ne listalle, jota viitearkisto käyttää.
+     * Hakee tiedostosta viitelistan.
      *
-     * @return lista Artikkeli-olioita.
+     * @return lista Viite-olioita.
      */
     public List<Viite> lueViitteetTiedostosta();
 }

@@ -33,8 +33,8 @@ public class FileDao implements dao {
     }
 
     /**
-     * Konstruktoriin syötetään tiedosto, johon viitteet tallennetaan, sekä
-     * IO-olio
+     * Konstruktoriin syötetään IO-olio jota käytetään. Tämä konstruktori käyttää
+     * oletustiedostoa, joka on viitetiedosto.tmp
      *
      * @param io
      */
@@ -42,6 +42,12 @@ public class FileDao implements dao {
         this.io = io;
     }
 
+    /**
+     * Konstruktori, jos tarvitsee spesifioida mitä tiedostoa halutaan käytettävän.
+     *
+     * @param tiedosto String tiedosto, jos ei haluta käyttää oletus tiedostoa.
+     * @param io
+     */
     public FileDao(String tiedosto, IO io) {
         this.io = io;
     }

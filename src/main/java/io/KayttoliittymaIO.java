@@ -22,7 +22,6 @@ public class KayttoliittymaIO implements IO {
 
     /**
      * Lukee käyttäjän antaman syöterivin.
-     *
      * @return luetun rivin Stringinä.
      */
     @Override
@@ -32,7 +31,6 @@ public class KayttoliittymaIO implements IO {
 
     /**
      * Tulostaa rivin rivinvaihdolla.
-     *
      * @param rivi String tulostettava rivi.
      */
     @Override
@@ -42,7 +40,6 @@ public class KayttoliittymaIO implements IO {
 
     /**
      * Tulostaa rivin ilman rivinvaihtoa.
-     *
      * @param rivi String tulostettava rivi.
      */
     @Override
@@ -52,7 +49,6 @@ public class KayttoliittymaIO implements IO {
 
     /**
      * Asettaa luettavan rivin lukijalle.
-     *
      * @param luettavaRivi
      */
     public void asetaLuettavaRivi(String luettavaRivi) {

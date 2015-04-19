@@ -133,16 +133,13 @@ public class Viitearkisto {
         kirja.setPublisher(publisher);
         kirja.setAddress(address);
         this.viitteet.add(kirja);
+    }
 
-<<<<<<< HEAD
     /**
      * Poistaa viitteen järjestelmästä parametrinaan saadun yksilöllisen ID:n avulla.
      * @param poistettavaViite String käyttäjän syöttämä ID, jolla etsitään oikea
      *                         poistettava viite.
      */
-=======
-    }
->>>>>>> origin/master
     public void poistaViite(String poistettavaViite) {
         Iterator<Viite> iteraattori = viitteet.iterator();
         while (iteraattori.hasNext()) {
