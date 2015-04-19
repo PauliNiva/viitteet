@@ -1,5 +1,6 @@
 package dao;
 
+import java.lang.reflect.*;
 import io.KayttoliittymaIO;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,21 @@ public class FileDaoTest {
         viitteet = new ArrayList<Viite>();
     }
 
+    @Test
+    public void luoOlioIlmanTiedostonimiParamteria() {
+        io = new KayttoliittymaIO();
+        fileDao = new FileDao(io);
+        
+        Class fileDaoLuokka = FileDao.class;
+        try {
+            Field ioKentta = fileDaoLuokka.getDeclaredField("io");
+            ioKentta.setAccessible(true);
+            assertNotNull(ioKentta);
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }   
+    }
+    
     @Test
     public void kirjoitaArtikkelitTest() throws Exception {
         Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
