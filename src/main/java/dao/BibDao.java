@@ -11,6 +11,7 @@ public class BibDao implements dao {
 
     private IO io;
     private String tiedosto;
+    private List<Viite> viitteet;
 
     /**
      *
@@ -29,6 +30,7 @@ public class BibDao implements dao {
 
     @Override
     public List<Viite> lueViitteetTiedostosta() {
+        //tajusin vasta jälkeen päin kun testejä tein, ettei tätä vielä ole tehty
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -53,5 +55,9 @@ public class BibDao implements dao {
 
         kirjoittaja.write(rivi + "\n");
         kirjoittaja.close();
+    }
+    
+    public List<Viite> getViitteet() {
+        return viitteet;
     }
 }

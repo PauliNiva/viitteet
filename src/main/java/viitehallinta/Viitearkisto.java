@@ -102,4 +102,25 @@ public class Viitearkisto {
         this.viitteet.add(kirja);
         tallenna();
     }
+    
+    /**
+     * Bibtex-testaukseen apumetodi.
+     * @param ID
+     * @param author
+     * @param title
+     * @param year
+     * @param publisher
+     * @param address 
+     */
+    
+    public void lisaaViiteTestaukseen(String ID, String author, String title, int year, String publisher, String address) {
+        Kirja kirja = new Kirja();
+        kirja.setID(ID);
+        kirja.setAuthor(author);
+        kirja.setTitle(title);
+        kirja.setYear(year);
+        kirja.setPublisher(publisher);
+        kirja.setAddress(address);
+        this.viitteet.add(kirja);
+    }
 }

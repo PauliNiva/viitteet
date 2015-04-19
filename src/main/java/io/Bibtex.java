@@ -126,4 +126,8 @@ public class Bibtex {
         }
         return korjattuRivi;
     }
+    
+    public BibDao getBibDao() {
+        return dao;
+    }
 }
