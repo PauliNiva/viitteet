@@ -1,0 +1,18 @@
+Viitetietojen käyttö LaTeX dokumentissa.
+
+Käytä oheista viite_esim.tex tiedostoa pohjana. Viitteet luot lisäämällä \cite{tähän viitteen tunniste}.
+
+Jos haluat PDF muotoisen dokumentin suorita seuraavat komennot:
+
+1. pdflatex viite_esim.tex
+2. bibtex viite_esim.aux
+3. pdflatex viite_esim.tex
+4. pdflatex viite_esim.tex
+
+LaTeX:n toiminnasta johtuen prosessointi täytyy tehdä monta kertaa että kaikki viittaukset
+tulevat oikein joten samaa komentoa täytyy toistaa monta kertaa sillä prosessointi tapahtuu
+luotavien erillistiedostojen kautta.
+
+Perusmateriaaliksi voi lueskella vaikka LaTeX wikiä: <http://en.wikibooks.org/wiki/LaTeX>
+Viitteiden käytöstä dokumentissa löytyy em. wikistä: <http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management>
+
