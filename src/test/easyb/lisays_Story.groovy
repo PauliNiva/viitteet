@@ -20,5 +20,4 @@ scenario 'käyttäjä voi lisätä viitteen', {
         viitearkisto.getViitteet().size().shouldNotBe 0;
         testiDao.tyhjennaTiedosto();
     }
-
 }

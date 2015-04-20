@@ -43,6 +43,13 @@ public class BibtexTest {
         String tulos = bib.tarkastaAakkoset("ÄäÖöÅåa");
         assertEquals(haluttuRivi, tulos);
     }
+    
+    @Test
+    public void tarkastaAakkosetVaarillaKirjaimillaTest() {
+        String haluttuRivi = "AASSkdkd";
+        String tulos = bib.tarkastaAakkoset("AASSkdkd");
+        assertEquals(haluttuRivi, tulos);
+    }
 
     @Test
     public void lisaaArtikkeliBibViitteetTiedostoonTest() throws IOException {
