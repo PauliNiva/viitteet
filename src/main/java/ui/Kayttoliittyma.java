@@ -131,9 +131,7 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 3: {
-                do {
-                    naytaValikkoJaPyydaValinta();
-                } while (toteutaValikonValinta(getKayttajanValinta()));
+                return false;
             }
         }
         return true;
@@ -144,11 +142,14 @@ public class Kayttoliittyma implements UI {
      * metodia, joka toteuttaa halutun toiminnon.
      */
     private void naytaViiteValikko() throws IOException {
-        io.tulostaRivi("Valitse viitetyypi: ");
-        io.tulostaRivi("(1) Luo artikkeli-viite");
-        io.tulostaRivi("(2) Luo kirja-viite");
-        io.tulostaRivi("(3) Palaa päävalikkoon");
-        toteutaViitevalikonValinta(getKayttajanValinta());
+        boolean valintaJatkuu = false;
+        do {
+            io.tulostaRivi("Valitse viitetyypi: ");
+            io.tulostaRivi("(1) Luo artikkeli-viite");
+            io.tulostaRivi("(2) Luo kirja-viite");
+            io.tulostaRivi("(3) Palaa päävalikkoon");
+            valintaJatkuu = toteutaViitevalikonValinta(getKayttajanValinta());
+        } while (valintaJatkuu == true);
     }
 
     /**
