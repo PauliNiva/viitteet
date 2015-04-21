@@ -39,7 +39,7 @@ public class BibtexTest {
 
     @Test
     public void tarkastaAakkosetTest() {
-        String haluttuRivi = "/\"{A}/\"{a}/\"{O}/\"{o}/r{A}/r{a}a";
+        String haluttuRivi = "\\\"{A}\\\"{a}\\\"{O}\\\"{o}\\AA \\aa a";
         String tulos = bib.tarkastaAakkoset("ÄäÖöÅåa");
         assertEquals(haluttuRivi, tulos);
     }
