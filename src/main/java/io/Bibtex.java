@@ -106,17 +106,17 @@ public class Bibtex {
 
         for (char kirjain : rivi.toCharArray()) {
             if (kirjain == 'ä') {
-                korjattuRivi += "/\"{a}";
+                korjattuRivi += "\\\"{a}";
             } else if (kirjain == 'ö') {
-                korjattuRivi += "/\"{o}";
+                korjattuRivi += "\\\"{o}";
             } else if (kirjain == 'å') {
-                korjattuRivi += "/r{a}";
+                korjattuRivi += "\\aa ";
             } else if (kirjain == 'Ä') {
-                korjattuRivi += "/\"{A}";
+                korjattuRivi += "\\\"{A}";
             } else if (kirjain == 'Ö') {
-                korjattuRivi += "/\"{O}";
+                korjattuRivi += "\\\"{O}";
             } else if (kirjain == 'Å') {
-                korjattuRivi += "/r{A}";
+                korjattuRivi += "\\AA ";
             }
             else {
                 korjattuRivi += kirjain;
