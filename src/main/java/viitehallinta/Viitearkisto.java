@@ -141,8 +141,29 @@ public class Viitearkisto {
         tallenna();
     }
 
-    public void lisaaMisc() {
-        
+    /**
+     * Luo uuden misc-olion ja lisää sille attribuutit setterien 
+     * avulla metodin saamien parametrien mukaan ja lisää lopuksi uuden 
+     * miscin järjestelmään.
+     * @param ID String joka toimii yksilöölisenä (uniikkina) tunnisteena.
+     * @param author Sting tekijän nimi.
+     * @param title String otsikko.
+     * @param howpublished String miten ja missä julkaistu.
+     * @param month String kuukausi, jolloin julkaistu.
+     * @param year String vuosi, jolloin julkaistu.
+     * @param note String lisäosio, esim. url tai tarkempi kuvaus.
+     */
+    public void lisaaMisc(String ID, String author, String title, String howpublished, int month, int year, String note) {
+        Misc misc = new Misc();
+        misc.setID(ID);
+        misc.setAuthor(author);
+        misc.setTitle(title);
+        misc.setHowPublished(howpublished);
+        misc.setMonth(month);
+        misc.setYear(year);
+        misc.setNote(note);
+        this.viitteet.add(misc);
+        tallenna();
     }
     
     /**
