@@ -179,6 +179,16 @@ public class Kayttoliittyma implements UI {
         lisaaKirja(taytaKentat(kentat));
     }
 
+    public void luoInproceedings() {
+        String[] kentat = new String[]{"ID", "Author", "Title", "Booktitle", "Year", "Pages", "Publisher"};
+        lisaaInproceedings(taytaKentat(kentat));
+    }
+
+    public void luiMisc() {
+        String[] kentat = new String[]{"ID", "Author", "Title", "How published", "Month", "Year", "Note"};
+        lisaaMisc(taytaKentat(kentat));
+    }
+
     /**
      * Lisää artikkelin järjestelmään viitearkisto-luokan lisaaArtikkeli
      * metodilla. Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
@@ -207,6 +217,22 @@ public class Kayttoliittyma implements UI {
                 StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
         io.tulostaRivi("");
         io.tulostaRivi("Kirja lisätty onnistuneesti");
+        io.tulostaRivi("");
+    }
+
+    public void lisaaInproceedings(String[] taytetytKentat) {
+        viitearkisto.lisaaInproceedings(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
+                taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), taytetytKentat[5], taytetytKentat[6]);
+        io.tulostaRivi("");
+        io.tulostaRivi("Inproceedings lisätty onnistuneesti");
+        io.tulostaRivi("");
+    }
+
+    public void lisaaMisc(String[] taytetytKentat) {
+        viitearkisto.lisaaMisc(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
+                taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), taytetytKentat[6]);
+        io.tulostaRivi("");
+        io.tulostaRivi("Misc lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
