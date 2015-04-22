@@ -52,7 +52,7 @@ public class Bibtex {
         }
 
         io.tulostaRivi("");
-        io.tulostaRivi("Viitteet lisätty " + tiedosto + " tiedostoon");
+        io.tulostaRivi("Viitteet lisatty " + tiedosto + " tiedostoon");
         io.tulostaRivi("");
     }
 

@@ -58,11 +58,11 @@ public class KayttoliittymaTest {
 
     @Test
     public void toteutaValikonValintaTest() throws IOException {
-        when(mockIo.lueRivi()).thenReturn("1").thenReturn("3");
+        when(mockIo.lueRivi()).thenReturn("1").thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
-        when(mockIo.lueRivi()).thenReturn("2").thenReturn("3");
+        when(mockIo.lueRivi()).thenReturn("2").thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
-        when(mockIo.lueRivi()).thenReturn("3");
+        when(mockIo.lueRivi()).thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
         when(mockIo.lueRivi()).thenReturn("5");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
