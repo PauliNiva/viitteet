@@ -45,10 +45,10 @@ public class Viitearkisto {
      * @param title String artikkelin otsikko.
      * @param journal String julkaisun nimi, jossa artikkeli on ilmestynyt.
      * @param volume int julkaisun osa, jossa artikkeli on ilmestynyt.
-     * @param number int julkaisun numeri, jossa artikkeli on ilmestynyt.
+     * @param number int julkaisun numero, jossa artikkeli on ilmestynyt.
      * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
      * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
-     * erotetaan toisistaan kahdella viivalla.
+     *              erotetaan toisistaan kahdella viivalla.
      * @param publisher String julkaisijan nimi;
      * @param address String julkaisijan osoite;
      */
@@ -114,6 +114,20 @@ public class Viitearkisto {
         tallenna();
     }
 
+    /**
+     * Luo uuden konferenssijulkaisu-olion ja lisää sille attribuutit setterien 
+     * avulla metodin saamien parametrien mukaan ja lisää uuden 
+     * konferenssijulkaisun järjestelmään.
+     * @param ID String joka toimii yksilöölisenä (uniikkina) tunnisteena.
+     * @param author String konferenssijulkaisun tekijän nimi.
+     * @param title String konferenssijulkaisun otsikko.
+     * @param booktitle String konferenssijulkaisun kirjan nimi, 
+     *                  jos haluttu otsikko on vain osa kirjasta.
+     * @param year int konferenssijulkaisun julkaisuvuosi.
+     * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
+     *              erotetaan toisistaan kahdella viivalla.
+     * @param publisher String konferenssijulkaisun julkaisija, jos kirja.
+     */
     public void lisaaInproceedings(String ID, String author, String title, String booktitle, int year, String pages, String publisher) {
         Inproceedings inproceedings = new Inproceedings();
         inproceedings.setID(ID);
@@ -131,26 +145,6 @@ public class Viitearkisto {
         
     }
     
-    /**
-     * Bibtex-testaukseen apumetodi.
-     * @param ID
-     * @param author
-     * @param title
-     * @param year
-     * @param publisher
-     * @param address 
-     */
-    public void lisaaViiteTestaukseen(String ID, String author, String title, int year, String publisher, String address) {
-        Kirja kirja = new Kirja();
-        kirja.setID(ID);
-        kirja.setAuthor(author);
-        kirja.setTitle(title);
-        kirja.setYear(year);
-        kirja.setPublisher(publisher);
-        kirja.setAddress(address);
-        this.viitteet.add(kirja);
-    }
-
     /**
      * Poistaa viitteen järjestelmästä parametrinaan saadun yksilöllisen ID:n avulla.
      * @param poistettavaViite String käyttäjän syöttämä ID, jolla etsitään oikea
