@@ -44,12 +44,13 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto, times(1)).lueTiedosto();
 
     }
+
     @Test
     public void kaynnistaVaarallaNumerolla() {
         when(mockIo.lueRivi()).thenReturn("99");
         verify(mockViitearkisto, never()).lueTiedosto();
         verify(mockViitearkisto, never()).tallenna();
-        
+
         when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.kaynnista();
 
@@ -94,5 +95,13 @@ public class KayttoliittymaTest {
         when(mockIo.lueRivi()).thenReturn("5");
         kayttoliittyma.luoKirja();
         verify(mockViitearkisto, times(1)).lisaaKirja(anyString(), anyString(), anyString(), anyInt(), anyString(), anyString());
+    }
+
+    @Test
+    public void virheellinenValikkoSyoteTest() {
+        when(mockIo.lueRivi()).thenReturn("x").thenReturn("5");
+        kayttoliittyma.kaynnista();
+        verify(mockViitearkisto, times(1)).lueTiedosto();
+        verify(mockIo, times(2)).lueRivi();
     }
 }

@@ -74,8 +74,16 @@ public class Kayttoliittyma implements UI {
      * @return käyttäjän valinnan.
      */
     private int getKayttajanValinta() {
-        String valinta = io.lueRivi();
-        return Integer.parseInt(valinta);
+        String valintaMkiJono = io.lueRivi();
+
+        int valinta;
+        try {
+            valinta = Integer.parseInt(valintaMkiJono);
+        } catch (NumberFormatException e) {
+            valinta = -1;
+        }
+
+        return valinta;
     }
 
     /**
@@ -274,7 +282,13 @@ public class Kayttoliittyma implements UI {
      * @return int:iksi muutetun kokonaisluvun.
      */
     private int StringLuvuksi(String numeraali) {
-        return Integer.parseInt(numeraali);
+        int arvo;
+        try {
+            arvo = Integer.parseInt(numeraali);
+        } catch (NumberFormatException e) {
+            arvo = -1;
+        }
+        return arvo;
     }
 
     /**
