@@ -6,10 +6,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import viitehallinta.Artikkeli;
-import viitehallinta.Kirja;
-import viitehallinta.Viite;
-import viitehallinta.Viitearkisto;
+
+import viitehallinta.*;
 
 /**
  * Tekstipohjainen käyttöliittymä, joka toteuttaa UI-rajapinnan.
@@ -139,6 +137,14 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 3: {
+                luoInproceedings();
+                break;
+            }
+            case 4: {
+                luoMisc();
+                break;
+            }
+            case 5: {
                 return false;
             }
         }
@@ -155,7 +161,9 @@ public class Kayttoliittyma implements UI {
             io.tulostaRivi("Valitse viitetyypi: ");
             io.tulostaRivi("(1) Luo artikkeli-viite");
             io.tulostaRivi("(2) Luo kirja-viite");
-            io.tulostaRivi("(3) Palaa päävalikkoon");
+            io.tulostaRivi("(3) Luo inproceedings-viite");
+            io.tulostaRivi("(4) Luo misc-viite");
+            io.tulostaRivi("(5) Palaa päävalikkoon");
             valintaJatkuu = toteutaViitevalikonValinta(getKayttajanValinta());
         } while (valintaJatkuu == true);
     }
@@ -184,7 +192,7 @@ public class Kayttoliittyma implements UI {
         lisaaInproceedings(taytaKentat(kentat));
     }
 
-    public void luiMisc() {
+    public void luoMisc() {
         String[] kentat = new String[]{"ID", "Author", "Title", "How published", "Month", "Year", "Note"};
         lisaaMisc(taytaKentat(kentat));
     }
@@ -201,7 +209,7 @@ public class Kayttoliittyma implements UI {
                 StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), StringLuvuksi(taytetytKentat[6]),
                 taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
         io.tulostaRivi("");
-        io.tulostaRivi("Artikkeli lisätty onnistuneesti");
+        io.tulostaRivi("Artikkeli lisatty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -216,7 +224,7 @@ public class Kayttoliittyma implements UI {
         viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
                 StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
         io.tulostaRivi("");
-        io.tulostaRivi("Kirja lisätty onnistuneesti");
+        io.tulostaRivi("Kirja lisatty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -292,6 +300,28 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Year: " + ((Kirja) viite).getYear());
                 io.tulostaRivi("Publisher: " + ((Kirja) viite).getPublisher());
                 io.tulostaRivi("Address: " + ((Kirja) viite).getAddress());
+                io.tulostaRivi("");
+                io.tulostaRivi("====================================");
+                io.tulostaRivi("");
+            } else if (viite instanceof Inproceedings) {
+                io.tulostaRivi("ID: " + ((Inproceedings) viite).getID());
+                io.tulostaRivi("Author: " + ((Inproceedings) viite).getAuthor());
+                io.tulostaRivi("Title: " + ((Inproceedings) viite).getTitle());
+                io.tulostaRivi("Booktitle: " + ((Inproceedings) viite).getBooktitle());
+                io.tulostaRivi("Year: " + ((Inproceedings) viite).getYear());
+                io.tulostaRivi("Pages: " + ((Inproceedings) viite).getPages());
+                io.tulostaRivi("Publisher: " + ((Inproceedings) viite).getPublisher());
+                io.tulostaRivi("");
+                io.tulostaRivi("====================================");
+                io.tulostaRivi("");
+            } else if (viite instanceof Misc) {
+                io.tulostaRivi("ID: " + ((Misc) viite).getID());
+                io.tulostaRivi("Author: " + ((Misc) viite).getAuthor());
+                io.tulostaRivi("Title: " + ((Misc) viite).getTitle());
+                io.tulostaRivi("How Published: " + ((Misc) viite).getHowPublished());
+                io.tulostaRivi("Month: " + ((Misc) viite).getMonth());
+                io.tulostaRivi("Year: " + ((Misc) viite).getYear());
+                io.tulostaRivi("Note: " + ((Misc) viite).getNote());
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
                 io.tulostaRivi("");
