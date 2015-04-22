@@ -113,6 +113,23 @@ public class Viitearkisto {
         this.viitteet.add(kirja);
         tallenna();
     }
+
+    public void lisaaInproceedings(String ID, String author, String title, String booktitle, int year, String pages, String publisher) {
+        Inproceedings inproceedings = new Inproceedings();
+        inproceedings.setID(ID);
+        inproceedings.setAuthor(author);
+        inproceedings.setTitle(title);
+        inproceedings.setBooktitle(booktitle);
+        inproceedings.setYear(year);
+        inproceedings.setPages(pages);
+        inproceedings.setPublisher(publisher);
+        this.viitteet.add(inproceedings);
+        tallenna();
+    }
+
+    public void lisaaMisc() {
+        
+    }
     
     /**
      * Bibtex-testaukseen apumetodi.
