@@ -3,10 +3,8 @@ package io;
 import dao.BibDao;
 import java.io.IOException;
 import java.util.List;
-import viitehallinta.Artikkeli;
-import viitehallinta.Kirja;
-import viitehallinta.Viite;
-import viitehallinta.Viitearkisto;
+
+import viitehallinta.*;
 
 /**
  *
@@ -49,6 +47,12 @@ public class Bibtex {
             if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Kirja")) {
                 lisaaKirjaBibViitteetTiedostoon(viite);
             }
+            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Inproceedings")) {
+                lisaaInproceedingsBibViitteetTiedostoon(viite);
+            }
+            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Misc")) {
+                lisaaMiscBibViitteetTiedostoon(viite);
+            }
         }
 
         io.tulostaRivi("");
@@ -89,6 +93,30 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Kirja) kirja).getTitle()) + "},");
         dao.lisaaRiviTiedostoon("year = {" + ((Kirja) kirja).getYear() + "},");
         dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(((Kirja) kirja).getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("}");
+        dao.lisaaRiviTiedostoon("");
+    }
+
+    public void lisaaInproceedingsBibViitteetTiedostoon(Viite inproceedings) throws IOException {
+        dao.lisaaRiviTiedostoon("@inproceedings{" + tarkastaAakkoset(((Inproceedings) inproceedings).getID()) + ",");
+        dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getAuthor()) + "},");
+        dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getTitle()) + "},");
+        dao.lisaaRiviTiedostoon("booktitle = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getBooktitle()) + "},");
+        dao.lisaaRiviTiedostoon("year = {" + ((Inproceedings) inproceedings).getYear() + "},");
+        dao.lisaaRiviTiedostoon("pages = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getPages()) + "},");
+        dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("}");
+        dao.lisaaRiviTiedostoon("");
+    }
+
+    public void lisaaMiscBibViitteetTiedostoon(Viite misc) throws IOException {
+        dao.lisaaRiviTiedostoon("@misc{" + tarkastaAakkoset(((Misc) misc).getID()) + ",");
+        dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Misc) misc).getAuthor()) + "},");
+        dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Misc) misc).getTitle()) + "},");
+        dao.lisaaRiviTiedostoon("howpublished= {" + tarkastaAakkoset(((Misc) misc).getHowPublished()) + "},");
+        dao.lisaaRiviTiedostoon("month = {" + ((Misc) misc).getMonth() + "},");
+        dao.lisaaRiviTiedostoon("year = {" + ((Misc) misc).getYear() + "},");
+        dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(((Misc) misc).getNote()) + "},");
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
