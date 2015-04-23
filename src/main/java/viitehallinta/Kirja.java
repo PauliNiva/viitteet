@@ -12,7 +12,7 @@ public class Kirja extends Viite implements Serializable {
     private String address;
 
     /**
-     * Parametritön konstruktori.
+     * Parametriton konstruktori.
      */
     public Kirja() {
     }

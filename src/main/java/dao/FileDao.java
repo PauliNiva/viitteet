@@ -29,6 +29,9 @@ public class FileDao implements dao {
      */
     private IO io;
 
+    /**
+     * Konstruktori ilman parametreja.
+     */
     public FileDao() {
     }
 
@@ -53,8 +56,9 @@ public class FileDao implements dao {
     }
 
     /**
-     * Kirjoittaa viitearkistolla listassa olevat artikkelit tiedostoon Heittää
-     * poikkeuksen jos tieodostoa ei löydy.
+     * Kirjoittaa viitearkistolla listassa olevat viitteet tiedostoon, muuttaen
+     * viitelistan fileoutput ja fileobject streamin avulla bittivirraksi.
+     * Heittää poikkeuksen jos tieodostoa ei löydy.
      *
      * @param viitteet tiedostoon tallennettavat artikkelit
      */
@@ -71,11 +75,10 @@ public class FileDao implements dao {
     }
 
     /**
-     * Hakee tiedostosta kaikki viitteet, tekee niistä Artikkeli-oliot ja lisää
-     * ne listalle, jota viitearkisto käyttää. Heittää poikkeuksen jos tiedostoa
-     * ei löydy.
-     *
-     * @return lista Artikkeli-olioita
+     * Luo tyhjän viitelistan, sekä fileinput ja objectinput streamit ja lukee
+     * tiedostosta bittivirran, jonka muuttaa alkuperäisen (tallennetun)
+     * viitelista-olion klooniksi.
+     * @return lista Viite-olioita
      */
     @Override
     public List<Viite> lueViitteetTiedostosta() {

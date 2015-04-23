@@ -2,6 +2,10 @@ package viitehallinta;
 
 import java.io.Serializable;
 
+/**
+ * Luokka miscviite-olioille, jonka konstruktori on kuormitettu. Perii
+ * Viite-luokan ja toteuttaa Serializable rajapinnan.
+ */
 public class Misc extends Viite implements Serializable {
 
     private static final long serialVersionUID = 4L;

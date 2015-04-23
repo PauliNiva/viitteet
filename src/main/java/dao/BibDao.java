@@ -28,9 +28,6 @@ public class BibDao  {
         this.tiedosto = tiedosto;
     }
 
-   
-
-
     /**
      * tyhjentää tiedoston
      *

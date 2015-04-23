@@ -7,7 +7,6 @@ import java.util.List;
 import viitehallinta.*;
 
 /**
- *
  * Luokka joka luo viitteistä BibTex-muotoisen tiedoston.
  */
 public class Bibtex {
@@ -18,12 +17,11 @@ public class Bibtex {
     private BibDao dao;
 
     /**
-     * luonnissa tarvitsemme viitearkiston ja käyttöliittymän sekä oman
-     * tiedoston. kä
+     * Konstruktori parametreilla.
      *
-     * @param viitearkisto
-     * @param io
-     * @param tiedosto
+     * @param viitearkisto Viitearkisto, josta viitteet haetaan.
+     * @param io IO syötteiden ja tulosteiden toiminnallisuuteen.
+     * @param tiedosto String käytettävä tiedosto.
      */
     public Bibtex(Viitearkisto viitearkisto, IO io, String tiedosto) {
         this.io = io;
@@ -33,7 +31,7 @@ public class Bibtex {
     }
 
     /**
-     * tyhjentää tiedoston aluksi, jonka jälkeen luo tiedoston kutsumalla eri
+     * Tyhjentää tiedoston aluksi, jonka jälkeen luo tiedoston kutsumalla eri
      * metodeita erityyppisille Viite-olioille
      *
      * @throws IOException
@@ -61,10 +59,9 @@ public class Bibtex {
     }
 
     /**
-     * lisää tiedostoon BibTex-muodossa artikkelin tiedot, TODO! ensimmäisen
-     * rivin sisältö on hieman mysteeri mutta oletin sen olevan ID 
+     * Lisää tiedostoon BibTex-muodossa artikkelin tiedot.
      *
-     * @param artikkeli
+     * @param artikkeli lisättävä artikkeli-olio
      * @throws IOException
      */
     public void lisaaArtikkeliBibViitteetTiedostoon(Viite artikkeli) throws IOException {
@@ -97,6 +94,11 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("");
     }
 
+    /**
+     * Lisää tiedostoon BibTex-muodossa inproceedingsin tiedot
+     * @param inproceedings lisättävä inproceedings-olio
+     * @throws IOException
+     */
     public void lisaaInproceedingsBibViitteetTiedostoon(Viite inproceedings) throws IOException {
         dao.lisaaRiviTiedostoon("@inproceedings{" + tarkastaAakkoset(((Inproceedings) inproceedings).getID()) + ",");
         dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getAuthor()) + "},");
@@ -109,6 +111,11 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("");
     }
 
+    /**
+     * Lisää tiedostoon BibTex-muodossa misc-viitteen tiedot
+     * @param misc lisättävä misc-olio
+     * @throws IOException
+     */
     public void lisaaMiscBibViitteetTiedostoon(Viite misc) throws IOException {
         dao.lisaaRiviTiedostoon("@misc{" + tarkastaAakkoset(((Misc) misc).getID()) + ",");
         dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Misc) misc).getAuthor()) + "},");

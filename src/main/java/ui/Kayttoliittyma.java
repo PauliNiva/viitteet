@@ -85,7 +85,7 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     *
+     * Toteuttaa käyttäjän tekemän päävalikon valinnan.
      * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta
      * valitseman toiminnon.
      * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
@@ -154,6 +154,7 @@ public class Kayttoliittyma implements UI {
     /**
      * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu
      * metodia, joka toteuttaa halutun toiminnon.
+     * @throws IOException
      */
     private void naytaViiteValikko() throws IOException {
         boolean valintaJatkuu = false;
@@ -187,11 +188,19 @@ public class Kayttoliittyma implements UI {
         lisaaKirja(taytaKentat(kentat));
     }
 
+    /**
+     * Luo inproceedingsin kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja
+     * taytaKentat.
+     */
     public void luoInproceedings() {
         String[] kentat = new String[]{"ID", "Author", "Title", "Booktitle", "Year", "Pages", "Publisher"};
         lisaaInproceedings(taytaKentat(kentat));
     }
 
+    /**
+     * Luo misc:in kentät taulukkoon ja ajaa metodit lisaaArtikkeli ja
+     * taytaKentat.
+     */
     public void luoMisc() {
         String[] kentat = new String[]{"ID", "Author", "Title", "How published", "Month", "Year", "Note"};
         lisaaMisc(taytaKentat(kentat));
@@ -228,6 +237,13 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("");
     }
 
+    /**
+     * Lisää inproceedingsin järjestelmään viitearkisto-luokan lisaaKirja metodilla.
+     * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     *
+     * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
+     * kentät.
+     */
     public void lisaaInproceedings(String[] taytetytKentat) {
         viitearkisto.lisaaInproceedings(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
                 taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), taytetytKentat[5], taytetytKentat[6]);
@@ -236,6 +252,13 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("");
     }
 
+    /**
+     * Lisää misc:in järjestelmään viitearkisto-luokan lisaaKirja metodilla.
+     * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     *
+     * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
+     * kentät.
+     */
     public void lisaaMisc(String[] taytetytKentat) {
         viitearkisto.lisaaMisc(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
                 taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), taytetytKentat[6]);
@@ -333,6 +356,8 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Muuttaa Stringinä olevan numeron kokonaisluvuksi.
+     * Jos String ei ole numero, niin metodia antaa arvolle
+     * arvon -1.
      *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.
