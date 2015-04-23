@@ -86,6 +86,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Toteuttaa käyttäjän tekemän päävalikon valinnan.
+     *
      * @param kayttajanValinta Kokonaisluku joka ilmaisee käyttäjän valikosta
      * valitseman toiminnon.
      * @return True jos käyttäjä valitsee minkä tahansa muun kuin lopettamisen,
@@ -154,6 +155,7 @@ public class Kayttoliittyma implements UI {
     /**
      * Näyttää konsolissa valikon viitteiden lisäämiselle ja lopuksi kutsuu
      * metodia, joka toteuttaa halutun toiminnon.
+     *
      * @throws IOException
      */
     private void naytaViiteValikko() throws IOException {
@@ -174,7 +176,7 @@ public class Kayttoliittyma implements UI {
      * taytaKentat.
      */
     public void luoArtikkeli() {
-        String[] kentat = new String[]{"ID", "Author", "Title", "Journal", "Volume", "Number", "Year",
+        String[] kentat = new String[]{"Author", "Title", "Journal", "Volume", "Number", "Year",
             "Pages", "Publisher", "Address"};
         lisaaArtikkeli(taytaKentat(kentat));
     }
@@ -184,7 +186,7 @@ public class Kayttoliittyma implements UI {
      * taytaKentat.
      */
     public void luoKirja() {
-        String[] kentat = new String[]{"ID", "Author", "Title", "Year", "Publisher", "Address"};
+        String[] kentat = new String[]{"Author", "Title", "Year", "Publisher", "Address"};
         lisaaKirja(taytaKentat(kentat));
     }
 
@@ -193,7 +195,7 @@ public class Kayttoliittyma implements UI {
      * taytaKentat.
      */
     public void luoInproceedings() {
-        String[] kentat = new String[]{"ID", "Author", "Title", "Booktitle", "Year", "Pages", "Publisher"};
+        String[] kentat = new String[]{"Author", "Title", "Booktitle", "Year", "Pages", "Publisher"};
         lisaaInproceedings(taytaKentat(kentat));
     }
 
@@ -202,7 +204,7 @@ public class Kayttoliittyma implements UI {
      * taytaKentat.
      */
     public void luoMisc() {
-        String[] kentat = new String[]{"ID", "Author", "Title", "How published", "Month", "Year", "Note"};
+        String[] kentat = new String[]{"Author", "Title", "How published", "Month", "Year", "Note"};
         lisaaMisc(taytaKentat(kentat));
     }
 
@@ -214,9 +216,9 @@ public class Kayttoliittyma implements UI {
      * kentät.
      */
     public void lisaaArtikkeli(String[] taytetytKentat) {
-        viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], taytetytKentat[3],
-                StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), StringLuvuksi(taytetytKentat[6]),
-                taytetytKentat[7], taytetytKentat[8], taytetytKentat[9]);
+        viitearkisto.lisaaArtikkeli(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2], StringLuvuksi(taytetytKentat[3]),
+                StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), taytetytKentat[6],
+                taytetytKentat[7], taytetytKentat[8]);
         io.tulostaRivi("");
         io.tulostaRivi("Artikkeli lisatty onnistuneesti");
         io.tulostaRivi("");
@@ -230,23 +232,23 @@ public class Kayttoliittyma implements UI {
      * kentät.
      */
     public void lisaaKirja(String[] taytetytKentat) {
-        viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
-                StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
+        viitearkisto.lisaaKirja(taytetytKentat[0], taytetytKentat[1], StringLuvuksi(taytetytKentat[2]),
+                taytetytKentat[3], taytetytKentat[4]);
         io.tulostaRivi("");
         io.tulostaRivi("Kirja lisatty onnistuneesti");
         io.tulostaRivi("");
     }
 
     /**
-     * Lisää inproceedingsin järjestelmään viitearkisto-luokan lisaaKirja metodilla.
-     * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
+     * Lisää inproceedingsin järjestelmään viitearkisto-luokan lisaaKirja
+     * metodilla. Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
      *
      * @param taytetytKentat String-taulukko, jossa on käyttäjän täyttämät
      * kentät.
      */
     public void lisaaInproceedings(String[] taytetytKentat) {
         viitearkisto.lisaaInproceedings(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
-                taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), taytetytKentat[5], taytetytKentat[6]);
+                StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
         io.tulostaRivi("");
         io.tulostaRivi("Inproceedings lisätty onnistuneesti");
         io.tulostaRivi("");
@@ -261,7 +263,7 @@ public class Kayttoliittyma implements UI {
      */
     public void lisaaMisc(String[] taytetytKentat) {
         viitearkisto.lisaaMisc(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
-                taytetytKentat[3], StringLuvuksi(taytetytKentat[4]), StringLuvuksi(taytetytKentat[5]), taytetytKentat[6]);
+                StringLuvuksi(taytetytKentat[3]), StringLuvuksi(taytetytKentat[4]), taytetytKentat[5]);
         io.tulostaRivi("");
         io.tulostaRivi("Misc lisätty onnistuneesti");
         io.tulostaRivi("");
@@ -355,9 +357,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Muuttaa Stringinä olevan numeron kokonaisluvuksi.
-     * Jos String ei ole numero, niin metodia antaa arvolle
-     * arvon -1.
+     * Muuttaa Stringinä olevan numeron kokonaisluvuksi. Jos String ei ole
+     * numero, niin metodia antaa arvolle arvon -1.
      *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.

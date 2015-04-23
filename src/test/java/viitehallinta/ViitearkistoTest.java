@@ -24,7 +24,7 @@ public class ViitearkistoTest {
 
     @Test
     public void lisaaArtikkeliTest() {
-        viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
         verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getViitteet().size());
     }
@@ -44,7 +44,7 @@ public class ViitearkistoTest {
     @Test
     public void getArtikkelitTest() {
         assertEquals(0, viitearkisto.getViitteet().size());
-        viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 
@@ -77,18 +77,18 @@ public class ViitearkistoTest {
     
     @Test
     public void lisaaKirjaTest() {
-        viitearkisto.lisaaKirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
         verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 
     @Test
     public void poistaViiteTest() {
-        viitearkisto.lisaaKirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
-        viitearkisto.lisaaKirja("BK02", "Charles M. Schulz", "Charlie Brown strikes back", 1951, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown strikes back", 1951, "Simon & Schuster", "S street 1");
         assertEquals(2, viitearkisto.getViitteet().size());
         
-        viitearkisto.poistaViite("BK02");
+        viitearkisto.poistaViite("Charles1951Charlie Brown strikes back");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 }

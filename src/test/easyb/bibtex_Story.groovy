@@ -7,7 +7,7 @@ description 'Käyttäjä voi luoda BibTex-tiedoston'
 
 scenario 'käyttäjä voi luoda BibTex-tiedoston artikkeli-viitteestä', {
     given 'bibtex-toiminto on valittu', {
-        io = new StubIO("1", "1", "9", "lokki", "lintu", "9", "9", "9", "2015", "9", "9", "katu", "5", "4", "5");
+        io = new StubIO("1", "1", "lokki", "lintu", "9", "9", "9", "2015", "9", "9", "katu", "5", "4", "5");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
@@ -25,7 +25,7 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston artikkeli-viitteestä', {
 }
 scenario 'käyttäjä voi luoda BibTex-tiedoston kirja-viitteestä', {
     given 'bibtex-toiminto on valittu', {
-        io = new StubIO("1", "2", "9", "lokki", "lintu", "2015", "9", "katu", "5", "4", "5");
+        io = new StubIO("1", "2", "lokki", "lintu", "2015", "9", "katu", "5", "4", "5");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);

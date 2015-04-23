@@ -87,8 +87,8 @@ public class BibtexTest {
     public void luoTiedostoTest() throws IOException {
         dao.tyhjennaTiedosto();
         Viite kirja = new Kirja();
-        viitearkisto.lisaaKirja("9", "lokki", "lintu", 2015, "pubi", "katu1");
-        viitearkisto.lisaaArtikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaKirja("lokki", "lintu", 2015, "pubi", "katu1");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
         bib.luoTiedosto();
 
         Scanner lukija = new Scanner(new FileReader(tiedosto));

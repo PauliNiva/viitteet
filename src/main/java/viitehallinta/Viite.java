@@ -16,6 +16,24 @@ public class Viite implements Serializable {
     private String pages;
     private String publisher;
 
+    /**
+     * Luo viitteen tunnisteen tekijän 1. nimen osan, julkaisuvuoden ja otsikon
+     * perusteella.
+     */
+    public void luoID() {
+        StringBuilder viiteID = new StringBuilder();
+        
+        int vali = author.indexOf(" ");
+        if (vali == -1) {
+            vali = author.length();
+        }
+        viiteID.append(author.substring(0, vali));
+        viiteID.append(year);
+        viiteID.append(title);
+        
+        ID = viiteID.toString();
+    }
+
     public String getID() {
         return ID;
     }
