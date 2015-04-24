@@ -127,7 +127,11 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
-    
+    /**
+     * Tarkastaa onko misc-viiteen howpublished URL
+     * @param misc tarkastettava misc-olio
+     * @return URL lisän, jos howpublished on URL, jos ei, niin ei palauta mitään
+     */
     public String tarkastaURL(Misc misc) {
         if (misc.getHowPublished().contains("http") || misc.getHowPublished().contains("www")) {
             return "\"\\url";

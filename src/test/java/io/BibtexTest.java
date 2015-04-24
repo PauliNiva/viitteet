@@ -82,6 +82,54 @@ public class BibtexTest {
 
         dao.tyhjennaTiedosto();
     }
+    
+    @Test
+    public void lisaaURLMiscBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Viite misc = new Misc("33e", "Luoja", "Arska", "http://koe.fi", 2, 2013, "luettu 2.1");
+        bib.lisaaMiscBibViitteetTiedostoon(misc);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        String haluttuTulos = "howpublished= \"\\url{http://koe.fi},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+        
+        rivit.clear();
+        
+        Viite misc1 = new Misc("33e", "Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
+        bib.lisaaMiscBibViitteetTiedostoon(misc1);
+        lukija = new Scanner(new FileReader(tiedosto));
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        haluttuTulos = "howpublished= \"\\url{www.koe.fi},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+    }
+    
+    @Test
+    public void lisaaMiscBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Viite misc = new Misc("3rg", "Luoja", "Mato", "Kirja", 8, 2015, "luettu 3.4");
+        bib.lisaaMiscBibViitteetTiedostoon(misc);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        String haluttuTulos = "howpublished= {Kirja},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+    }
 
     @Test
     public void luoTiedostoTest() throws IOException {
@@ -89,6 +137,7 @@ public class BibtexTest {
         Viite kirja = new Kirja();
         viitearkisto.lisaaKirja("lokki", "lintu", 2015, "pubi", "katu1");
         viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaMisc("Luoja", "Mato", "Kirja", 8, 2015, "luettu 3.4");
         bib.luoTiedosto();
 
         Scanner lukija = new Scanner(new FileReader(tiedosto));
@@ -98,7 +147,7 @@ public class BibtexTest {
             rivit.add(rivi);
             System.out.println(rivi);
         }
-        assertEquals(18, rivit.size());
+        assertEquals(27, rivit.size());
 
         dao.tyhjennaTiedosto();
 

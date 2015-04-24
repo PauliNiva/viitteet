@@ -21,8 +21,35 @@ public class MiscTest {
     }
     
     @Test
-    public void luoKonstruktori() {
-    //ublic Misc(String ID, String author, String title, String howpublished, int month, int year, String note) {
+    public void luoKonstruktorin() {
+        misc = new Misc("3rr", "Make", "Keke", "http://koe.fi", 8, 2014, "");
+        assertEquals("3rr", misc.getID());
+        assertEquals("Make", misc.getAuthor());
+        assertEquals("Keke", misc.getTitle());
+        assertEquals("http://koe.fi", misc.getHowPublished());
+        assertEquals(8, misc.getMonth());
+        assertEquals(2014, misc.getYear());
+        assertEquals("", misc.getNote());  
+    }
     
+    @Test
+    public void setAndTestHowPublishedTest() {
+        misc = new Misc();
+        misc.setHowPublished("Kirja");
+        assertEquals(misc.getHowPublished(), "Kirja");
+    }
+    
+    @Test
+    public void setAndGetMonthTest() {
+        misc = new Misc();
+        misc.setMonth(3);
+        assertEquals(misc.getMonth(), 3);
+    }
+    
+    @Test
+    public void setAndGetNoteTest() {
+        misc = new Misc();
+        misc.setNote("Luettu joskus");
+        assertEquals(misc.getNote(), "Luettu joskus");
     }
 }
