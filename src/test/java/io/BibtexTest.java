@@ -83,6 +83,57 @@ public class BibtexTest {
 
         dao.tyhjennaTiedosto();
     }
+    
+    @Test
+    public void lisaaURLMiscBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Misc misc = new Misc();
+        misc.setHowPublished("http://koe.fi");
+        bib.lisaaMiscBibViitteetTiedostoon(misc);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        String haluttuTulos = "howpublished= \"\\url{http://koe.fi},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+        
+        rivit.clear();
+        
+        Misc misc1 = new Misc();
+        misc1.setHowPublished("www.koe.fi");
+        bib.lisaaMiscBibViitteetTiedostoon(misc1);
+        lukija = new Scanner(new FileReader(tiedosto));
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        haluttuTulos = "howpublished= \"\\url{www.koe.fi},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+    }
+    
+    @Test
+    public void lisaaMiscBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Misc misc = new Misc();
+        misc.setHowPublished("Kirja");
+        bib.lisaaMiscBibViitteetTiedostoon(misc);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(9, rivit.size());
+        String haluttuTulos = "howpublished= {Kirja},";
+        assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+    }
 
     @Test
     public void luoTiedostoTest() throws IOException {
@@ -102,6 +153,5 @@ public class BibtexTest {
         assertEquals(24, rivit.size());
 
         dao.tyhjennaTiedosto();
-
     }
 }

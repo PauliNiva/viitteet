@@ -94,4 +94,11 @@ public class ViitearkistoTest {
         viitearkisto.poistaViite("Charles1951Charlie Brown strikes back");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
+    
+    @Test
+    public void lisaaMiscTest() {
+        viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
+        verify(mockDao, times(1)).tallennaViitteet(anyList());
+        assertEquals(1, viitearkisto.getViitteet().size());
+    }
 }

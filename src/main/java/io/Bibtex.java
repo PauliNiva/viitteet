@@ -135,7 +135,7 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("@misc{" + tarkastaAakkoset(((Misc) misc).getID()) + ",");
         dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Misc) misc).getAuthor()) + "},");
         dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Misc) misc).getTitle()) + "},");
-        dao.lisaaRiviTiedostoon("howpublished= " + tarkastaURL((Misc) misc) + "{" + tarkastaAakkoset(((Misc) misc).getHowPublished()) + "},");
+        dao.lisaaRiviTiedostoon("howpublished= " + tarkastaURL(((Misc) misc)) + "{" + tarkastaAakkoset(((Misc) misc).getHowPublished()) + "},");
         dao.lisaaRiviTiedostoon("month = {" + ((Misc) misc).getMonth() + "},");
         dao.lisaaRiviTiedostoon("year = {" + ((Misc) misc).getYear() + "},");
         dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(((Misc) misc).getNote()) + "},");
@@ -143,6 +143,11 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("");
     }
 
+    /**
+     * Tarkastaa onko misc-viiteen howpublished URL
+     * @param misc tarkastettava misc-olio
+     * @return URL lisän, jos howpublished on URL, jos ei, niin ei palauta mitään
+     */
     public String tarkastaURL(Misc misc) {
         if (misc.getHowPublished().startsWith("http") || misc.getHowPublished().startsWith("www")) {
             return "\"\\url";
