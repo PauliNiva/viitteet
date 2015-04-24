@@ -29,32 +29,29 @@ public class ArtikkeliTest {
         assertEquals(69, artikkeli.getNumber());
     }
 
-    @Test
-    public void SetAndGetAddressTest() {
-        Artikkeli artikkeli = new Artikkeli();
-        artikkeli.setAddress("foobarintie 1");
-        assertEquals("foobarintie 1", artikkeli.getAddress());
-    }
-
     /**
      * Testi konstruktorille, jolla on parametreja.
      */
     @Test
     public void ArtikkeliKonstruktoriTest() {
-        Artikkeli artikkeli1 = new Artikkeli("g3", "Arto Vihavainen", "Ratebeer", "Olutsanomat",
-                2, 3, 2013, "69--96", "Oluen ystavat", "Foobarintie 1");
-        Artikkeli artikkeli2 = new Artikkeli("g3", "Arto Vihavainen", "Ratebeer", "Olutsanomat",
-                2, 3, 2013, "69--96", "Oluen ystavat", "Foobarintie 1");
+        Artikkeli artikkeli1 = new Artikkeli("Arto Vihavainen", "Ratebeer", "Olutsanomat",
+                3, 2013);
+        artikkeli1.luoID();
+        Artikkeli artikkeli2 = new Artikkeli("Arto Vihavainen", "Ratebeer", "Olutsanomat",
+                3, 2013);
+        artikkeli2.luoID();
+        
         assertEquals(artikkeli1.getID(), artikkeli2.getID());
         assertNotNull(artikkeli1.getID(), artikkeli2.getID());
     }
 
     @Test
     public void getTiedostoMuotoTest() {
-        Artikkeli artikkeli = new Artikkeli("g3", "Arto Vihavainen", "Ratebeer", "Olutsanomat",
-                2, 3, 2013, "69--96", "Oluen ystavat", "Foobarintie 1");
-        assertEquals("g3:Arto Vihavainen:Ratebeer:Olutsanomat:" + 2 + ":" + 3 + ":" + 2013 + ":69--96:Oluen ystavat:Foobarintie 1\n",
+        Artikkeli artikkeli = new Artikkeli("Arto Vihavainen", "Ratebeer", "Olutsanomat",
+                3, 2013);
+        artikkeli.luoID();
+        
+        assertEquals("Arto2013Ratebeer:Arto Vihavainen:Ratebeer:Olutsanomat:" + 3 + ":0:" + 2013+ ":null\n",
                 artikkeli.getTiedostoMuoto());
-
     }
 }

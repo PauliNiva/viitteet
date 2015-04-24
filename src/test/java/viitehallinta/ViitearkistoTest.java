@@ -24,7 +24,7 @@ public class ViitearkistoTest {
 
     @Test
     public void lisaaArtikkeliTest() {
-        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", 12, "notes");
         verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getViitteet().size());
     }
@@ -44,19 +44,19 @@ public class ViitearkistoTest {
     @Test
     public void getArtikkelitTest() {
         assertEquals(0, viitearkisto.getViitteet().size());
-        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", 12, "notes");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 
     @Test
     public void luoOletusViitearkistoOlioTest() {
         viitearkisto = new Viitearkisto();
-        
+
         // Luokan luonti luo ja sijoittaa arvon kahteen private muuttujaan
         // joten tämän testi tarkistaa reflection:n avulla että k.o. muuttujat
         // todella saavat jotkin arvot
         Class viiterarkistoLuokka = Viitearkisto.class;
-        
+
         // getDeclaredField voit heittää poikkeuksen jos k.o. kenttää ei ole olemassa
         try {
             // Hae viite private kenttään ja tarkista että luodussa oliossa sen arvo
@@ -66,28 +66,31 @@ public class ViitearkistoTest {
             // sillä muuten tulee IllegalAccessException
             fileDaoKentta.setAccessible(true);
             assertNotNull(fileDaoKentta.get(viitearkisto));
-            
+
             Field viitteetKentta = viiterarkistoLuokka.getDeclaredField("viitteet");
             viitteetKentta.setAccessible(true);
             assertNotNull(viitteetKentta.get(viitearkisto));
-        }catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
-    
+
     @Test
     public void lisaaKirjaTest() {
-        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster",
+                "S street 1", 7, "series", "edition", 12, "notes");
         verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 
     @Test
     public void poistaViiteTest() {
-        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
-        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown strikes back", 1951, "Simon & Schuster", "S street 1");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster",
+                "S street 1", 5, "series", "edition", 11, "notes");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown strikes back", 1951, "Simon & Schuster",
+                "S street 1", 6, "series", "edition", 10, "notes");
         assertEquals(2, viitearkisto.getViitteet().size());
-        
+
         viitearkisto.poistaViite("Charles1951Charlie Brown strikes back");
         assertEquals(1, viitearkisto.getViitteet().size());
     }

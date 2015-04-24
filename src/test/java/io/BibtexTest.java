@@ -54,7 +54,8 @@ public class BibtexTest {
     @Test
     public void lisaaArtikkeliBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
-        Viite artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        Viite artikkeli = new Artikkeli("author", "title", "journal", 2, 1999);
+        artikkeli.luoID();
         bib.lisaaArtikkeliBibViitteetTiedostoon(artikkeli);
         Scanner lukija = new Scanner(new FileReader(tiedosto));
         ArrayList<String> rivit = new ArrayList<String>();
@@ -70,7 +71,7 @@ public class BibtexTest {
     @Test
     public void lisaaKirjaBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
-        Viite kirja = new Kirja("9", "lokki", "lintu", 2015, "pubi", "katu1");
+        Viite kirja = new Kirja("lokki", "lintu", 2015, "publisher");
         bib.lisaaKirjaBibViitteetTiedostoon(kirja);
         Scanner lukija = new Scanner(new FileReader(tiedosto));
         ArrayList<String> rivit = new ArrayList<String>();
@@ -78,7 +79,7 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(7, rivit.size());
+        assertEquals(13, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
@@ -87,8 +88,8 @@ public class BibtexTest {
     public void luoTiedostoTest() throws IOException {
         dao.tyhjennaTiedosto();
         Viite kirja = new Kirja();
-        viitearkisto.lisaaKirja("lokki", "lintu", 2015, "pubi", "katu1");
-        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        viitearkisto.lisaaKirja("lokki", "lintu", 2015, "pubi", "address", 10, "series", "edition", 12, "notes");
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", 12, "notes");
         bib.luoTiedosto();
 
         Scanner lukija = new Scanner(new FileReader(tiedosto));
@@ -98,7 +99,7 @@ public class BibtexTest {
             rivit.add(rivi);
             System.out.println(rivi);
         }
-        assertEquals(18, rivit.size());
+        assertEquals(24, rivit.size());
 
         dao.tyhjennaTiedosto();
 

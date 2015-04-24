@@ -44,7 +44,7 @@ public class FileDaoTest {
     
     @Test
     public void kirjoitaArtikkelitTest() throws Exception {
-        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 1, 1999);
         viitteet.add(artikkeli);
         fileDao.tallennaViitteet(viitteet);
         assertEquals(viitteet.size(), fileDao.lueViitteetTiedostosta().size());
@@ -52,8 +52,8 @@ public class FileDaoTest {
 
     @Test
     public void lueArtikkelitTest() {
-        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
-        Artikkeli artikkeli2 = new Artikkeli("2", "author2", "title2", "journal2", 2, 2, 2999, "pages2", "publisher2", "address2");
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 1, 1999);
+        Artikkeli artikkeli2 = new Artikkeli("author2", "title2", "journal2", 2, 2999);
         viitteet.add(artikkeli);
         viitteet.add(artikkeli2);
         fileDao.tallennaViitteet(viitteet);
@@ -75,8 +75,8 @@ public class FileDaoTest {
 //    }
     @Test
     public void tyhjennaTiedostoTest() throws IOException {
-        Artikkeli artikkeli = new Artikkeli("1", "author", "title", "journal", 1, 2, 1999, "pages", "publisher", "address");
-        Artikkeli artikkeli2 = new Artikkeli("2", "author2", "title2", "journal2", 2, 2, 2999, "pages2", "publisher2", "address2");
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 2, 1999);
+        Artikkeli artikkeli2 = new Artikkeli("author2", "title2", "journal2", 2, 2999);
         viitteet.add(artikkeli);
         viitteet.add(artikkeli2);
         fileDao.tyhjennaTiedosto();

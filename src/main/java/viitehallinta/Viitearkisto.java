@@ -47,12 +47,12 @@ public class Viitearkisto {
      * @param number int julkaisun numero, jossa artikkeli on ilmestynyt.
      * @param year int vuosiluku jolloin julkaisu, jossa artikkeli on, ilmestyi.
      * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
-     *              erotetaan toisistaan kahdella viivalla.
-     * @param publisher String julkaisijan nimi;
-     * @param address String julkaisijan osoite;
+     * erotetaan toisistaan kahdella viivalla.
+     * @param month int kuukausi jolloin julkaisu, jossa artikkeli on, ilmestyi.
+     * @param notes String muu mahdollinen tieto
      */
     public void lisaaArtikkeli(String author, String title, String journal, int volume,
-            int number, int year, String pages, String publisher, String address) {
+            int number, int year, String pages, int month, String notes) {
         Artikkeli artikkeli = new Artikkeli();
         artikkeli.setAuthor(author);
         artikkeli.setTitle(title);
@@ -61,9 +61,11 @@ public class Viitearkisto {
         artikkeli.setNumber(number);
         artikkeli.setYear(year);
         artikkeli.setPages(pages);
-        artikkeli.setPublisher(publisher);
-        artikkeli.setAddress(address);
+        artikkeli.setMonth(month);
+        artikkeli.setNote(notes);
+
         artikkeli.luoID();
+
         this.viitteet.add(artikkeli);
         tallenna();
     }
@@ -93,39 +95,64 @@ public class Viitearkisto {
 
     /**
      * Luo uuden kirja-olion ja lisää sille attribuutit setterien avulla metodin
-     * saamien parametrien mukaan. Lopuksi metodi lisää uuden kirjan järjestelmään.
+     * saamien parametrien mukaan. Lopuksi metodi lisää uuden kirjan
+     * järjestelmään.
+     *
      * @param author String kirjan kirjoittajan nimi.
      * @param title String kirjan nimi.
      * @param year int kirjan julkaisuvuosi.
      * @param publisher String kirjan julkaisija.
      * @param address String kirjan julkaisijan osoite.
+     * @param volume int julkaisun numero
+     * @param series String kirjasarjan nimi
+     * @param edition String kirjan painos
+     * @param month int kuukausi jolloin julkaisu ilmestyi.
+     * @param notes String muu mahdollinen tieto
      */
-    public void lisaaKirja(String author, String title, int year, String publisher, String address) {
+    public void lisaaKirja(String author, String title, int year, String publisher, String address,
+            int volume, String series, String edition, int month, String notes) {
         Kirja kirja = new Kirja();
         kirja.setAuthor(author);
         kirja.setTitle(title);
         kirja.setYear(year);
         kirja.setPublisher(publisher);
         kirja.setAddress(address);
+        kirja.setVolume(volume);
+        kirja.setSeries(series);
+        kirja.setEdition(edition);
+        kirja.setMonth(month);
+        kirja.setNote(notes);
+
         kirja.luoID();
+
         this.viitteet.add(kirja);
         tallenna();
     }
 
     /**
-     * Luo uuden konferenssijulkaisu-olion ja lisää sille attribuutit setterien 
-     * avulla metodin saamien parametrien mukaan ja lisää uuden 
+     * Luo uuden konferenssijulkaisu-olion ja lisää sille attribuutit setterien
+     * avulla metodin saamien parametrien mukaan ja lisää uuden
      * konferenssijulkaisun järjestelmään.
+     *
      * @param author String konferenssijulkaisun tekijän nimi.
      * @param title String konferenssijulkaisun otsikko.
-     * @param booktitle String konferenssijulkaisun kirjan nimi, 
-     *                  jos haluttu otsikko on vain osa kirjasta.
+     * @param booktitle String konferenssijulkaisun kirjan nimi, jos haluttu
+     * otsikko on vain osa kirjasta.
      * @param year int konferenssijulkaisun julkaisuvuosi.
      * @param pages String sivunumerot, joista artikkeli löytyy julkaisussa.
-     *              erotetaan toisistaan kahdella viivalla.
+     * erotetaan toisistaan kahdella viivalla.
      * @param publisher String konferenssijulkaisun julkaisija, jos kirja.
+     * @param editor String editorien nimet
+     * @param volume int julkaisun numero
+     * @param series String kirjasarjan nimi
+     * @param address String kirjan julkaisijan osoite
+     * @param organization String Konferenssi sponsori
+     * @param month int kuukausi jolloin julkaisu ilmestyi.
+     * @param notes String muu mahdollinen tieto
      */
-    public void lisaaInproceedings(String author, String title, String booktitle, int year, String pages, String publisher) {
+    public void lisaaInproceedings(String author, String title, String booktitle, int year,
+            String pages, String publisher, String editor, int volume, String series,
+            String address, String organization, int month, String notes) {
         Inproceedings inproceedings = new Inproceedings();
         inproceedings.setAuthor(author);
         inproceedings.setTitle(title);
@@ -133,21 +160,30 @@ public class Viitearkisto {
         inproceedings.setYear(year);
         inproceedings.setPages(pages);
         inproceedings.setPublisher(publisher);
+        inproceedings.setEditor(editor);
+        inproceedings.setVolume(volume);
+        inproceedings.setSeries(series);
+        inproceedings.setAddress(address);
+        inproceedings.setOrganization(organization);
+        inproceedings.setMonth(month);
+        inproceedings.setNote(notes);
+
         inproceedings.luoID();
+
         this.viitteet.add(inproceedings);
         tallenna();
     }
 
     /**
-     * Luo uuden misc-olion ja lisää sille attribuutit setterien 
-     * avulla metodin saamien parametrien mukaan ja lisää lopuksi uuden 
-     * miscin järjestelmään.
+     * Luo uuden misc-olion ja lisää sille attribuutit setterien avulla metodin
+     * saamien parametrien mukaan ja lisää lopuksi uuden miscin järjestelmään.
+     *
      * @param author Sting tekijän nimi.
      * @param title String otsikko.
      * @param howpublished String miten ja missä julkaistu.
      * @param month String kuukausi, jolloin julkaistu.
      * @param year String vuosi, jolloin julkaistu.
-     * @param note String lisäosio, esim. url tai tarkempi kuvaus.
+     * @param notes String muu mahdollinen tieto
      */
     public void lisaaMisc(String author, String title, String howpublished, int month, int year, String note) {
         Misc misc = new Misc();
@@ -157,15 +193,19 @@ public class Viitearkisto {
         misc.setMonth(month);
         misc.setYear(year);
         misc.setNote(note);
+
         misc.luoID();
+
         this.viitteet.add(misc);
         tallenna();
     }
-    
+
     /**
-     * Poistaa viitteen järjestelmästä parametrinaan saadun yksilöllisen ID:n avulla.
-     * @param poistettavaViite String käyttäjän syöttämä ID, jolla etsitään oikea
-     *                         poistettava viite.
+     * Poistaa viitteen järjestelmästä parametrinaan saadun yksilöllisen ID:n
+     * avulla.
+     *
+     * @param poistettavaViite String käyttäjän syöttämä ID, jolla etsitään
+     * oikea poistettava viite.
      */
     public void poistaViite(String poistettavaViite) {
         Iterator<Viite> iteraattori = viitteet.iterator();

@@ -72,8 +72,8 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("volume = {" + ((Artikkeli) artikkeli).getVolume() + "},");
         dao.lisaaRiviTiedostoon("number = {" + ((Artikkeli) artikkeli).getNumber() + "},");
         dao.lisaaRiviTiedostoon("year = {" + artikkeli.getYear() + "},");
-        dao.lisaaRiviTiedostoon("pages = {" + tarkastaAakkoset(artikkeli.getPages()) + "},");
-        dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(artikkeli.getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("month = {" + artikkeli.getMonth() + "},");
+        dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(artikkeli.getNote()) + "},");
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
@@ -90,12 +90,19 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Kirja) kirja).getTitle()) + "},");
         dao.lisaaRiviTiedostoon("year = {" + ((Kirja) kirja).getYear() + "},");
         dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(((Kirja) kirja).getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("address = {" + tarkastaAakkoset(((Kirja) kirja).getAddress()) + "},");
+        dao.lisaaRiviTiedostoon("volume = {" + ((Kirja) kirja).getVolume() + "},");
+        dao.lisaaRiviTiedostoon("series = {" + tarkastaAakkoset(((Kirja) kirja).getSeries()) + "},");
+        dao.lisaaRiviTiedostoon("edition = {" + tarkastaAakkoset(((Kirja) kirja).getEdition()) + "},");
+        dao.lisaaRiviTiedostoon("month = {" + kirja.getMonth() + "},");
+        dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(kirja.getNote()) + "},");
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
 
     /**
      * Lisää tiedostoon BibTex-muodossa inproceedingsin tiedot
+     *
      * @param inproceedings lisättävä inproceedings-olio
      * @throws IOException
      */
@@ -107,12 +114,20 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("year = {" + ((Inproceedings) inproceedings).getYear() + "},");
         dao.lisaaRiviTiedostoon("pages = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getPages()) + "},");
         dao.lisaaRiviTiedostoon("publisher = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getPublisher()) + "},");
+        dao.lisaaRiviTiedostoon("editor = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getEditor()) + "},");
+        dao.lisaaRiviTiedostoon("volume = {" + ((Inproceedings) inproceedings).getVolume() + "},");
+        dao.lisaaRiviTiedostoon("series = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getSeries()) + "},");
+        dao.lisaaRiviTiedostoon("address = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getAddress()) + "},");
+        dao.lisaaRiviTiedostoon("organization = {" + tarkastaAakkoset(((Inproceedings) inproceedings).getOrganization()) + "},");
+        dao.lisaaRiviTiedostoon("month = {" + inproceedings.getMonth() + "},");
+        dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(inproceedings.getNote()) + "},");
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
 
     /**
      * Lisää tiedostoon BibTex-muodossa misc-viitteen tiedot
+     *
      * @param misc lisättävä misc-olio
      * @throws IOException
      */
@@ -127,9 +142,9 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("}");
         dao.lisaaRiviTiedostoon("");
     }
-    
+
     public String tarkastaURL(Misc misc) {
-        if (misc.getHowPublished().contains("http") || misc.getHowPublished().contains("www")) {
+        if (misc.getHowPublished().startsWith("http") || misc.getHowPublished().startsWith("www")) {
             return "\"\\url";
         }
         return "";
@@ -146,26 +161,25 @@ public class Bibtex {
     public String tarkastaAakkoset(String rivi) {
         String korjattuRivi = "";
 
-        for (char kirjain : rivi.toCharArray()) {
-            if (kirjain == 'ä') {
-                korjattuRivi += "\\\"{a}";
-            } else if (kirjain == 'ö') {
-                korjattuRivi += "\\\"{o}";
-            } else if (kirjain == 'å') {
-                korjattuRivi += "\\aa ";
-            } else if (kirjain == 'Ä') {
-                korjattuRivi += "\\\"{A}";
-            } else if (kirjain == 'Ö') {
-                korjattuRivi += "\\\"{O}";
-            } else if (kirjain == 'Å') {
-                korjattuRivi += "\\AA ";
-            }
-            else {
-                korjattuRivi += kirjain;
+        if (rivi != null) {
+            for (char kirjain : rivi.toCharArray()) {
+                if (kirjain == 'ä') {
+                    korjattuRivi += "\\\"{a}";
+                } else if (kirjain == 'ö') {
+                    korjattuRivi += "\\\"{o}";
+                } else if (kirjain == 'å') {
+                    korjattuRivi += "\\aa ";
+                } else if (kirjain == 'Ä') {
+                    korjattuRivi += "\\\"{A}";
+                } else if (kirjain == 'Ö') {
+                    korjattuRivi += "\\\"{O}";
+                } else if (kirjain == 'Å') {
+                    korjattuRivi += "\\AA ";
+                } else {
+                    korjattuRivi += kirjain;
+                }
             }
         }
         return korjattuRivi;
     }
-
-    
 }

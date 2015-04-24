@@ -1,11 +1,13 @@
 package viitehallinta;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Yleisluokka viitteille, jolla on attribuuttina kaikille viitteille yhteiset
  * attribuutit. Spesifit viiteluokat perivät tämän yläluokan. Toteuttaa
- * rajapinnan Serializable
+ * rajapinnan Serializable rajapinnan.
  */
 public class Viite implements Serializable {
 
@@ -13,8 +15,8 @@ public class Viite implements Serializable {
     private String author;
     private String title;
     private int year;
-    private String pages;
-    private String publisher;
+    private int month;
+    private String note;
 
     /**
      * Luo viitteen tunnisteen tekijän 1. nimen osan, julkaisuvuoden ja otsikon
@@ -66,19 +68,30 @@ public class Viite implements Serializable {
         this.year = year;
     }
 
-    public String getPages() {
-        return pages;
+    public int getMonth() {
+        return month;
     }
 
-    public void setPages(String pages) {
-        this.pages = pages;
+    public void setMonth(int month) {
+        this.month = month;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getNote() {
+        return note;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    static protected List<Kentta> haeKentat() {
+        List<Kentta> kentat = new ArrayList<Kentta>();
+        kentat.add(new Kentta("Author", "merkkijono", true));
+        kentat.add(new Kentta("Title", "merkkijono", true));
+        kentat.add(new Kentta("Year", "kokonaisluku", true));
+        kentat.add(new Kentta("Month", "kokonaisluku", false));
+        kentat.add(new Kentta("Note", "merkkijono", false));
+        
+        return kentat;
     }
 }

@@ -41,26 +41,21 @@ public class KirjaTest {
 
     @Test
     public void luoKirjaTest() {
-        kirja = new Kirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
-        assertEquals("BK01", kirja.getID());
+        kirja = new Kirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster");
+        kirja.luoID();
+        assertEquals("Charles1950Charlie Brown", kirja.getID());
         assertEquals("Charles M. Schulz", kirja.getAuthor());
         assertEquals("Charlie Brown", kirja.getTitle());
         assertEquals(1950, kirja.getYear());
         assertEquals("Simon & Schuster", kirja.getPublisher());
-        assertEquals("S street 1", kirja.getAddress());
     }
 
     @Test
-    public void testGetAddress() {
-        kirja = new Kirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
+    public void testGetAndSetAddress() {
+        kirja = new Kirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster");
+        kirja.luoID();
+        kirja.setAddress("S street 1");
+
         assertEquals("S street 1", kirja.getAddress());
     }
-
-    @Test
-    public void testSetAddress() {
-        kirja = new Kirja("BK01", "Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster", "S street 1");
-        kirja.setAddress("Brown street 7");
-        assertEquals("Brown street 7", kirja.getAddress());
-    }
-
 }

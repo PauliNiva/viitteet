@@ -37,16 +37,16 @@ public class ViiteTest {
     }
 
     @Test
-    public void setAndGetPagesTest() {
+    public void setAndGetMonthTest() {
         Viite viite = new Viite();
-        viite.setPages("69--96");
-        assertEquals("69--96", viite.getPages());
+        viite.setMonth(12);
+        assertEquals(12, viite.getMonth());
     }
 
     @Test
-    public void setAndGetPublisherTest() {
+    public void setAndGetNoteTest() {
         Viite viite = new Viite();
-        viite.setPublisher("Olutsanomat");
-        assertEquals("Olutsanomat", viite.getPublisher());
+        viite.setNote("Olutsanomat");
+        assertEquals("Olutsanomat", viite.getNote());
     }
 }
