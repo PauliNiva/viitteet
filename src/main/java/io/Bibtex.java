@@ -120,7 +120,7 @@ public class Bibtex {
         dao.lisaaRiviTiedostoon("@misc{" + tarkastaAakkoset(((Misc) misc).getID()) + ",");
         dao.lisaaRiviTiedostoon("author = {" + tarkastaAakkoset(((Misc) misc).getAuthor()) + "},");
         dao.lisaaRiviTiedostoon("title = {" + tarkastaAakkoset(((Misc) misc).getTitle()) + "},");
-        dao.lisaaRiviTiedostoon("howpublished= {" + tarkastaAakkoset(((Misc) misc).getHowPublished()) + "},");
+        dao.lisaaRiviTiedostoon("howpublished= \"\\url{" + tarkastaAakkoset(((Misc) misc).getHowPublished()) + "},");
         dao.lisaaRiviTiedostoon("month = {" + ((Misc) misc).getMonth() + "},");
         dao.lisaaRiviTiedostoon("year = {" + ((Misc) misc).getYear() + "},");
         dao.lisaaRiviTiedostoon("note = {" + tarkastaAakkoset(((Misc) misc).getNote()) + "},");

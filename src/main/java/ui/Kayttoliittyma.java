@@ -250,7 +250,7 @@ public class Kayttoliittyma implements UI {
         viitearkisto.lisaaInproceedings(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
                 StringLuvuksi(taytetytKentat[3]), taytetytKentat[4], taytetytKentat[5]);
         io.tulostaRivi("");
-        io.tulostaRivi("Inproceedings lisätty onnistuneesti");
+        io.tulostaRivi("Inproceedings lisatty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -265,7 +265,7 @@ public class Kayttoliittyma implements UI {
         viitearkisto.lisaaMisc(taytetytKentat[0], taytetytKentat[1], taytetytKentat[2],
                 StringLuvuksi(taytetytKentat[3]), StringLuvuksi(taytetytKentat[4]), taytetytKentat[5]);
         io.tulostaRivi("");
-        io.tulostaRivi("Misc lisätty onnistuneesti");
+        io.tulostaRivi("Misc lisatty onnistuneesti");
         io.tulostaRivi("");
     }
 

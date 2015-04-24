@@ -1,0 +1,26 @@
+import io.*;
+import dao.*;
+import ui.*;
+import viitehallinta.*;
+
+description 'Käyttäjä voi lisätä inproceedings-viitteen'
+
+scenario 'käyttäjä voi lisätä inproceedings-viitteen', {
+    given 'inproceedingsin lisäämis-toiminto on valittu', {
+        io = new StubIO("1", "3", "Lanttu", "Maakari", "http://www.sivu.fi", "2", "2013", "luettu 2.6.2015", "5", "5");
+        testiDao = new FileDao(io);
+        viitearkisto = new Viitearkisto(testiDao);
+        kl = new Kayttoliittyma(io, viitearkisto);
+
+    }
+    when 'pakolliset kentät on täytetty', {
+        kl.kaynnista();
+    }
+    then 'inproceedings-viite on tallennettu' , {
+        viitearkisto.getViitteet().size().shouldNotBe 0;
+        io.getPrints().shouldHave("Inproceedings lisatty onnistuneesti")
+        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti")
+        testiDao.tyhjennaTiedosto();
+    }
+
+}
