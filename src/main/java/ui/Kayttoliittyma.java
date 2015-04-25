@@ -63,7 +63,8 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("(2) Listaa viitteet");
         io.tulostaRivi("(3) Poista Viite");
         io.tulostaRivi("(4) Luo BibTex-tiedosto");
-        io.tulostaRivi("(5) Lopeta");
+        io.tulostaRivi("(5) Etsi viite");
+        io.tulostaRivi("(0) Lopeta");
     }
 
     /**
@@ -112,6 +113,10 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 5: {
+                naytaEtsiViite();
+                break;
+            }
+            case 0: {
                 tallennaTiedostoon();
                 return false;
             }
@@ -145,7 +150,7 @@ public class Kayttoliittyma implements UI {
                 luoMisc();
                 break;
             }
-            case 5: {
+            case 0: {
                 return false;
             }
         }
@@ -166,7 +171,7 @@ public class Kayttoliittyma implements UI {
             io.tulostaRivi("(2) Luo kirja-viite");
             io.tulostaRivi("(3) Luo inproceedings-viite");
             io.tulostaRivi("(4) Luo misc-viite");
-            io.tulostaRivi("(5) Palaa päävalikkoon");
+            io.tulostaRivi("(0) Palaa päävalikkoon");
             valintaJatkuu = toteutaViitevalikonValinta(getKayttajanValinta());
         } while (valintaJatkuu == true);
     }
@@ -239,7 +244,7 @@ public class Kayttoliittyma implements UI {
 
         for (int i = 0; i < kentat.size(); i++) {
             Kentta kentta = kentat.get(i);
-        
+
             StringBuilder kehote = new StringBuilder(kentta.getNimi());
             if (kentta.pakollinen() == true) {
                 kehote.append("*");
@@ -258,7 +263,7 @@ public class Kayttoliittyma implements UI {
                 }
             } while (syoteOk == false);
         }
-        
+
         return taytettavatKentat;
     }
 
@@ -272,6 +277,32 @@ public class Kayttoliittyma implements UI {
         System.out.println("Anna poistettavan viitteen ID: ");
         String poistettavaViite = io.lueRivi();
         viitearkisto.poistaViite(poistettavaViite);
+    }
+
+    /**
+     * Etsii viitteen järjestelmästä kysymällä ensin käyttäjältä hakusanaa,
+     * jonka avulla etsittävä viite tunnistetaan. Luo viite-listan, johon talletetaan
+     * viitearkisto-luokalta etsittävät viitteet. Lopuksi kutsutaan naytaOsumat-
+     * metodia, joka näyttää hakutuloksen.
+     */
+    private void naytaEtsiViite() {
+        System.out.println("Anna hakusana:");
+        String hakusana = io.lueRivi();
+        List<Viite> osumat = viitearkisto.etsiViite(hakusana);
+        naytaOsumat(osumat);
+    }
+
+    /**
+     * Näyttää etsintä-toiminnolla haetut viitteet
+     * @param osumat lista osumista, jotka näytetään
+     */
+    // TODO !!!!!
+    private void naytaOsumat(List<Viite> osumat) {
+        if (osumat.isEmpty()) {
+            System.out.println("Hakusanallasi ei löytynyt yhtään viitettä");
+        } else {
+            
+        }
     }
 
     /**
@@ -347,8 +378,8 @@ public class Kayttoliittyma implements UI {
     }
 
     /**
-     * Muuttaa merkkijonona olevan numeron kokonaisluvuksi. Jos merkkijono ei ole
-     * numero, niin metodia antaa arvoksi -1.
+     * Muuttaa merkkijonona olevan numeron kokonaisluvuksi. Jos merkkijono ei
+     * ole numero, niin metodia antaa arvoksi -1.
      *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.
@@ -386,4 +417,5 @@ public class Kayttoliittyma implements UI {
         Bibtex bibtex = new Bibtex(viitearkisto, io, "bibViitteet.bib");
         bibtex.luoTiedosto();
     }
+
 }

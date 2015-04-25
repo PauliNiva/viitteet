@@ -34,12 +34,12 @@ public class KayttoliittymaTest {
     @Test
     public void naytaValikkoJaPyydaValintaTest() {
         kayttoliittyma.naytaValikkoJaPyydaValinta();
-        verify(mockIo, times(6)).tulostaRivi(anyString());
+        verify(mockIo, times(7)).tulostaRivi(anyString());
     }
 
     @Test
     public void kaynnistaTest() {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.kaynnista();
         verify(mockViitearkisto, times(1)).lueTiedosto();
 
@@ -51,7 +51,7 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto, never()).lueTiedosto();
         verify(mockViitearkisto, never()).tallenna();
 
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.kaynnista();
 
     }
@@ -59,13 +59,13 @@ public class KayttoliittymaTest {
     
     @Test
     public void toteutaValikonValintaTest() throws IOException {
-        when(mockIo.lueRivi()).thenReturn("1").thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("1").thenReturn("0");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
-        when(mockIo.lueRivi()).thenReturn("2").thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("2").thenReturn("0");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(1));
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(2));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(4));
@@ -102,7 +102,7 @@ public class KayttoliittymaTest {
     
     @Test
     public void luoArtikkeliTest() {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoArtikkeli();
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyInt(), anyString());
     }
@@ -111,28 +111,28 @@ public class KayttoliittymaTest {
     
     @Test
     public void luoKirjaTest() {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoKirja();
         verify(mockViitearkisto, times(1)).lisaaKirja(anyString(), anyString(), anyInt(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyInt(), anyString());
     }
     
     @Test
     public void luoInproceedingsTest() {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoInproceedings();
         verify(mockViitearkisto, times(1)).lisaaInproceedings(anyString(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyString(), anyInt(), anyString());
     }
     
     @Test
     public void luoMiscTest() {
-        when(mockIo.lueRivi()).thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoMisc();
         verify(mockViitearkisto, times(1)).lisaaMisc(anyString(), anyString(), anyString(), anyInt(), anyInt(), anyString());
     }
 
     @Test
     public void virheellinenValikkoSyoteTest() {
-        when(mockIo.lueRivi()).thenReturn("x").thenReturn("5");
+        when(mockIo.lueRivi()).thenReturn("x").thenReturn("0");
         kayttoliittyma.kaynnista();
         verify(mockViitearkisto, times(1)).lueTiedosto();
         verify(mockIo, times(2)).lueRivi();
