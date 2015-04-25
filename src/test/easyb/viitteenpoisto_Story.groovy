@@ -20,5 +20,4 @@ scenario 'käyttäjä voi poistaa viitteen', {
         viitearkisto.getViitteet().size().shouldBe 0;
         testiDao.tyhjennaTiedosto();
     }
-
 }

@@ -2,7 +2,6 @@ package viitehallinta;
 
 import java.lang.reflect.*;
 import dao.FileDao;
-import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -94,7 +93,7 @@ public class ViitearkistoTest {
         viitearkisto.poistaViite("Charles1951Charlie Brown strikes back");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
-    
+
     @Test
     public void lisaaMiscTest() {
         viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");

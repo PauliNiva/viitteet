@@ -1,4 +1,3 @@
-
 package viitehallinta;
 
 import org.junit.Before;
@@ -6,20 +5,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MiscTest {
+
     Misc misc;
+
     public MiscTest() {
     }
-    
+
     @Before
     public void setUp() {
     }
 
     @Test
     public void luoTyhjanKonstruktori() {
-       misc = new Misc();
-       assertEquals(null, misc.getID());
+        misc = new Misc();
+        assertEquals(null, misc.getID());
     }
-    
+
     @Test
     public void luoKonstruktorin() {
         misc = new Misc();
@@ -30,29 +31,30 @@ public class MiscTest {
         misc.setYear(2014);
         misc.setNote("");
         misc.luoID();
+        
         assertEquals("Make2014Keke", misc.getID());
         assertEquals("Make", misc.getAuthor());
         assertEquals("Keke", misc.getTitle());
         assertEquals("http://koe.fi", misc.getHowPublished());
         assertEquals(8, misc.getMonth());
         assertEquals(2014, misc.getYear());
-        assertEquals("", misc.getNote());  
+        assertEquals("", misc.getNote());
     }
-    
+
     @Test
     public void setAndTestHowPublishedTest() {
         misc = new Misc();
         misc.setHowPublished("Kirja");
         assertEquals(misc.getHowPublished(), "Kirja");
     }
-    
+
     @Test
     public void setAndGetMonthTest() {
         misc = new Misc();
         misc.setMonth(3);
         assertEquals(misc.getMonth(), 3);
     }
-    
+
     @Test
     public void setAndGetNoteTest() {
         misc = new Misc();
@@ -67,12 +69,12 @@ public class MiscTest {
         misc.setTitle("Keke");
         misc.setHowPublished("http://koe.fi");
         misc.luoID();
-        
-        assertFalse(misc.haeKentat().get(0).pakollinen());
-        assertFalse(misc.haeKentat().get(1).pakollinen());
-        assertFalse(misc.haeKentat().get(2).pakollinen());
-        assertFalse(misc.haeKentat().get(3).pakollinen());
-        assertFalse(misc.haeKentat().get(4).pakollinen());
-        assertFalse(misc.haeKentat().get(5).pakollinen());
+
+        assertFalse(Misc.haeKentat().get(0).pakollinen());
+        assertFalse(Misc.haeKentat().get(1).pakollinen());
+        assertFalse(Misc.haeKentat().get(2).pakollinen());
+        assertFalse(Misc.haeKentat().get(3).pakollinen());
+        assertFalse(Misc.haeKentat().get(4).pakollinen());
+        assertFalse(Misc.haeKentat().get(5).pakollinen());
     }
 }

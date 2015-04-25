@@ -20,6 +20,4 @@ scenario 'käyttäjä voi listata artikkelit', {
         io.getPrints().shouldHave("Author: lokki")
         testiDao.tyhjennaTiedosto();
     }
-
-    
 }

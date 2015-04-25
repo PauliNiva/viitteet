@@ -39,16 +39,16 @@ public class Bibtex {
     public void luoTiedosto() throws IOException {
         dao.tyhjennaTiedosto();
         for (Viite viite : viitteet) {
-            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Artikkeli")) {
+            if (viite instanceof Artikkeli) {
                 lisaaArtikkeliBibViitteetTiedostoon(viite);
             }
-            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Kirja")) {
+            if (viite instanceof Kirja) {
                 lisaaKirjaBibViitteetTiedostoon(viite);
             }
-            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Inproceedings")) {
+            if (viite instanceof Inproceedings) {
                 lisaaInproceedingsBibViitteetTiedostoon(viite);
             }
-            if (viite.getClass().getName().equalsIgnoreCase("viitehallinta.Misc")) {
+            if (viite instanceof Misc) {
                 lisaaMiscBibViitteetTiedostoon(viite);
             }
         }
@@ -145,8 +145,10 @@ public class Bibtex {
 
     /**
      * Tarkastaa onko misc-viiteen howpublished URL
+     *
      * @param misc tarkastettava misc-olio
-     * @return URL lisän, jos howpublished on URL, jos ei, niin ei palauta mitään
+     * @return URL lisän, jos howpublished on URL, jos ei, niin ei palauta
+     * mitään
      */
     public String tarkastaURL(Misc misc) {
         if (misc.getHowPublished().startsWith("http") || misc.getHowPublished().startsWith("www")) {
@@ -166,6 +168,7 @@ public class Bibtex {
     public String tarkastaAakkoset(String rivi) {
         String korjattuRivi = "";
 
+        // Syöte voi olla myös null jos kenttä on valinnainen
         if (rivi != null) {
             for (char kirjain : rivi.toCharArray()) {
                 if (kirjain == 'ä') {

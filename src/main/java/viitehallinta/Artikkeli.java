@@ -75,6 +75,10 @@ public class Artikkeli extends Viite implements Serializable {
         this.pages = pages;
     }
 
+    /**
+     * Luo listan luokan kentistä tietoineen johon sisältyy myös perityt kentät
+     * @return luokan kenttien tiedot
+     */
     static public List<Kentta> haeKentat() {
         List<Kentta> kentat = Viite.haeKentat();
         kentat.add(new Kentta("Pages", "merkkijono", false));
