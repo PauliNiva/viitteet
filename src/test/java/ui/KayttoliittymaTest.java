@@ -70,7 +70,7 @@ public class KayttoliittymaTest {
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(3));
         assertEquals(true, kayttoliittyma.toteutaValikonValinta(4));
     }
-    
+
     @Test
     public void listaaViitteetTest() throws IOException {
         testiDao = new FileDao("tyhjatestiviite.tmp", mockIo);
