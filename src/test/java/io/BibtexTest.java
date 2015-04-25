@@ -97,7 +97,7 @@ public class BibtexTest {
             rivit.add(rivi);
         }
         assertEquals(9, rivit.size());
-        String haluttuTulos = "howpublished= \"\\url{http://koe.fi},";
+        String haluttuTulos = "howpublished = \"\\url{http://koe.fi},";
         assertEquals(rivit.get(3), haluttuTulos);
         dao.tyhjennaTiedosto();
         
@@ -112,7 +112,7 @@ public class BibtexTest {
             rivit.add(rivi);
         }
         assertEquals(9, rivit.size());
-        haluttuTulos = "howpublished= \"\\url{www.koe.fi},";
+        haluttuTulos = "howpublished = \"\\url{www.koe.fi},";
         assertEquals(rivit.get(3), haluttuTulos);
         dao.tyhjennaTiedosto();
     }
@@ -130,8 +130,26 @@ public class BibtexTest {
             rivit.add(rivi);
         }
         assertEquals(9, rivit.size());
-        String haluttuTulos = "howpublished= {Kirja},";
+        String haluttuTulos = "howpublished = {Kirja},";
         assertEquals(rivit.get(3), haluttuTulos);
+        dao.tyhjennaTiedosto();
+    }
+    
+    @Test
+    public void lisaaInproceedingsBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Inproceedings inpro = new Inproceedings("Masa", "Aliostikko", "Otsikko", 2000);
+        inpro.setPages("123--234");
+        bib.lisaaInproceedingsBibViitteetTiedostoon(inpro);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(16, rivit.size());
+        assertEquals(rivit.get(5), "pages = {123--234},");
+        assertEquals(rivit.get(1), "author = {Masa},");
         dao.tyhjennaTiedosto();
     }
 
@@ -151,6 +169,24 @@ public class BibtexTest {
             System.out.println(rivi);
         }
         assertEquals(24, rivit.size());
+
+        dao.tyhjennaTiedosto();
+    }
+    @Test
+    public void luoTiedostoTest2() throws IOException {
+        dao.tyhjennaTiedosto();
+        viitearkisto.lisaaMisc("Masa", "Otsikko", "Kirja", 4, 2000, "");
+        viitearkisto.lisaaInproceedings("author", "title", "booktitle", 2013, "", "publisher", "", 0, "", "", "", 3, "");
+        bib.luoTiedosto();
+
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+            System.out.println(rivi);
+        }
+        assertEquals(25, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
