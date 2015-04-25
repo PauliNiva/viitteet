@@ -7,7 +7,7 @@ description 'Käyttäjä voi lisätä artikkeliviitteen'
 
 scenario 'käyttäjä voi lisätä viitteen', {
     given 'lisäämis-toiminto on valittu', {
-        io = new StubIO("1", "1", "lokki", "lintu", "2015", "9", "notes", "21--24", "Lintuset", "7", "2", "5", "4", "5");
+        io = new StubIO("1", "1", "lokki", "lintu", "2015", "9", "notes", "21--24", "Lintuset", "7", "2", "0", "4", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
@@ -24,7 +24,7 @@ scenario 'käyttäjä voi lisätä viitteen', {
 
 scenario 'käyttäjä voi lisätä viitteen', {
     given 'lisäämis-toiminto on valittu', {
-        io = new StubIO("1", "1", "lokki", "lintu", "2015", "", "", "", "Lintuset", "7", "", "5", "4", "5");
+        io = new StubIO("1", "1", "lokki", "lintu", "2015", "", "", "", "Lintuset", "7", "", "0", "4", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);

@@ -7,7 +7,7 @@ description 'Käyttäjä voi lisätä misc-viitteen'
 
 scenario 'käyttäjä voi lisätä misc-viitteen', {
     given 'miscin lisäämis-toiminto on valittu', {
-        io = new StubIO("1","4","Nauris", "Vihannes", "2013", "2", "http://www.vihannes.com", "Pubi", "Edi", "Otsake", "7", "First", "26--27", "Addr", "Org", "5", "5");
+        io = new StubIO("1","4","Nauris", "Vihannes", "2013", "2", "http://www.vihannes.com", "Pubi", "Edi", "Otsake", "7", "First", "26--27", "Addr", "Org", "0", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
@@ -26,7 +26,7 @@ scenario 'käyttäjä voi lisätä misc-viitteen', {
 
 scenario 'käyttäjä voi lisätä misc-viitteen', {
     given 'miscin lisäämis-toiminto on valittu', {
-        io = new StubIO("1", "4", "Nauris", "Vihannes", "2013", "", "", "Pubi", "", "Otsake", "", "", "", "", "", "5", "5");
+        io = new StubIO("1", "4", "Nauris", "Vihannes", "2013", "", "", "Pubi", "", "Otsake", "", "", "", "", "", "0", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);

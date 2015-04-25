@@ -7,7 +7,7 @@ description 'Käyttäjä voi lisätä kirjaviitteen'
 
 scenario 'käyttäjä voi lisätä kirjaviitteen', {
     given 'kirjanlisäämis-toiminto on valittu', {
-        io = new StubIO("1", "2", "lokki", "lintu", "2015", "9", "notes", "Pubi", "address", "10", "7", "3", "5", "4", "5");
+        io = new StubIO("1", "2", "lokki", "lintu", "2015", "9", "notes", "Pubi", "address", "10", "7", "3", "0", "4", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
@@ -24,7 +24,7 @@ scenario 'käyttäjä voi lisätä kirjaviitteen', {
 
 scenario 'käyttäjä voi lisätä kirjaviitteen', {
     given 'kirjanlisäämis-toiminto on valittu', {
-        io = new StubIO("1", "2", "lokki", "lintu", "2015", "", "", "Pubi", "", "", "", "", "5", "4", "5");
+        io = new StubIO("1", "2", "lokki", "lintu", "2015", "", "", "Pubi", "", "", "", "", "0", "4", "0");
         testiDao = new FileDao(io);
         viitearkisto = new Viitearkisto(testiDao);
         kl = new Kayttoliittyma(io, viitearkisto);
