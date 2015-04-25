@@ -58,4 +58,18 @@ public class KirjaTest {
 
         assertEquals("S street 1", kirja.getAddress());
     }
+    
+    @Test
+    public void haeKentatToimivat() {
+        assertTrue(kirja.haeKentat().get(0).pakollinen());
+        assertTrue(kirja.haeKentat().get(1).pakollinen());
+        assertTrue(kirja.haeKentat().get(2).pakollinen());
+        assertFalse(kirja.haeKentat().get(3).pakollinen());
+        assertFalse(kirja.haeKentat().get(4).pakollinen());
+        assertTrue(kirja.haeKentat().get(5).pakollinen());
+        assertFalse(kirja.haeKentat().get(6).pakollinen());
+        assertFalse(kirja.haeKentat().get(7).pakollinen());
+        assertFalse(kirja.haeKentat().get(8).pakollinen());
+        assertFalse(kirja.haeKentat().get(9).pakollinen());
+    }
 }

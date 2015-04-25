@@ -54,4 +54,21 @@ public class ArtikkeliTest {
         assertEquals("Arto2013Ratebeer:Arto Vihavainen:Ratebeer:Olutsanomat:" + 3 + ":0:" + 2013+ ":null\n",
                 artikkeli.getTiedostoMuoto());
     }
+    @Test
+    public void haeKentatToimivat() {
+        Artikkeli artikkeli = new Artikkeli("Arto Vihavainen", "Ratebeer", "Olutsanomat",
+                3, 2013);
+        artikkeli.luoID();
+        assertTrue(artikkeli.haeKentat().get(0).pakollinen());
+        assertTrue(artikkeli.haeKentat().get(1).pakollinen());
+        assertTrue(artikkeli.haeKentat().get(2).pakollinen());
+        assertFalse(artikkeli.haeKentat().get(3).pakollinen());
+        assertFalse(artikkeli.haeKentat().get(4).pakollinen());
+        assertFalse(artikkeli.haeKentat().get(5).pakollinen());
+        assertTrue(artikkeli.haeKentat().get(6).pakollinen());
+        assertTrue(artikkeli.haeKentat().get(7).pakollinen());
+        assertFalse(artikkeli.haeKentat().get(8).pakollinen());
+       
+    }
+    
 }

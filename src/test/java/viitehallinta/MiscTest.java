@@ -59,4 +59,20 @@ public class MiscTest {
         misc.setNote("Luettu joskus");
         assertEquals(misc.getNote(), "Luettu joskus");
     }
+
+    @Test
+    public void haeKentatToimivat() {
+        misc = new Misc();
+        misc.setAuthor("Make");
+        misc.setTitle("Keke");
+        misc.setHowPublished("http://koe.fi");
+        misc.luoID();
+        
+        assertFalse(misc.haeKentat().get(0).pakollinen());
+        assertFalse(misc.haeKentat().get(1).pakollinen());
+        assertFalse(misc.haeKentat().get(2).pakollinen());
+        assertFalse(misc.haeKentat().get(3).pakollinen());
+        assertFalse(misc.haeKentat().get(4).pakollinen());
+        assertFalse(misc.haeKentat().get(5).pakollinen());
+    }
 }

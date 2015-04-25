@@ -66,4 +66,20 @@ public class InproceedingsTest {
         assertEquals("Helsingin yliopisto", inpro.getOrganization());
     }
     
+    @Test
+    public void haeKentatToimivat() {
+        assertTrue(inpro.haeKentat().get(0).pakollinen());
+        assertTrue(inpro.haeKentat().get(1).pakollinen());
+        assertTrue(inpro.haeKentat().get(2).pakollinen());
+        assertFalse(inpro.haeKentat().get(3).pakollinen());
+        assertFalse(inpro.haeKentat().get(4).pakollinen());
+        assertTrue(inpro.haeKentat().get(5).pakollinen());
+        assertFalse(inpro.haeKentat().get(6).pakollinen());
+        assertTrue(inpro.haeKentat().get(7).pakollinen());
+        assertFalse(inpro.haeKentat().get(8).pakollinen());
+        assertFalse(inpro.haeKentat().get(9).pakollinen());
+        assertFalse(inpro.haeKentat().get(10).pakollinen());
+        assertFalse(inpro.haeKentat().get(11).pakollinen());
+        assertFalse(inpro.haeKentat().get(12).pakollinen());
+    }
 }
