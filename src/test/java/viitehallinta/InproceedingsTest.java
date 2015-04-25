@@ -28,12 +28,12 @@ public class InproceedingsTest {
         inpro = new Inproceedings("Aku", "Kissat", "Eläimet", 2014);        
     }
     
-    @Test public void luoTyhjanKonstruktorin() {   
+    @Test public void luoTyhjaKonstruktoriTest() {   
         inpro2 = new Inproceedings();
         assertEquals(null, inpro2.getID());
     }
     
-    @Test public void luoKonstruktorin() {        
+    @Test public void luoKonstruktoriTest() {        
         assertEquals("Aku", inpro.getAuthor());
         assertEquals("Kissat", inpro.getTitle());
         assertEquals("Eläimet", inpro.getBooktitle());
@@ -45,9 +45,34 @@ public class InproceedingsTest {
         assertEquals("24", inpro.getPages());
     }
     
-    @Test public void setAndGetPublisher() {
+    @Test public void setAndGetPublisherTest() {
         inpro.setPublisher("Roope");
         assertEquals("Roope", inpro.getPublisher());
     }
     
+    @Test public void setAndGetVolumeTest() {
+        inpro.setVolume(1);
+        assertEquals(1, inpro.getVolume());
+    }
+    
+    @Test public void setAndGetEditorTest() {
+        inpro.setEditor("Matti");
+        assertEquals("Matti", inpro.getEditor());
+    }
+    
+    @Test public void setAndGetSeriesTest() {
+        inpro.setSeries("series");
+        assertEquals("series", inpro.getSeries());
+    }
+    
+    @Test public void setAndGetAddressTest() {
+        inpro.setAddress("Kumpulan kampus");
+        assertEquals("Kumpulan kampus", inpro.getAddress());
+    }
+    
+    @Test public void setAndGetOrganizationTest() {
+        inpro.setOrganization("Helsingin yliopisto");
+        assertEquals("Helsingin yliopisto", inpro.getOrganization());
+    }
+     
 }
