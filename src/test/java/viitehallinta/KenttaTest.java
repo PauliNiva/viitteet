@@ -8,15 +8,39 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class KenttaTest {
-    Kentta kentta;
-    
-    public KenttaTest() {
-    }   
 
-    @Test public void luoKonstruktoriTest() {
-        kentta = new Kentta("Author", "merkkijono", true); 
+    Kentta kentta;
+
+    public KenttaTest() {
+    }
+
+    @Before
+    public void setUp() {
+        kentta = new Kentta("Author", "merkkijono", true);
+    }
+
+    @Test
+    public void luoKonstruktoriTest() {
         assertEquals("Author", kentta.getNimi());
         assertEquals("merkkijono", kentta.getTietotyyppi());
-        assertTrue(kentta.pakollinen());
+        assertEquals(true, kentta.pakollinen());
+    }
+
+    @Test
+    public void setNimiTest() {
+        kentta.setNimi("New Author");
+        assertEquals("New Author", kentta.getNimi());
+    }
+
+    @Test
+    public void setTietotyyppiTest() {
+        kentta.setTietotyyppi("kokonaisluku");
+        assertEquals("kokonaisluku", kentta.getTietotyyppi());
+    }
+
+    @Test
+    public void setPakollisuusTest() {
+        kentta.setPakollisuus(false);
+        assertEquals(false, kentta.pakollinen());
     }
 }
