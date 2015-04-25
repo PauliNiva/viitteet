@@ -13,7 +13,7 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston artikkeli-viitteestä', {
         kl = new Kayttoliittyma(io, viitearkisto);
         
     }
-    when 'pakolliset kentät on täytetty', {
+    when 'kaikki kentät on täytetty', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
@@ -31,7 +31,7 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston kirja-viitteestä', {
         kl = new Kayttoliittyma(io, viitearkisto);
         
     }
-    when 'pakolliset kentät on täytetty', {
+    when 'kaikki kentät on täytetty', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
@@ -49,7 +49,7 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston misc-viitteestä', {
         kl = new Kayttoliittyma(io, viitearkisto);
         
     }
-    when 'pakolliset kentät on täytetty', {
+    when 'kaikki kentät on täytetty', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
@@ -67,7 +67,7 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston inproceedins-viitteestä', {
         kl = new Kayttoliittyma(io, viitearkisto);
         
     }
-    when 'pakolliset kentät on täytetty', {
+    when 'kaikki kentät on täytetty', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {

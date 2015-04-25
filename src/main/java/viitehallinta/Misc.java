@@ -26,8 +26,15 @@ public class Misc extends Viite implements Serializable {
         this.howpublished = howpublished;
     }
 
+    /**
+     * Luo listan luokan kentistä tietoineen johon sisältyy myös perityt kentät
+     * @return luokan kenttien tiedot
+     */
     static public List<Kentta> haeKentat() {
         List<Kentta> kentat = Viite.haeKentat();
+        
+        // Koska misc tyyppisellä viitteellä ei ole mitään pakollisia kenttiä
+        // poistetaan pakollisuus kaikilta perityiltä kentiltä.
         for (Kentta kentta : kentat) {
             kentta.setPakollisuus(false);
         }

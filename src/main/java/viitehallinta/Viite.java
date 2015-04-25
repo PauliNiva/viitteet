@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Yleisluokka viitteille, jolla on attribuuttina kaikille viitteille yhteiset
  * attribuutit. Spesifit viiteluokat perivät tämän yläluokan. Toteuttaa
- * rajapinnan Serializable rajapinnan.
+ * rajapinnan Serializable.
  */
 public class Viite implements Serializable {
 
@@ -24,16 +24,36 @@ public class Viite implements Serializable {
      */
     public void luoID() {
         StringBuilder viiteID = new StringBuilder();
-        
-        int vali = author.indexOf(" ");
-        if (vali == -1) {
-            vali = author.length();
-        }
-        viiteID.append(author.substring(0, vali));
+
+        int tekijanAlkuosa = etsiAlkuosa(author);
+        viiteID.append(author.substring(0, tekijanAlkuosa));
         viiteID.append(year);
         viiteID.append(title);
-        
+
         ID = viiteID.toString();
+    }
+
+    /**
+     * Etsii annetusta merkkijonosta 1. välin tai pilkun ja palauttaa sen kohdan
+     * tai ellei kumpaakaan löydy niin koko merkkijonon pituuden.
+     * @param merkkijono josta kohtaa haetaan
+     * @return indeksi merkkijonon etsittyyn kohtaan
+     */
+    private int etsiAlkuosa(String merkkijono) {
+        int indeksi = merkkijono.length();
+
+        int ekaVali = merkkijono.indexOf(" ");
+        int ekaPilkku = merkkijono.indexOf(",");
+
+        if (ekaVali >= 0 && ekaPilkku >= 0) {
+            indeksi = ekaVali < ekaPilkku ? ekaVali : ekaPilkku;
+        } else if (ekaPilkku < 0 && ekaVali >= 0) {
+            indeksi = ekaVali;
+        } else if (ekaPilkku >= 0 && ekaVali < 0) {
+            indeksi = ekaPilkku;
+        }
+
+        return indeksi;
     }
 
     public String getID() {
@@ -84,6 +104,10 @@ public class Viite implements Serializable {
         this.note = note;
     }
 
+    /**
+     * Luo listan luokan kentistä tietoineen
+     * @return luokan kenttien tiedot
+     */
     static protected List<Kentta> haeKentat() {
         List<Kentta> kentat = new ArrayList<Kentta>();
         kentat.add(new Kentta("Author", "merkkijono", true));
@@ -91,7 +115,7 @@ public class Viite implements Serializable {
         kentat.add(new Kentta("Year", "kokonaisluku", true));
         kentat.add(new Kentta("Month", "kokonaisluku", false));
         kentat.add(new Kentta("Note", "merkkijono", false));
-        
+
         return kentat;
     }
 }
