@@ -79,7 +79,7 @@ public class KayttoliittymaTest {
         viitearkisto.lisaaArtikkeli("Lokki", "lintu", "1", 1, 2, 2015, "1", 11, "katu");
         viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster",
                 "S street 1", 4, "series", "edition", 12, "notes");
-        kali.listaaViitteet();
+        kali.listaaViitteet(viitearkisto.getViitteet());
         assertEquals(2, viitearkisto.getViitteet().size());
         verify(mockIo, times(29)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();
@@ -93,7 +93,7 @@ public class KayttoliittymaTest {
         viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
         viitearkisto.lisaaInproceedings("author", "title", "booktitle", 2013, "",
                 "publisher", "", 5, "", "", "", 3, "");
-        kali.listaaViitteet();
+        kali.listaaViitteet(viitearkisto.getViitteet());
         assertEquals(2, viitearkisto.getViitteet().size());
         verify(mockIo, times(30)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();

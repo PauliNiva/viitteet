@@ -221,24 +221,21 @@ public class Viitearkisto {
      * Etsii hakusanaa vastaavan viitteen (viitteet) ja palauttaa listan
      * osumista
      *
-     * @param hakusana käyttäjän syöttämä merkkijono, jolla etsitään viitteitä.
+     * @param hakusana käyttäjän syöttämä merkkijono, jolla etsitään viitteitä
      * @return lista, joka sisältää hakusanan sisältäneet viitteet
      */
-    // TODO !!!! 
     public List<Viite> etsiViite(String hakusana) {
-        List<Kentta> kentat;
+        List<Viite> osumat = new ArrayList<Viite>();
         for (Viite viite : viitteet) {
-            if (viite instanceof Artikkeli) {
-                kentat = Artikkeli.haeKentat();
-            } else if (viite instanceof Inproceedings) {
-                kentat = Inproceedings.haeKentat();
-            } else if (viite instanceof Kirja) {
-                kentat = Kirja.haeKentat();
-            } else if (viite instanceof Misc) {
-                kentat = Misc.haeKentat();
+            if (viite.getID().toLowerCase().contains(hakusana.toLowerCase())) {
+                osumat.add(viite);
+            } else if (viite.getAuthor().toLowerCase().contains(hakusana.toLowerCase())) {
+                osumat.add(viite);
+            } else if (viite.getTitle().toLowerCase().contains(hakusana.toLowerCase())) {
+                osumat.add(viite);
             }
 
         }
-        return null;
+        return osumat;
     }
 }

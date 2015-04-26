@@ -101,7 +101,7 @@ public class Kayttoliittyma implements UI {
                 break;
             }
             case 2: {
-                listaaViitteet();
+                listaaViitteet(viitearkisto.getViitteet());
                 break;
             }
             case 3: {
@@ -281,36 +281,31 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Etsii viitteen järjestelmästä kysymällä ensin käyttäjältä hakusanaa,
-     * jonka avulla etsittävä viite tunnistetaan. Luo viite-listan, johon talletetaan
-     * viitearkisto-luokalta etsittävät viitteet. Lopuksi kutsutaan naytaOsumat-
-     * metodia, joka näyttää hakutuloksen.
+     * jonka avulla etsittävä viite tunnistetaan. Luo viite-listan, johon
+     * talletetaan viitearkisto-luokalta etsittävät viitteet. Lopuksi kutsutaan
+     * listaaViitteet-metodia saadulla listalla, joka näyttää hakutuloksen.
      */
     private void naytaEtsiViite() {
-        System.out.println("Anna hakusana:");
+        System.out.println("Anna hakusana (Author/Title/Year): ");
         String hakusana = io.lueRivi();
         List<Viite> osumat = viitearkisto.etsiViite(hakusana);
-        naytaOsumat(osumat);
-    }
-
-    /**
-     * Näyttää etsintä-toiminnolla haetut viitteet
-     * @param osumat lista osumista, jotka näytetään
-     */
-    // TODO !!!!!
-    private void naytaOsumat(List<Viite> osumat) {
         if (osumat.isEmpty()) {
-            System.out.println("Hakusanallasi ei löytynyt yhtään viitettä");
+            io.tulostaRivi("");
+            io.tulostaRivi("Haku ei tuottanut yhtään osumaa");
+            io.tulostaRivi("");
         } else {
-            
+            listaaViitteet(osumat);
         }
     }
 
     /**
      * Listaa järjestelmässä olevat viitteet ihmiselle luettavassa muodossa.
+     *
+     * @param viitelista lista viitteitä joka halutaan tulostaa
      */
-    public void listaaViitteet() {
+    public void listaaViitteet(List<Viite> viitelista) {
         System.out.println("Viitteet: \n");
-        List<Viite> viitteet = viitearkisto.getViitteet();
+        List<Viite> viitteet = viitelista;
         for (Object viite : viitteet) {
             if (viite instanceof Artikkeli) {
                 io.tulostaRivi("ID: " + ((Artikkeli) viite).getID());
