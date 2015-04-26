@@ -100,4 +100,13 @@ public class ViitearkistoTest {
         verify(mockDao, times(1)).tallennaViitteet(anyList());
         assertEquals(1, viitearkisto.getViitteet().size());
     }
+
+    @Test
+    public void etsiViiteTest() {
+        viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
+        assertEquals(1, viitearkisto.etsiViite("Luoja").size());
+        assertEquals(1, viitearkisto.etsiViite("2013").size());
+        assertEquals(1, viitearkisto.etsiViite("arska").size());
+        assertEquals(0, viitearkisto.etsiViite("huonoHakuSana").size());
+    }
 }

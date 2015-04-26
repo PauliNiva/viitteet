@@ -227,11 +227,11 @@ public class Viitearkisto {
     public List<Viite> etsiViite(String hakusana) {
         List<Viite> osumat = new ArrayList<Viite>();
         for (Viite viite : viitteet) {
-            if (viite.getID().toLowerCase().contains(hakusana.toLowerCase())) {
-                osumat.add(viite);
-            } else if (viite.getAuthor().toLowerCase().contains(hakusana.toLowerCase())) {
+            if (viite.getAuthor().toLowerCase().contains(hakusana.toLowerCase())) {
                 osumat.add(viite);
             } else if (viite.getTitle().toLowerCase().contains(hakusana.toLowerCase())) {
+                osumat.add(viite);
+            } else if (viite.getID().toLowerCase().contains(hakusana.toLowerCase())){
                 osumat.add(viite);
             }
 

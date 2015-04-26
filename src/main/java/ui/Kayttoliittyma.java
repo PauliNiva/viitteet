@@ -132,7 +132,7 @@ public class Kayttoliittyma implements UI {
      * @return True, jos käyttäjä valitsee muun kuin palaamisen päävalikkoon.
      * @throws IOException
      */
-    private boolean toteutaViitevalikonValinta(int kayttajanValinta) throws IOException {
+    public boolean toteutaViitevalikonValinta(int kayttajanValinta) throws IOException {
         switch (kayttajanValinta) {
             case 1: {
                 luoArtikkeli();

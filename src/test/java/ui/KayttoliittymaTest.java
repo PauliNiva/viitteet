@@ -4,12 +4,16 @@ import dao.FileDao;
 import io.IO;
 import io.KayttoliittymaIO;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import viitehallinta.Viitearkisto;
 import static org.mockito.Mockito.*;
 import viitehallinta.Artikkeli;
+import viitehallinta.Inproceedings;
+import viitehallinta.Viite;
 
 /**
  * Luokka käyttöliittymän testaamiseen.
@@ -56,7 +60,6 @@ public class KayttoliittymaTest {
 
     }
 
-    
     @Test
     public void toteutaValikonValintaTest() throws IOException {
         when(mockIo.lueRivi()).thenReturn("1").thenReturn("0");
@@ -72,6 +75,13 @@ public class KayttoliittymaTest {
     }
 
     @Test
+    public void toteutaViiteValikonValintaTest() throws IOException {
+        when(mockIo.lueRivi()).thenReturn("0");
+        assertEquals(true, kayttoliittyma.toteutaViitevalikonValinta(3));
+        assertEquals(true, kayttoliittyma.toteutaViitevalikonValinta(4));
+    }
+
+    @Test
     public void listaaViitteetTest() throws IOException {
         testiDao = new FileDao("tyhjatestiviite.tmp", mockIo);
         viitearkisto = new Viitearkisto(testiDao);
@@ -84,7 +94,7 @@ public class KayttoliittymaTest {
         verify(mockIo, times(29)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();
     }
-    
+
     @Test
     public void listaaViitteetTest2() throws IOException {
         testiDao = new FileDao("tyhjatestiviite.tmp", mockIo);
@@ -99,30 +109,27 @@ public class KayttoliittymaTest {
         testiDao.tyhjennaTiedosto();
     }
 
-    
     @Test
     public void luoArtikkeliTest() {
         when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoArtikkeli();
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyInt(), anyString());
     }
-    
 
-    
     @Test
     public void luoKirjaTest() {
         when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoKirja();
         verify(mockViitearkisto, times(1)).lisaaKirja(anyString(), anyString(), anyInt(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyInt(), anyString());
     }
-    
+
     @Test
     public void luoInproceedingsTest() {
         when(mockIo.lueRivi()).thenReturn("0");
         kayttoliittyma.luoInproceedings();
         verify(mockViitearkisto, times(1)).lisaaInproceedings(anyString(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyString(), anyInt(), anyString(), anyString(), anyString(), anyInt(), anyString());
     }
-    
+
     @Test
     public void luoMiscTest() {
         when(mockIo.lueRivi()).thenReturn("0");
@@ -136,6 +143,24 @@ public class KayttoliittymaTest {
         kayttoliittyma.kaynnista();
         verify(mockViitearkisto, times(1)).lueTiedosto();
         verify(mockIo, times(2)).lueRivi();
+    }
+
+    @Test
+    public void naytaEtsiViite() {
+        when(mockIo.lueRivi()).thenReturn("5").thenReturn("author").thenReturn("0");
+        List<Viite> mockViitteet = new ArrayList<Viite>();
+        mockViitteet.add(new Inproceedings("author", "title", "booktitle", 2013));
+        when(mockViitearkisto.etsiViite(anyString())).thenReturn(mockViitteet);
+        kayttoliittyma.kaynnista();
+        verify(mockViitearkisto, times(1)).etsiViite(anyString());
+    }
+    @Test
+    public void naytaEtsiViiteTyhjallaListalla(){
+        when(mockIo.lueRivi()).thenReturn("5").thenReturn("author").thenReturn("0");
+        List<Viite> mockViitteet = new ArrayList<Viite>();
+        when(mockViitearkisto.etsiViite(anyString())).thenReturn(mockViitteet);
+        kayttoliittyma.kaynnista();
+        verify(mockViitearkisto, times(1)).etsiViite(anyString());
     }
 
 }
