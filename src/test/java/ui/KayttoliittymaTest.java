@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import viitehallinta.Viitearkisto;
 import static org.mockito.Mockito.*;
-import viitehallinta.Artikkeli;
 import viitehallinta.Inproceedings;
 import viitehallinta.Viite;
 
@@ -112,6 +111,13 @@ public class KayttoliittymaTest {
     @Test
     public void luoArtikkeliTest() {
         when(mockIo.lueRivi()).thenReturn("0");
+        kayttoliittyma.luoArtikkeli();
+        verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyInt(), anyString());
+    }
+
+    @Test
+    public void luoArtikkeliJossaVirheellisiaSyotteitaTest() {
+        when(mockIo.lueRivi()).thenReturn("").thenReturn("Lokki").thenReturn("Lintu").thenReturn("Ok").thenReturn("2015").thenReturn("").thenReturn("").thenReturn("").thenReturn("Journal").thenReturn("7").thenReturn("");
         kayttoliittyma.luoArtikkeli();
         verify(mockViitearkisto, times(1)).lisaaArtikkeli(anyString(), anyString(), anyString(), anyInt(), anyInt(), anyInt(), anyString(), anyInt(), anyString());
     }

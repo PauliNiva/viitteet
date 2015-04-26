@@ -18,8 +18,8 @@ scenario 'käyttäjä voi lisätä misc-viitteen', {
     }
     then 'misc-viite on tallennettu' , {
         viitearkisto.getViitteet().size().shouldNotBe 0;
-        io.getPrints().shouldHave("Misc lisatty onnistuneesti")
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti")
+        io.getPrints().shouldHave("Misc lisätty onnistuneesti")
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti")
         testiDao.tyhjennaTiedosto();
     }
 }
@@ -37,8 +37,8 @@ scenario 'käyttäjä voi lisätä misc-viitteen', {
     }
     then 'misc-viite on tallennettu' , {
         viitearkisto.getViitteet().size().shouldNotBe 0;
-        io.getPrints().shouldHave("Misc lisatty onnistuneesti")
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti")
+        io.getPrints().shouldHave("Misc lisätty onnistuneesti")
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti")
         testiDao.tyhjennaTiedosto();
     }
 }

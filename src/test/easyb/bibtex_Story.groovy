@@ -17,9 +17,9 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston artikkeli-viitteestä', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
-        io.getPrints().shouldHave("Viitteet lisatty bibViitteet.bib tiedostoon");
-        io.getPrints().shouldHave("Artikkeli lisatty onnistuneesti");
-        io.getPrints().shouldNotHave("Kirja lisatty onnistuneesti");
+        io.getPrints().shouldHave("Viitteet lisätty bibViitteet.bib tiedostoon");
+        io.getPrints().shouldHave("Artikkeli lisätty onnistuneesti");
+        io.getPrints().shouldNotHave("Kirja lisätty onnistuneesti");
         testiDao.tyhjennaTiedosto();
     }
 }
@@ -35,9 +35,9 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston kirja-viitteestä', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
-        io.getPrints().shouldHave("Viitteet lisatty bibViitteet.bib tiedostoon");
-        io.getPrints().shouldHave("Kirja lisatty onnistuneesti");
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti");
+        io.getPrints().shouldHave("Viitteet lisätty bibViitteet.bib tiedostoon");
+        io.getPrints().shouldHave("Kirja lisätty onnistuneesti");
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti");
         testiDao.tyhjennaTiedosto();
     }
 }
@@ -53,9 +53,9 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston misc-viitteestä', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
-        io.getPrints().shouldHave("Viitteet lisatty bibViitteet.bib tiedostoon");
-        io.getPrints().shouldHave("Misc lisatty onnistuneesti");
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti");
+        io.getPrints().shouldHave("Viitteet lisätty bibViitteet.bib tiedostoon");
+        io.getPrints().shouldHave("Misc lisätty onnistuneesti");
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti");
         testiDao.tyhjennaTiedosto();
     }
 }
@@ -71,9 +71,9 @@ scenario 'käyttäjä voi luoda BibTex-tiedoston inproceedins-viitteestä', {
         kl.kaynnista();
     }
     then 'bibtex-tiedosto on tallennettu' , {
-        io.getPrints().shouldHave("Viitteet lisatty bibViitteet.bib tiedostoon");
-        io.getPrints().shouldHave("Inproceedings lisatty onnistuneesti");
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti");
+        io.getPrints().shouldHave("Viitteet lisätty bibViitteet.bib tiedostoon");
+        io.getPrints().shouldHave("Inproceedings lisätty onnistuneesti");
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti");
         testiDao.tyhjennaTiedosto();
     }
 }

@@ -18,8 +18,8 @@ scenario 'käyttäjä voi lisätä inproceedings-viitteen', {
     }
     then 'inproceedings-viite on tallennettu' , {
         viitearkisto.getViitteet().size().shouldNotBe 0;
-        io.getPrints().shouldHave("Inproceedings lisatty onnistuneesti")
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti")
+        io.getPrints().shouldHave("Inproceedings lisätty onnistuneesti")
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti")
         testiDao.tyhjennaTiedosto();
     }
 }
@@ -37,8 +37,8 @@ scenario 'käyttäjä voi lisätä inproceedings-viitteen', {
     }
     then 'inproceedings-viite on tallennettu' , {
         viitearkisto.getViitteet().size().shouldNotBe 0;
-        io.getPrints().shouldHave("Inproceedings lisatty onnistuneesti")
-        io.getPrints().shouldNotHave("Artikkeli lisatty onnistuneesti")
+        io.getPrints().shouldHave("Inproceedings lisätty onnistuneesti")
+        io.getPrints().shouldNotHave("Artikkeli lisätty onnistuneesti")
         testiDao.tyhjennaTiedosto();
     }
 }

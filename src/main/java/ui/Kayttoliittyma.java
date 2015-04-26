@@ -70,7 +70,8 @@ public class Kayttoliittyma implements UI {
     /**
      * Hakee käyttäjän valinnan valikosta.
      *
-     * @return käyttäjän valinnan.
+     * @return käyttäjän valinnan tai virheellisen syötteen tapauksessa
+     * Integer.MIN_VALUE
      */
     private int getKayttajanValinta() {
         String valintaMkiJono = io.lueRivi();
@@ -79,7 +80,7 @@ public class Kayttoliittyma implements UI {
         try {
             valinta = Integer.parseInt(valintaMkiJono);
         } catch (NumberFormatException e) {
-            valinta = -1;
+            valinta = Integer.MIN_VALUE;
         }
 
         return valinta;
@@ -186,7 +187,7 @@ public class Kayttoliittyma implements UI {
                 merkkijonoNumeroksi(kentat[8]), merkkijonoNumeroksi(kentat[2]), kentat[5],
                 merkkijonoNumeroksi(kentat[3]), kentat[4]);
         io.tulostaRivi("");
-        io.tulostaRivi("Artikkeli lisatty onnistuneesti");
+        io.tulostaRivi("Artikkeli lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -200,7 +201,7 @@ public class Kayttoliittyma implements UI {
                 kentat[5], kentat[6], merkkijonoNumeroksi(kentat[7]), kentat[8],
                 kentat[9], merkkijonoNumeroksi(kentat[3]), kentat[4]);
         io.tulostaRivi("");
-        io.tulostaRivi("Kirja lisatty onnistuneesti");
+        io.tulostaRivi("Kirja lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -215,7 +216,7 @@ public class Kayttoliittyma implements UI {
                 merkkijonoNumeroksi(kentat[8]), kentat[9], kentat[11], kentat[12],
                 merkkijonoNumeroksi(kentat[3]), kentat[4]);
         io.tulostaRivi("");
-        io.tulostaRivi("Inproceedings lisatty onnistuneesti");
+        io.tulostaRivi("Inproceedings lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -228,7 +229,7 @@ public class Kayttoliittyma implements UI {
         viitearkisto.lisaaMisc(kentat[0], kentat[1], kentat[5],
                 merkkijonoNumeroksi(kentat[3]), merkkijonoNumeroksi(kentat[2]), kentat[4]);
         io.tulostaRivi("");
-        io.tulostaRivi("Misc lisatty onnistuneesti");
+        io.tulostaRivi("Misc lisätty onnistuneesti");
         io.tulostaRivi("");
     }
 
@@ -244,27 +245,61 @@ public class Kayttoliittyma implements UI {
 
         for (int i = 0; i < kentat.size(); i++) {
             Kentta kentta = kentat.get(i);
+            String kehote = rakennaKehote(kentta);
 
-            StringBuilder kehote = new StringBuilder(kentta.getNimi());
-            if (kentta.pakollinen() == true) {
-                kehote.append("*");
-            }
-            kehote.append((": "));
-
-            boolean syoteOk = true;
-            do {
-                io.tulostaIlmanRivinvaihtoa(kehote.toString());
-                taytettavatKentat[i] = io.lueRivi();
-
-                if (kentta.pakollinen() == true && taytettavatKentat[i].isEmpty()) {
-                    syoteOk = false;
-                } else {
-                    syoteOk = true;
-                }
-            } while (syoteOk == false);
+            taytettavatKentat[i] = lueSyote(kehote, kentta);
         }
 
         return taytettavatKentat;
+    }
+
+    /**
+     * Luetaan käyttäjän syöte halutulle kentälle ja varmistetaan että
+     * pakollisen kentän kohdalla tieto on annettu. Tarkistetaan myös että
+     * numeeriseen kenttään ei voi antaa muuta kuin numeerisen arvon.
+     *
+     * @param kehote joka näytetään käyttäjälle
+     * @param kentta kenttä mille syöte halutaan
+     * @return String saatu syöte
+     */
+    private String lueSyote(String kehote, Kentta kentta) {
+        String syote;
+
+        boolean syoteOk = true;
+        do {
+            io.tulostaIlmanRivinvaihtoa(kehote);
+            syote = io.lueRivi();
+
+            if (kentta.pakollinen() == true && syote.isEmpty()) {
+                syoteOk = false;
+            } else {
+                syoteOk = true;
+            }
+
+            if (syoteOk == true && !syote.isEmpty() && kentta.getTietotyyppi().equals("kokonaisluku")) {
+                if (merkkijonoNumeroksi(syote) == Integer.MIN_VALUE) {
+                    syoteOk = false;
+                }
+            }
+        } while (syoteOk == false);
+
+        return syote;
+    }
+
+    /**
+     * Rakentaa kehote merkkijonon haluttua syötettä varten
+     *
+     * @param kentta jolle kehote halutaan
+     * @return String luotu kehote
+     */
+    private String rakennaKehote(Kentta kentta) {
+        StringBuilder kehote = new StringBuilder(kentta.getNimi());
+        if (kentta.pakollinen() == true) {
+            kehote.append("*");
+        }
+        kehote.append((": "));
+
+        return kehote.toString();
     }
 
     /**
@@ -374,7 +409,7 @@ public class Kayttoliittyma implements UI {
 
     /**
      * Muuttaa merkkijonona olevan numeron kokonaisluvuksi. Jos merkkijono ei
-     * ole numero, niin metodia antaa arvoksi -1.
+     * ole numero, niin metodia antaa arvoksi Integer.MIN_VALUE:n.
      *
      * @param numeraali Stringinä saatava numero
      * @return int:iksi muutetun kokonaisluvun.
@@ -384,7 +419,7 @@ public class Kayttoliittyma implements UI {
         try {
             arvo = Integer.parseInt(numeraali);
         } catch (NumberFormatException e) {
-            arvo = -1;
+            arvo = Integer.MIN_VALUE;
         }
         return arvo;
     }
