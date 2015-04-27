@@ -37,7 +37,7 @@ public class KayttoliittymaTest {
     @Test
     public void naytaValikkoJaPyydaValintaTest() {
         kayttoliittyma.naytaValikkoJaPyydaValinta();
-        verify(mockIo, times(7)).tulostaRivi(anyString());
+        verify(mockIo, times(8)).tulostaRivi(anyString());
     }
 
     @Test

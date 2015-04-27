@@ -238,4 +238,33 @@ public class Viitearkisto {
         }
         return osumat;
     }
+    
+    /**
+     * Muokkaa haluttua viitettä, jos viite löytyy. Poistaa samalla vanhan viitteen.
+     * @param muokattava muokattavan viitteen ID
+     * @return merkkijono, joka on muokattavan viitteen tyyppi
+     */
+    public String muokkaaViite(String muokattava) {
+        String muokattavaViite = "";
+        for (Viite viite : viitteet) {
+            if (viite.getID().equals(muokattava)) {
+                poistaViite(muokattava);
+                muokattavaViite = String.valueOf(viite.getClass());
+                break;
+            }
+        }
+        if (muokattavaViite.contains("Artikkeli")) {
+            return "Artikkeli";
+        }
+        if (muokattavaViite.contains("Kirja")) {
+            return "Kirja";
+        }
+        if (muokattavaViite.contains("Misc")) {
+            return "Misc";
+        }
+        if (muokattavaViite.contains("Inproceedings")) {
+            return "inproceedings";
+        }
+        return null;
+    }
 }
