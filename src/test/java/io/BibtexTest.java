@@ -1,18 +1,16 @@
 package io;
 
 import dao.BibDao;
-import dao.FileDao;
 import io.Bibtex;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 import viitehallinta.*;
 
 /**
@@ -43,7 +41,7 @@ public class BibtexTest {
         String tulos = bib.tarkastaAakkoset("ÄäÖöÅåa");
         assertEquals(haluttuRivi, tulos);
     }
-    
+
     @Test
     public void tarkastaAakkosetVaarillaKirjaimillaTest() {
         String haluttuRivi = "AASSkdkd";
@@ -63,7 +61,7 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(11, rivit.size());
+        assertEquals(10, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
@@ -79,11 +77,11 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(13, rivit.size());
+        assertEquals(9, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
-    
+
     @Test
     public void lisaaURLMiscBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
@@ -96,13 +94,13 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(9, rivit.size());
+        assertEquals(6, rivit.size());
         String haluttuTulos = "howpublished = \"\\url{http://koe.fi},";
-        assertEquals(rivit.get(3), haluttuTulos);
+        assertEquals(rivit.get(1), haluttuTulos);
         dao.tyhjennaTiedosto();
-        
+
         rivit.clear();
-        
+
         Misc misc1 = new Misc();
         misc1.setHowPublished("www.koe.fi");
         bib.lisaaMiscBibViitteetTiedostoon(misc1);
@@ -111,12 +109,12 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(9, rivit.size());
+        assertEquals(6, rivit.size());
         haluttuTulos = "howpublished = \"\\url{www.koe.fi},";
-        assertEquals(rivit.get(3), haluttuTulos);
+        assertEquals(rivit.get(1), haluttuTulos);
         dao.tyhjennaTiedosto();
     }
-    
+
     @Test
     public void lisaaMiscBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
@@ -129,12 +127,12 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(9, rivit.size());
+        assertEquals(6, rivit.size());
         String haluttuTulos = "howpublished = {Kirja},";
-        assertEquals(rivit.get(3), haluttuTulos);
+        assertEquals(rivit.get(1), haluttuTulos);
         dao.tyhjennaTiedosto();
     }
-    
+
     @Test
     public void lisaaInproceedingsBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
@@ -147,7 +145,7 @@ public class BibtexTest {
             String rivi = lukija.nextLine();
             rivit.add(rivi);
         }
-        assertEquals(16, rivit.size());
+        assertEquals(10, rivit.size());
         assertEquals(rivit.get(5), "pages = {123--234},");
         assertEquals(rivit.get(1), "author = {Masa},");
         dao.tyhjennaTiedosto();
@@ -168,10 +166,11 @@ public class BibtexTest {
             rivit.add(rivi);
             System.out.println(rivi);
         }
-        assertEquals(24, rivit.size());
+        assertEquals(25, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
+
     @Test
     public void luoTiedostoTest2() throws IOException {
         dao.tyhjennaTiedosto();
@@ -186,7 +185,7 @@ public class BibtexTest {
             rivit.add(rivi);
             System.out.println(rivi);
         }
-        assertEquals(25, rivit.size());
+        assertEquals(18, rivit.size());
 
         dao.tyhjennaTiedosto();
     }

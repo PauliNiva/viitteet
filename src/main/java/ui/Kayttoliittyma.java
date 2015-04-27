@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static util.Util.*;
 
 import viitehallinta.*;
 
@@ -348,10 +349,10 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Title: " + ((Artikkeli) viite).getTitle());
                 io.tulostaRivi("Journal: " + ((Artikkeli) viite).getJournal());
                 io.tulostaRivi("Volume: " + ((Artikkeli) viite).getVolume());
-                io.tulostaRivi("Number: " + ((Artikkeli) viite).getNumber());
+                io.tulostaRivi("Number: " + muotoileNumeroMerkkijonoksi(((Artikkeli) viite).getNumber()));
                 io.tulostaRivi("Year: " + ((Artikkeli) viite).getYear());
                 io.tulostaRivi("Pages: " + ((Artikkeli) viite).getPages());
-                io.tulostaRivi("Month: " + ((Artikkeli) viite).getMonth());
+                io.tulostaRivi("Month: " + muotoileNumeroMerkkijonoksi(((Artikkeli) viite).getMonth()));
                 io.tulostaRivi("Note: " + ((Artikkeli) viite).getNote());
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
@@ -363,10 +364,10 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Year: " + ((Kirja) viite).getYear());
                 io.tulostaRivi("Publisher: " + ((Kirja) viite).getPublisher());
                 io.tulostaRivi("Address: " + ((Kirja) viite).getAddress());
-                io.tulostaRivi("Volume: " + ((Kirja) viite).getVolume());
+                io.tulostaRivi("Volume: " + muotoileNumeroMerkkijonoksi(((Kirja) viite).getVolume()));
                 io.tulostaRivi("Series: " + ((Kirja) viite).getSeries());
                 io.tulostaRivi("Edition: " + ((Kirja) viite).getEdition());
-                io.tulostaRivi("Month: " + ((Kirja) viite).getMonth());
+                io.tulostaRivi("Month: " + muotoileNumeroMerkkijonoksi(((Kirja) viite).getMonth()));
                 io.tulostaRivi("Note: " + ((Kirja) viite).getNote());
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
@@ -380,12 +381,12 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Pages: " + ((Inproceedings) viite).getPages());
                 io.tulostaRivi("Publisher: " + ((Inproceedings) viite).getPublisher());
                 io.tulostaRivi("Editor: " + ((Inproceedings) viite).getEditor());
-                io.tulostaRivi("Volume: " + ((Inproceedings) viite).getVolume());
+                io.tulostaRivi("Volume: " + muotoileNumeroMerkkijonoksi(((Inproceedings) viite).getVolume()));
                 io.tulostaRivi("Series: " + ((Inproceedings) viite).getSeries());
                 io.tulostaRivi("Pages: " + ((Inproceedings) viite).getPages());
                 io.tulostaRivi("Address: " + ((Inproceedings) viite).getAddress());
                 io.tulostaRivi("Organization: " + ((Inproceedings) viite).getOrganization());
-                io.tulostaRivi("Month: " + ((Inproceedings) viite).getMonth());
+                io.tulostaRivi("Month: " + muotoileNumeroMerkkijonoksi(((Inproceedings) viite).getMonth()));
                 io.tulostaRivi("Note: " + ((Inproceedings) viite).getNote());
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
@@ -395,8 +396,8 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Author: " + ((Misc) viite).getAuthor());
                 io.tulostaRivi("Title: " + ((Misc) viite).getTitle());
                 io.tulostaRivi("How Published: " + ((Misc) viite).getHowPublished());
-                io.tulostaRivi("Month: " + ((Misc) viite).getMonth());
-                io.tulostaRivi("Year: " + ((Misc) viite).getYear());
+                io.tulostaRivi("Month: " + muotoileNumeroMerkkijonoksi(((Misc) viite).getMonth()));
+                io.tulostaRivi("Year: " + muotoileNumeroMerkkijonoksi(((Misc) viite).getYear()));
                 io.tulostaRivi("Note: " + ((Misc) viite).getNote());
                 io.tulostaRivi("");
                 io.tulostaRivi("====================================");
