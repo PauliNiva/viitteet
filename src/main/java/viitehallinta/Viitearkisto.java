@@ -36,7 +36,7 @@ public class Viitearkisto {
     }
 
     /**
-     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla metodin
+     * Luo uuden artikkelin ja lisää sille attribuutit setterien avulla metodin
      * saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
      * järjestelmään.
      *
@@ -239,6 +239,11 @@ public class Viitearkisto {
         return osumat;
     }
     
+    /**
+     * Muokkaa haluttua viitettä, jos viite löytyy. Poistaa samalla vanhan viitteen.
+     * @param muokattava muokattavan viitteen ID
+     * @return merkkijono, joka on muokattavan viitteen tyyppi
+     */
     public String muokkaaViite(String muokattava) {
         String muokattavaViite = "";
         for (Viite viite : viitteet) {

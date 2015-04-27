@@ -338,6 +338,12 @@ public class Kayttoliittyma implements UI {
         }
     }
     
+    /**
+     * Muokkaa järjestelmän viitettä kysymällä ensin käyttäjältä muokattava ID:tä,
+     * jonka avulla viite tunnistetaan. Jonka jälkeen sille palautetaan mikä viite
+     * tyyppi oli kyseessä ja tämän perusteella pyytää käyttäjää kirjoittamaan uudet
+     * tiedot.
+     */
     private void naytaMuokkaaViite() {
         System.out.println("Anna muokattavan viitteen ID: ");
         String muokattavaViite = io.lueRivi();
