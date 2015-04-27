@@ -27,7 +27,9 @@ public class Viite implements Serializable {
 
         int tekijanAlkuosa = etsiAlkuosa(author);
         viiteID.append(author.substring(0, tekijanAlkuosa));
-        viiteID.append(year);
+        if (year != Integer.MIN_VALUE) {
+            viiteID.append(year);
+        }
         int otsikonAlkuosa = etsiAlkuosa(title);
         viiteID.append(title.substring(0, otsikonAlkuosa));
 
@@ -37,10 +39,11 @@ public class Viite implements Serializable {
     /**
      * Etsii annetusta merkkijonosta 1. välin tai pilkun ja palauttaa sen kohdan
      * tai ellei kumpaakaan löydy niin koko merkkijonon pituuden.
+     *
      * @param merkkijono josta kohtaa haetaan
      * @return indeksi merkkijonon etsittyyn kohtaan
      */
-    private int etsiAlkuosa(String merkkijono) {
+    protected int etsiAlkuosa(String merkkijono) {
         int indeksi = merkkijono.length();
 
         int ekaVali = merkkijono.indexOf(" ");
@@ -107,6 +110,7 @@ public class Viite implements Serializable {
 
     /**
      * Luo listan luokan kentistä tietoineen
+     *
      * @return luokan kenttien tiedot
      */
     static protected List<Kentta> haeKentat() {

@@ -27,12 +27,33 @@ public class Misc extends Viite implements Serializable {
     }
 
     /**
+     * Luo viitteen super luokan mukaan, mutta jos viite on tyhjä laittaa sen
+     * tilalle 1. kentän mikä on annettu.
+     */
+    @Override
+    public void luoID() {
+        super.luoID();
+        if (super.getID().isEmpty()) {
+            if (!super.getNote().isEmpty()) {
+                int kohta = etsiAlkuosa(super.getNote());
+                super.setID(super.getNote().substring(0, kohta));
+            } else if (!howpublished.isEmpty()) {
+                int kohta = etsiAlkuosa(howpublished);
+                super.setID(howpublished.substring(0, kohta));
+            } else if (super.getMonth() != Integer.MIN_VALUE) {
+                super.setID(Integer.toString(super.getMonth()));
+            }
+        }
+    }
+
+    /**
      * Luo listan luokan kentistä tietoineen johon sisältyy myös perityt kentät
+     *
      * @return luokan kenttien tiedot
      */
     static public List<Kentta> haeKentat() {
         List<Kentta> kentat = Viite.haeKentat();
-        
+
         // Koska misc tyyppisellä viitteellä ei ole mitään pakollisia kenttiä
         // poistetaan pakollisuus kaikilta perityiltä kentiltä.
         for (Kentta kentta : kentat) {
