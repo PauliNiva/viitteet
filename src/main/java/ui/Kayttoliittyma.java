@@ -64,6 +64,7 @@ public class Kayttoliittyma implements UI {
         io.tulostaRivi("(3) Poista Viite");
         io.tulostaRivi("(4) Luo BibTex-tiedosto");
         io.tulostaRivi("(5) Etsi viite");
+        io.tulostaRivi("(6) Muokkaa viitetta");
         io.tulostaRivi("(0) Lopeta");
     }
 
@@ -115,6 +116,10 @@ public class Kayttoliittyma implements UI {
             }
             case 5: {
                 naytaEtsiViite();
+                break;
+            }
+            case 6: {
+                naytaMuokkaaViite();
                 break;
             }
             case 0: {
@@ -330,6 +335,23 @@ public class Kayttoliittyma implements UI {
             io.tulostaRivi("");
         } else {
             listaaViitteet(osumat);
+        }
+    }
+    
+    private void naytaMuokkaaViite() {
+        System.out.println("Anna muokattavan viitteen ID: ");
+        String muokattavaViite = io.lueRivi();
+        String palautusarvo = viitearkisto.muokkaaViite(muokattavaViite);
+        if (palautusarvo == null) {
+            io.tulostaRivi("Valitsemaasi ID:tä ei löytynyt");
+        } else if (palautusarvo.equals("Artikkeli")) {
+            luoArtikkeli();
+        } else if (palautusarvo.equals("Kirja")) {
+            luoKirja();
+        } else if (palautusarvo.equals("Inproceedings")) {
+            luoInproceedings();
+        } else if (palautusarvo.equals("Misc")) {
+            luoMisc();
         }
     }
 

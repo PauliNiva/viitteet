@@ -36,7 +36,7 @@ public class Viitearkisto {
     }
 
     /**
-     * Luo uuden artikkelin ja lisää sille attribuutit setterien avulla metodin
+     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla metodin
      * saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
      * järjestelmään.
      *
@@ -237,5 +237,29 @@ public class Viitearkisto {
 
         }
         return osumat;
+    }
+    
+    public String muokkaaViite(String muokattava) {
+        String muokattavaViite = "";
+        for (Viite viite : viitteet) {
+            if (viite.getID().equals(muokattava)) {
+                poistaViite(muokattava);
+                muokattavaViite = String.valueOf(viite.getClass());
+                break;
+            }
+        }
+        if (muokattavaViite.contains("Artikkeli")) {
+            return "Artikkeli";
+        }
+        if (muokattavaViite.contains("Kirja")) {
+            return "Kirja";
+        }
+        if (muokattavaViite.contains("Misc")) {
+            return "Misc";
+        }
+        if (muokattavaViite.contains("Inproceedings")) {
+            return "inproceedings";
+        }
+        return null;
     }
 }
