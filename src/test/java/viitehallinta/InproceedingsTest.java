@@ -83,7 +83,7 @@ public class InproceedingsTest {
         assertTrue(Inproceedings.haeKentat().get(2).pakollinen());
         assertFalse(Inproceedings.haeKentat().get(3).pakollinen());
         assertFalse(Inproceedings.haeKentat().get(4).pakollinen());
-        assertTrue(Inproceedings.haeKentat().get(5).pakollinen());
+        assertFalse(Inproceedings.haeKentat().get(5).pakollinen());
         assertFalse(Inproceedings.haeKentat().get(6).pakollinen());
         assertTrue(Inproceedings.haeKentat().get(7).pakollinen());
         assertFalse(Inproceedings.haeKentat().get(8).pakollinen());

@@ -90,7 +90,7 @@ public class ViitearkistoTest {
                 "S street 1", 6, "series", "edition", 10, "notes");
         assertEquals(2, viitearkisto.getViitteet().size());
 
-        viitearkisto.poistaViite("Charles1951Charlie Brown strikes back");
+        viitearkisto.poistaViite("Charles1951Charlie");
         assertEquals(1, viitearkisto.getViitteet().size());
     }
 

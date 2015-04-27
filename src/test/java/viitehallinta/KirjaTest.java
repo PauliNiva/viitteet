@@ -43,7 +43,7 @@ public class KirjaTest {
     public void luoKirjaTest() {
         kirja = new Kirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster");
         kirja.luoID();
-        assertEquals("Charles1950Charlie Brown", kirja.getID());
+        assertEquals("Charles1950Charlie", kirja.getID());
         assertEquals("Charles M. Schulz", kirja.getAuthor());
         assertEquals("Charlie Brown", kirja.getTitle());
         assertEquals(1950, kirja.getYear());
