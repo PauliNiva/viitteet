@@ -338,27 +338,36 @@ public class Kayttoliittyma implements UI {
             listaaViitteet(osumat);
         }
     }
-    
+
     /**
-     * Muokkaa järjestelmän viitettä kysymällä ensin käyttäjältä muokattava ID:tä,
-     * jonka avulla viite tunnistetaan. Jonka jälkeen sille palautetaan mikä viite
-     * tyyppi oli kyseessä ja tämän perusteella pyytää käyttäjää kirjoittamaan uudet
-     * tiedot.
+     * Muokkaa järjestelmän viitettä kysymällä ensin käyttäjältä muokattava
+     * ID:tä, jonka avulla viite tunnistetaan. Annetun tunnisteen perusteella
+     * haetaan muokattava viite joka näytetään käyttäjälle ja tämän jälkeen
+     * käyttäjä syöttää uuden viitteen käyttäen mahdollisesti aiemman viitteen
+     * tietoja.
      */
     private void naytaMuokkaaViite() {
         System.out.println("Anna muokattavan viitteen ID: ");
         String muokattavaViite = io.lueRivi();
+        
+        List<Viite> osumat = viitearkisto.etsiViite(muokattavaViite);
         String palautusarvo = viitearkisto.muokkaaViite(muokattavaViite);
+        
         if (palautusarvo == null) {
-            io.tulostaRivi("Valitsemaasi ID:tä ei löytynyt");
-        } else if (palautusarvo.equals("Artikkeli")) {
-            luoArtikkeli();
-        } else if (palautusarvo.equals("Kirja")) {
-            luoKirja();
-        } else if (palautusarvo.equals("Inproceedings")) {
-            luoInproceedings();
-        } else if (palautusarvo.equals("Misc")) {
-            luoMisc();
+            io.tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
+        } else {
+            if (!osumat.isEmpty()) {
+                listaaViitteet(osumat);
+            }
+            if (palautusarvo.equals("Artikkeli")) {
+                luoArtikkeli();
+            } else if (palautusarvo.equals("Kirja")) {
+                luoKirja();
+            } else if (palautusarvo.equals("Inproceedings")) {
+                luoInproceedings();
+            } else if (palautusarvo.equals("Misc")) {
+                luoMisc();
+            }
         }
     }
 
