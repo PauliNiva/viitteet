@@ -225,7 +225,7 @@ public class Kayttoliittyma implements UI {
      * Tulostaa lopuksi käyttäjälle viestin lisäyksen onnistumisesta.
      */
     public void luoMisc() {
-        String[] kentat = taytaKentat(Inproceedings.haeKentat());
+        String[] kentat = taytaKentat(Misc.haeKentat());
         viitearkisto.lisaaMisc(kentat[0], kentat[1], kentat[5],
                 merkkijonoNumeroksi(kentat[3]), merkkijonoNumeroksi(kentat[2]), kentat[4]);
         io.tulostaRivi("");

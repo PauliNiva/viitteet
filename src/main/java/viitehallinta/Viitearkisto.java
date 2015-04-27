@@ -183,7 +183,7 @@ public class Viitearkisto {
      * @param howpublished String miten ja missä julkaistu.
      * @param month String kuukausi, jolloin julkaistu.
      * @param year String vuosi, jolloin julkaistu.
-     * @param notes String muu mahdollinen tieto
+     * @param note String muu mahdollinen tieto
      */
     public void lisaaMisc(String author, String title, String howpublished, int month, int year, String note) {
         Misc misc = new Misc();
