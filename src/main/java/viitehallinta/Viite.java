@@ -28,7 +28,8 @@ public class Viite implements Serializable {
         int tekijanAlkuosa = etsiAlkuosa(author);
         viiteID.append(author.substring(0, tekijanAlkuosa));
         viiteID.append(year);
-        viiteID.append(title);
+        int otsikonAlkuosa = etsiAlkuosa(title);
+        viiteID.append(title.substring(0, otsikonAlkuosa));
 
         ID = viiteID.toString();
     }
