@@ -108,7 +108,7 @@ public class Inproceedings extends Viite implements Serializable {
      */
     static public List<Kentta> haeKentat() {
         List<Kentta> kentat = Viite.haeKentat();
-        kentat.add(new Kentta("Publisher", "merkkijono", true));
+        kentat.add(new Kentta("Publisher", "merkkijono", false));
         kentat.add(new Kentta("Editor", "merkkijono", false));
         kentat.add(new Kentta("Book title", "merkkijono", true));
         kentat.add(new Kentta("Volume", "kokonaisluku", false));

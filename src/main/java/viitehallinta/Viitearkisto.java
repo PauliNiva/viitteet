@@ -36,7 +36,7 @@ public class Viitearkisto {
     }
 
     /**
-     * Luo uuden artikkelin ja lisää sille attribuuttit setterien avulla metodin
+     * Luo uuden artikkelin ja lisää sille attribuutit setterien avulla metodin
      * saamien parametrien mukaan ja lopuksi lisää uuden artikkelin
      * järjestelmään.
      *
