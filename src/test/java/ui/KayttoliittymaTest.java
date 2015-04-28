@@ -181,7 +181,6 @@ public class KayttoliittymaTest {
         verify(mockIo).tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
     }
 
-
     @Test
     public void muokkaaViiteTyhjillaOsumilla() {
         Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 10, 2015);
@@ -240,7 +239,6 @@ public class KayttoliittymaTest {
 
     }
 
-
     @Test
     public void naytaMuokkaaViiteInprocTest() {
         Inproceedings inproc = new Inproceedings("author", "title", "booktitle", 2015);
@@ -258,7 +256,7 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto).muokkaaViite("author2015title");
         verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
     }
-    
+
     @Test
     public void naytaMuokkaaViiteMiscTest() {
         Misc misc = new Misc();
@@ -266,15 +264,15 @@ public class KayttoliittymaTest {
         misc.luoID();
         List<Viite> osumat = new ArrayList<Viite>();
         osumat.add(misc);
-        
+
         when(mockIo.lueRivi()).thenReturn("6").thenReturn("a").thenReturn("a")
                 .thenReturn("title").thenReturn("").thenReturn("").thenReturn("")
                 .thenReturn("");
         when(mockViitearkisto.etsiViite("a")).thenReturn(osumat);
-        when(mockViitearkisto).muokkaaViite("a").thenReturn("Misc");      
-        
+        when(mockViitearkisto).muokkaaViite("a").thenReturn("Misc");
+
         kayttoliittyma.kaynnista();
-        
+
         verify(mockViitearkisto).muokkaaViite("a");
         verify(mockViitearkisto).lisaaMisc("a", "tit", "", Integer.MIN_VALUE, Integer.MIN_VALUE, "");
     }
