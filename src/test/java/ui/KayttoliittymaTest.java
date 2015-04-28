@@ -257,5 +257,5 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto).muokkaaViite("author2015title");
         verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
     }
->>>>>>> e79ba3dffad6d8fa6d952edf368fddee5489ee21
+
 }
