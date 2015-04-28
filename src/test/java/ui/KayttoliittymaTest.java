@@ -11,7 +11,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import viitehallinta.Viitearkisto;
 import static org.mockito.Mockito.*;
+import viitehallinta.Artikkeli;
 import viitehallinta.Inproceedings;
+import viitehallinta.Kirja;
 import viitehallinta.Viite;
 
 /**
@@ -178,21 +180,66 @@ public class KayttoliittymaTest {
         verify(mockIo).tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
     }
 
-    /*TODO, kusee jossain kohin, väittää ettei lisää artikkeli uudestaan"
-     @Test
-     public void naytaMuokkaaViiteArtikkeliTest() {
-     mockViitearkisto.lisaaArtikkeli("t", "y", "e", 0, 0, 2, "", 3, "");
-     when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
-     .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
-     .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
-     .thenReturn("0");
-     kayttoliittyma.kaynnista();
 
-     verify(mockViitearkisto).muokkaaViite("t2y");
-     assertEquals(1, mockViitearkisto.getViitteet().size());
-     assertEquals("aut", mockViitearkisto.getViitteet().get(0).getAuthor());
-     }
-     */
+    @Test
+    public void muokkaaViiteTyhjillaOsumilla() {
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 10, 2015);
+        List<Viite> osumat = new ArrayList<Viite>();
+
+        when(mockViitearkisto.etsiViite("t2y")).thenReturn(osumat);
+        when(mockViitearkisto.muokkaaViite("t2y")).thenReturn("Artikkeli");
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
+                .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
+                .thenReturn("0");
+        kayttoliittyma.kaynnista();
+
+        verify(mockViitearkisto).muokkaaViite("t2y");
+        verify(mockViitearkisto).lisaaArtikkeli("aut", "tit", "jour", 3,
+                Integer.MIN_VALUE, 4, "", Integer.MIN_VALUE, "");
+
+    }
+
+    @Test
+    public void naytaMuokkaaViiteArtikkeliTest() {
+
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 10, 2015);
+        List<Viite> osumat = new ArrayList<Viite>();
+        osumat.add(artikkeli);
+        when(mockViitearkisto.etsiViite("t2y")).thenReturn(osumat);
+        when(mockViitearkisto.muokkaaViite("t2y")).thenReturn("Artikkeli");
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
+                .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
+                .thenReturn("0");
+        kayttoliittyma.kaynnista();
+
+        verify(mockViitearkisto).muokkaaViite("t2y");
+        verify(mockViitearkisto).lisaaArtikkeli("aut", "tit", "jour", 3,
+                Integer.MIN_VALUE, 4, "", Integer.MIN_VALUE, "");
+
+    }
+
+    @Test
+    public void naytaMuokkaaViiteKirjaTest() {
+
+        Kirja kirja = new Kirja("Charles", "Charlie", 1950, "Simon & Schuster");
+        List<Viite> osumat = new ArrayList<Viite>();
+        osumat.add(kirja);
+        when(mockViitearkisto.etsiViite("Charles1950Charlie")).thenReturn(osumat);
+        when(mockViitearkisto.muokkaaViite("Charles1950Charlie")).thenReturn("Kirja");
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("Charles1950Charlie").thenReturn("aut")
+                .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
+                .thenReturn("pub").thenReturn("").thenReturn("").thenReturn("").thenReturn("")
+                .thenReturn("0");
+        kayttoliittyma.kaynnista();
+
+        verify(mockViitearkisto).muokkaaViite("Charles1950Charlie");
+        verify(mockViitearkisto).lisaaKirja("aut", "tit", 4, "pub", "", Integer.MIN_VALUE, "", "", Integer.MIN_VALUE, "");
+
+    }
+
+
     @Test
     public void naytaMuokkaaViiteInprocTest() {
         Inproceedings inproc = new Inproceedings("author", "title", "booktitle", 2015);
@@ -210,4 +257,5 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto).muokkaaViite("author2015title");
         verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
     }
+
 }
