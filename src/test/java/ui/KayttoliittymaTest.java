@@ -169,4 +169,27 @@ public class KayttoliittymaTest {
         verify(mockViitearkisto, times(1)).etsiViite(anyString());
     }
 
+    @Test
+    public void naytaMuokkaaViiteTyhjallaTest() {
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("test").thenReturn("0");
+        kayttoliittyma.kaynnista();
+
+        verify(mockIo).tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
+    }
+    
+    /*TODO, kusee jossain kohin, väittää ettei lisää artikkeli uudestaan"
+    @Test
+    public void naytaMuokkaaViiteArtikkeliTest() {
+        mockViitearkisto.lisaaArtikkeli("t", "y", "e", 0, 0, 2, "", 3, "");
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
+                .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
+                .thenReturn("0");
+        kayttoliittyma.kaynnista();
+
+        verify(mockViitearkisto).muokkaaViite("t2y");
+        assertEquals(1, mockViitearkisto.getViitteet().size());
+        assertEquals("aut", mockViitearkisto.getViitteet().get(0).getAuthor());
+    }
+    */
 }
