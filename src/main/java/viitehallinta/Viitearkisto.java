@@ -263,7 +263,7 @@ public class Viitearkisto {
             return "Misc";
         }
         if (muokattavaViite.contains("Inproceedings")) {
-            return "inproceedings";
+            return "Inproceedings";
         }
         return null;
     }

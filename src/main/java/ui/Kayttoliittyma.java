@@ -420,7 +420,6 @@ public class Kayttoliittyma implements UI {
                 io.tulostaRivi("Editor: " + ((Inproceedings) viite).getEditor());
                 io.tulostaRivi("Volume: " + muotoileNumeroMerkkijonoksi(((Inproceedings) viite).getVolume()));
                 io.tulostaRivi("Series: " + ((Inproceedings) viite).getSeries());
-                io.tulostaRivi("Pages: " + ((Inproceedings) viite).getPages());
                 io.tulostaRivi("Address: " + ((Inproceedings) viite).getAddress());
                 io.tulostaRivi("Organization: " + ((Inproceedings) viite).getOrganization());
                 io.tulostaRivi("Month: " + muotoileNumeroMerkkijonoksi(((Inproceedings) viite).getMonth()));

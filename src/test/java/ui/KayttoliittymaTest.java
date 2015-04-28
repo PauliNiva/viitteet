@@ -104,7 +104,7 @@ public class KayttoliittymaTest {
                 "publisher", "", 5, "", "", "", 3, "");
         kali.listaaViitteet(viitearkisto.getViitteet());
         assertEquals(2, viitearkisto.getViitteet().size());
-        verify(mockIo, times(30)).tulostaRivi(anyString());
+        verify(mockIo, times(29)).tulostaRivi(anyString());
         testiDao.tyhjennaTiedosto();
     }
 
