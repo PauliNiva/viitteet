@@ -274,7 +274,7 @@ public class KayttoliittymaTest {
         kayttoliittyma.kaynnista();
 
         verify(mockViitearkisto).muokkaaViite("a");
-        verify(mockViitearkisto).lisaaMisc("a", "tit", "", Integer.MIN_VALUE, Integer.MIN_VALUE, "");
+        verify(mockViitearkisto).lisaaMisc("a", "title", "", Integer.MIN_VALUE, Integer.MIN_VALUE, "");
     }
 
 }
