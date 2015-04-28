@@ -109,4 +109,51 @@ public class ViitearkistoTest {
         assertEquals(1, viitearkisto.etsiViite("arska").size());
         assertEquals(0, viitearkisto.etsiViite("huonoHakuSana").size());
     }
+    
+    @Test
+    public void muokkaaViiteMiscTest() {
+        viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
+        String haluttu = "Misc";
+        assertEquals(viitearkisto.muokkaaViite("Luoja2013Arska"), haluttu);
+    }
+    
+    @Test
+    public void muokkaaViiteArtikkeliTest() {
+        viitearkisto.lisaaArtikkeli("author", "title", "journal", 1, 2, 1999, "pages", 12, "notes");
+        String haluttu = "Artikkeli";
+        assertEquals(viitearkisto.muokkaaViite("author1999title"), haluttu);
+    }
+    
+    @Test
+    public void muokkaaViiteKirjaTest() {
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster",
+                "S street 1", 7, "series", "edition", 12, "notes");
+        String haluttu = "Kirja";
+        assertEquals(viitearkisto.muokkaaViite("Charles1950Charlie"), haluttu);
+    }
+    
+    @Test
+    public void muokkaaViiteInproceedingsTest() {
+        viitearkisto.lisaaInproceedings("author", "title", "booktitle", 2013, "", 
+                "pubi", "", 9, "", "", "", 3, "");
+        String haluttu = "Inproceedings";
+        assertEquals(viitearkisto.muokkaaViite("author2013title"), haluttu);
+    }
+    
+    @Test
+    public void muokkaaViiteEiOleTest() {
+        String haluttu = null;
+        assertEquals(viitearkisto.muokkaaViite("Charles1950Charlie"), haluttu);
+    }
+    
+    @Test
+    public void muokkaaViiteMonellaViitteellaTest() {
+        viitearkisto.lisaaInproceedings("author", "title", "booktitle", 2013, "", 
+                "pubi", "", 9, "", "", "", 3, "");
+        viitearkisto.lisaaKirja("Charles M. Schulz", "Charlie Brown", 1950, "Simon & Schuster",
+                "S street 1", 7, "series", "edition", 12, "notes");
+        viitearkisto.lisaaMisc("Luoja", "Arska", "www.koe.fi", 2, 2013, "luettu 2.1");
+        String haluttu = "Misc";
+        assertEquals(viitearkisto.muokkaaViite("Luoja2013Arska"), haluttu);
+    }
 }
