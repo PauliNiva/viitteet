@@ -14,6 +14,7 @@ import static org.mockito.Mockito.*;
 import viitehallinta.Artikkeli;
 import viitehallinta.Inproceedings;
 import viitehallinta.Kirja;
+import viitehallinta.Misc;
 import viitehallinta.Viite;
 
 /**
@@ -256,6 +257,26 @@ public class KayttoliittymaTest {
 
         verify(mockViitearkisto).muokkaaViite("author2015title");
         verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
+    }
+    
+    @Test
+    public void naytaMuokkaaViiteMiscTest() {
+        Misc misc = new Misc();
+        misc.setAuthor("a");
+        misc.luoID();
+        List<Viite> osumat = new ArrayList<Viite>();
+        osumat.add(misc);
+        
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("a").thenReturn("a")
+                .thenReturn("title").thenReturn("").thenReturn("").thenReturn("")
+                .thenReturn("");
+        when(mockViitearkisto.etsiViite("a")).thenReturn(osumat);
+        when(mockViitearkisto).muokkaaViite("a").thenReturn("Misc");      
+        
+        kayttoliittyma.kaynnista();
+        
+        verify(mockViitearkisto).muokkaaViite("a");
+        verify(mockViitearkisto).lisaaMisc("a", "tit", "", Integer.MIN_VALUE, Integer.MIN_VALUE, "");
     }
 
 }
