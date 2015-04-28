@@ -160,8 +160,9 @@ public class KayttoliittymaTest {
         kayttoliittyma.kaynnista();
         verify(mockViitearkisto, times(1)).etsiViite(anyString());
     }
+
     @Test
-    public void naytaEtsiViiteTyhjallaListalla(){
+    public void naytaEtsiViiteTyhjallaListalla() {
         when(mockIo.lueRivi()).thenReturn("5").thenReturn("author").thenReturn("0");
         List<Viite> mockViitteet = new ArrayList<Viite>();
         when(mockViitearkisto.etsiViite(anyString())).thenReturn(mockViitteet);
@@ -176,20 +177,37 @@ public class KayttoliittymaTest {
 
         verify(mockIo).tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
     }
-    
+
     /*TODO, kusee jossain kohin, väittää ettei lisää artikkeli uudestaan"
+     @Test
+     public void naytaMuokkaaViiteArtikkeliTest() {
+     mockViitearkisto.lisaaArtikkeli("t", "y", "e", 0, 0, 2, "", 3, "");
+     when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
+     .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
+     .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
+     .thenReturn("0");
+     kayttoliittyma.kaynnista();
+
+     verify(mockViitearkisto).muokkaaViite("t2y");
+     assertEquals(1, mockViitearkisto.getViitteet().size());
+     assertEquals("aut", mockViitearkisto.getViitteet().get(0).getAuthor());
+     }
+     */
     @Test
-    public void naytaMuokkaaViiteArtikkeliTest() {
-        mockViitearkisto.lisaaArtikkeli("t", "y", "e", 0, 0, 2, "", 3, "");
-        when(mockIo.lueRivi()).thenReturn("6").thenReturn("t2y").thenReturn("aut")
-                .thenReturn("tit").thenReturn("4").thenReturn("").thenReturn("")
-                .thenReturn("").thenReturn("jour").thenReturn("3").thenReturn("")
-                .thenReturn("0");
+    public void naytaMuokkaaViiteInprocTest() {
+        Inproceedings inproc = new Inproceedings("author", "title", "booktitle", 2015);
+        List<Viite> osumat = new ArrayList<Viite>();
+        osumat.add(inproc);
+
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("author2015title").thenReturn("Lokki")
+                .thenReturn("Lintu").thenReturn("2015").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("").thenReturn("Lintuset").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("").thenReturn("").thenReturn("0");
+        when(mockViitearkisto.etsiViite("author2015title")).thenReturn(osumat);
+        when(mockViitearkisto.muokkaaViite("author2015title")).thenReturn("Inproceedings");
         kayttoliittyma.kaynnista();
 
-        verify(mockViitearkisto).muokkaaViite("t2y");
-        assertEquals(1, mockViitearkisto.getViitteet().size());
-        assertEquals("aut", mockViitearkisto.getViitteet().get(0).getAuthor());
+        verify(mockViitearkisto).muokkaaViite("author2015title");
+        verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
     }
-    */
 }
