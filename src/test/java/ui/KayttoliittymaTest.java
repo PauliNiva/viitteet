@@ -267,9 +267,9 @@ public class KayttoliittymaTest {
 
         when(mockIo.lueRivi()).thenReturn("6").thenReturn("a").thenReturn("a")
                 .thenReturn("title").thenReturn("").thenReturn("").thenReturn("")
-                .thenReturn("");
+                .thenReturn("").thenReturn("0");
         when(mockViitearkisto.etsiViite("a")).thenReturn(osumat);
-        when(mockViitearkisto).muokkaaViite("a").thenReturn("Misc");
+        when(mockViitearkisto.muokkaaViite("a")).thenReturn("Misc");
 
         kayttoliittyma.kaynnista();
 
