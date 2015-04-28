@@ -84,3 +84,21 @@ scenario 'kayttaja voi muokata inproceedings viitetta', {
         testiDao.tyhjennaTiedosto();
     }
 }
+
+scenario 'kayttaja ei voi muokata ei-olemassa-olevaa viitetta', {
+    given 'muokkaamis-toiminto on valittu', {
+        io = new StubIO("6", "porkkana2014mahtavuus", "0");
+        testiDao = new FileDao(io);
+        viitearkisto = new Viitearkisto(testiDao);
+        kl = new Kayttoliittyma(io, viitearkisto);
+
+    }
+    when 'vaara ID on annettu', {
+        kl.kaynnista();
+    }
+    then 'muokkaus ei ole onnistunut' , {
+        io.getPrints().shouldHave("\nValitsemaasi ID:tä ei löytynyt\n");
+        viitearkisto.getViitteet().size().shouldBe 0;
+        testiDao.tyhjennaTiedosto();
+    }
+}
