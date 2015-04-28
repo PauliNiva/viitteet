@@ -31,7 +31,7 @@ public class MiscTest {
         misc.setYear(2014);
         misc.setNote("");
         misc.luoID();
-        
+
         assertEquals("Make2014Keke", misc.getID());
         assertEquals("Make", misc.getAuthor());
         assertEquals("Keke", misc.getTitle());
@@ -39,6 +39,52 @@ public class MiscTest {
         assertEquals(8, misc.getMonth());
         assertEquals(2014, misc.getYear());
         assertEquals("", misc.getNote());
+    }
+
+    @Test
+    public void luoIDNotenPerusteella() {
+        misc = new Misc();
+        misc.setNote("Muistio");
+        misc.setYear(Integer.MIN_VALUE);
+        misc.luoID();
+
+        assertEquals("Muistio", misc.getID());
+        assertEquals("Muistio", misc.getNote());
+    }
+
+    @Test
+    public void luoIDHowPublishedPerusteella() {
+        misc = new Misc();
+        misc.setNote("");
+        misc.setHowPublished("HP");
+        misc.setYear(Integer.MIN_VALUE);
+        misc.luoID();
+
+        assertEquals("HP", misc.getID());
+        assertEquals("HP", misc.getHowPublished());
+    }
+
+    @Test
+    public void luoIDMonthPerusteella() {
+        misc = new Misc();
+        misc.setHowPublished("");
+        misc.setMonth(8);
+        misc.setYear(Integer.MIN_VALUE);
+        misc.luoID();
+
+        assertEquals("8", misc.getID());
+        assertEquals(8, misc.getMonth());
+    }
+
+    @Test
+    public void virheellinenMonthEiLuoViitetta() {
+        misc = new Misc();
+        misc.setMonth(Integer.MIN_VALUE);
+        misc.setYear(Integer.MIN_VALUE);
+        misc.luoID();
+
+        assertEquals("", misc.getID());
+        assertEquals(Integer.MIN_VALUE, misc.getMonth());
     }
 
     @Test

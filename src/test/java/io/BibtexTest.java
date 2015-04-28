@@ -67,6 +67,27 @@ public class BibtexTest {
     }
 
     @Test
+    public void lisaaArtikkeliKaikillaKentillaJaValinnaisetTyhjiaBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 2, 1999);
+        artikkeli.setNote("");
+        artikkeli.setPages("");
+        artikkeli.setMonth(Integer.MIN_VALUE);
+        artikkeli.setNumber(Integer.MIN_VALUE);
+        artikkeli.luoID();
+        bib.lisaaArtikkeliBibViitteetTiedostoon(artikkeli);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(8, rivit.size());
+
+        dao.tyhjennaTiedosto();
+    }
+
+    @Test
     public void lisaaKirjaBibViitteetTiedostoonTest() throws IOException {
         dao.tyhjennaTiedosto();
         Viite kirja = new Kirja("lokki", "lintu", 2015, "publisher");
@@ -78,6 +99,28 @@ public class BibtexTest {
             rivit.add(rivi);
         }
         assertEquals(9, rivit.size());
+
+        dao.tyhjennaTiedosto();
+    }
+
+    @Test
+    public void lisaaKirjaKaikillaKentillaJaValinnaisetTyhjiaBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Kirja kirja = new Kirja("lokki", "lintu", 2015, "publisher");
+        kirja.setAddress("");
+        kirja.setVolume(Integer.MIN_VALUE);
+        kirja.setSeries("");
+        kirja.setEdition("");
+        kirja.setMonth(Integer.MIN_VALUE);
+        kirja.setNote("");
+        bib.lisaaKirjaBibViitteetTiedostoon(kirja);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(7, rivit.size());
 
         dao.tyhjennaTiedosto();
     }
@@ -147,6 +190,31 @@ public class BibtexTest {
         }
         assertEquals(10, rivit.size());
         assertEquals(rivit.get(5), "pages = {123--234},");
+        assertEquals(rivit.get(1), "author = {Masa},");
+        dao.tyhjennaTiedosto();
+    }
+
+    @Test
+    public void lisaaInproceedingsKaikillaKentillaJaValinnaisetTyhjiaBibViitteetTiedostoonTest() throws IOException {
+        dao.tyhjennaTiedosto();
+        Inproceedings inpro = new Inproceedings("Masa", "Aliostikko", "Otsikko", 2000);
+        inpro.setPages("");
+        inpro.setPublisher("");
+        inpro.setEditor("");
+        inpro.setVolume(Integer.MIN_VALUE);
+        inpro.setSeries("");
+        inpro.setAddress("");
+        inpro.setOrganization("");
+        inpro.setMonth(Integer.MIN_VALUE);
+        inpro.setNote("");
+        bib.lisaaInproceedingsBibViitteetTiedostoon(inpro);
+        Scanner lukija = new Scanner(new FileReader(tiedosto));
+        ArrayList<String> rivit = new ArrayList<String>();
+        while (lukija.hasNextLine()) {
+            String rivi = lukija.nextLine();
+            rivit.add(rivi);
+        }
+        assertEquals(7, rivit.size());
         assertEquals(rivit.get(1), "author = {Masa},");
         dao.tyhjennaTiedosto();
     }

@@ -73,11 +73,22 @@ public class ViiteTest {
     }
 
     @Test
+    public void luoViiteSukuEtuPilkullaJaValillaJossaEkstraValiTest() {
+        Viite viite = new Viite();
+        viite.setAuthor("Vihavainen , Arto");
+        viite.setYear(2015);
+        viite.setTitle("Teos");
+        viite.luoID();
+
+        assertEquals("Vihavainen2015Teos", viite.getID());
+    }
+
+    @Test
     public void luoViiteSukuEtuPilkullaIlmanValiaTest() {
         Viite viite = new Viite();
         viite.setAuthor("Vihavainen,Arto");
         viite.setYear(2015);
-        viite.setTitle("Teos");
+        viite.setTitle("Teos,Opus");
         viite.luoID();
 
         assertEquals("Vihavainen2015Teos", viite.getID());

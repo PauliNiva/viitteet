@@ -25,13 +25,17 @@ public class Viite implements Serializable {
     public void luoID() {
         StringBuilder viiteID = new StringBuilder();
 
-        int tekijanAlkuosa = etsiAlkuosa(author);
-        viiteID.append(author.substring(0, tekijanAlkuosa));
+        if (author != null) {
+            int tekijanAlkuosa = etsiAlkuosa(author);
+            viiteID.append(author.substring(0, tekijanAlkuosa));
+        }
         if (year != Integer.MIN_VALUE) {
             viiteID.append(year);
         }
-        int otsikonAlkuosa = etsiAlkuosa(title);
-        viiteID.append(title.substring(0, otsikonAlkuosa));
+        if (title != null) {
+            int otsikonAlkuosa = etsiAlkuosa(title);
+            viiteID.append(title.substring(0, otsikonAlkuosa));
+        }
 
         ID = viiteID.toString();
     }

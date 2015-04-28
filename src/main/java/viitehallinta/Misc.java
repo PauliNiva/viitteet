@@ -34,10 +34,10 @@ public class Misc extends Viite implements Serializable {
     public void luoID() {
         super.luoID();
         if (super.getID().isEmpty()) {
-            if (!super.getNote().isEmpty()) {
+            if (super.getNote() != null && !super.getNote().isEmpty()) {
                 int kohta = etsiAlkuosa(super.getNote());
                 super.setID(super.getNote().substring(0, kohta));
-            } else if (!howpublished.isEmpty()) {
+            } else if (howpublished != null && !howpublished.isEmpty()) {
                 int kohta = etsiAlkuosa(howpublished);
                 super.setID(howpublished.substring(0, kohta));
             } else if (super.getMonth() != Integer.MIN_VALUE) {
