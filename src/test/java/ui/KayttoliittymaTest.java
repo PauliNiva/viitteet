@@ -180,6 +180,7 @@ public class KayttoliittymaTest {
         verify(mockIo).tulostaRivi("\nValitsemaasi ID:tä ei löytynyt\n");
     }
 
+
     @Test
     public void muokkaaViiteTyhjillaOsumilla() {
         Artikkeli artikkeli = new Artikkeli("author", "title", "journal", 10, 2015);
@@ -238,4 +239,23 @@ public class KayttoliittymaTest {
 
     }
 
+
+    @Test
+    public void naytaMuokkaaViiteInprocTest() {
+        Inproceedings inproc = new Inproceedings("author", "title", "booktitle", 2015);
+        List<Viite> osumat = new ArrayList<Viite>();
+        osumat.add(inproc);
+
+        when(mockIo.lueRivi()).thenReturn("6").thenReturn("author2015title").thenReturn("Lokki")
+                .thenReturn("Lintu").thenReturn("2015").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("").thenReturn("Lintuset").thenReturn("").thenReturn("")
+                .thenReturn("").thenReturn("").thenReturn("").thenReturn("0");
+        when(mockViitearkisto.etsiViite("author2015title")).thenReturn(osumat);
+        when(mockViitearkisto.muokkaaViite("author2015title")).thenReturn("Inproceedings");
+        kayttoliittyma.kaynnista();
+
+        verify(mockViitearkisto).muokkaaViite("author2015title");
+        verify(mockViitearkisto).lisaaInproceedings("Lokki", "Lintu", "Lintuset", 2015, "", "", "", Integer.MIN_VALUE, "", "", "", Integer.MIN_VALUE, "");
+    }
+>>>>>>> e79ba3dffad6d8fa6d952edf368fddee5489ee21
 }
