@@ -3,6 +3,8 @@
 # viitteet
 Ohjelmistotuotantokurssin miniprojektin repositorio
 
+*Raportti* : https://github.com/esat-miniprojekti/viitteet/blob/master/Ohtunminiprojektinloppuraportti.docx
+
 *Jenkins* : http://ohtu.jamo.io/view/k2015-ohtu-miniprojektit/job/esat/ 
 
 *JAR* : http://ohtu.jamo.io/view/k2015-ohtu-miniprojektit/job/esat/lastSuccessfulBuild/artifact/target/Viitteet-1.0-SNAPSHOT.jar
