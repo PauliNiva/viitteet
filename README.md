@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/esat-miniprojekti/viitteet.svg)](https://travis-ci.org/esat-miniprojekti/viitteet)
+[![Coverage Status](https://coveralls.io/repos/esat-miniprojekti/viitteet/badge.svg?branch=master)](https://coveralls.io/r/esat-miniprojekti/viitteet?branch=master)
 
 # viitteet
 Ohjelmistotuotantokurssin miniprojektin repositorio
